@@ -1,0 +1,63 @@
+/** --This footer for contact us and credits info included in multiple pages-- **/
+
+.footer
+{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 1em;
+  bottom: 0;
+  width: 100%;
+  background-color: var(--darker-color);
+  font-size: 1.1rem;
+  color: white;
+  padding: 1em;
+}
+
+/** --Information sections in the footer-- **/
+:where(.lu-contact, .developers, .about-us, .lu-campuses)
+{
+  background-color: var(--dark-color);
+  border-right: 2px solid white;
+  border-radius: 2% 0 0 2%;
+  padding: 1em;
+  width: calc(100% / 4);
+  max-height: 15rem;
+  overflow-y: scroll;
+}
+
+.footer h1
+{
+ font-weight: 600;
+ text-align: center;
+ color: var(--light-color);
+}
+
+/** --Styling links-- **/
+.lu-contact a, .developers a
+{
+  margin-left: 0.5em;
+  transition: color .5s ease-in;
+}
+
+.lu-contact a:hover, .developers a:hover
+{
+  color: var(--light-color);
+}
+
+.developers p
+{
+  margin-top: 1.5em;
+}
+
+.lu-campuses h2
+{
+  display: inline;
+  color: var(--yellow-color);
+  font-weight: 500;
+}
+
+.lu-campuses p
+{
+  margin-top: 0.25em;
+}

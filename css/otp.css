@@ -1,0 +1,146 @@
+
+/**  --Variables-- **/
+:root
+{
+  --darker-color: rgb(37,27,55);
+  --dark-color: rgb(55,41,72);
+  --light-color: rgb(255,202,202);
+  --lighter-color: rgb(255,236,239);
+  --yellow-color: rgb(255, 217, 61);
+  --green-color: rgb(224, 255, 19);
+  --bg-gradient: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+  --neon-color: #00eeff;
+  --departments-cards: #ECF2FF;
+  --font-family: 'Poppins',sans-serif;
+  --font-size: 1.3rem;
+}
+
+/** --Setup body-- **/
+body
+{
+  min-height: 100vh;
+  background: var(--bg-gradient);
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  display: flex;
+  flex-direction: column;
+}
+
+/** --Main-- **/
+main
+{
+  flex-grow: 1;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 4.5em;
+  overflow: hidden;
+}
+
+/** --Form Container-- **/
+.container
+{
+  background-color: var(--darker-color);
+  border-radius: .7em;
+  padding: 2em 2.5em;
+  gap: 1.5em;
+  box-shadow: 2px 2px 5px 3px var(--green-color);
+}
+
+/** --Input digit boxes-- **/
+.input-field input
+{
+  font-size: 1.8rem;
+  height: 4rem;
+  width: 3.8rem;
+  border-radius: .5rem;
+  outline: none;
+  border: 1px solid white;
+  text-align: center;
+}
+
+.input-field input::-webkit-inner-spin-button,
+.input-field input::-webkit-outer-spin-button
+{
+  display: none;  
+}
+
+:where(.container, form, .input-field)
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+form .input-field
+{
+  flex-direction: row;
+  column-gap: .8em;
+}
+
+/** --Div containing checkmark icon-- **/
+.check-icon
+{
+  font-size: 2.2rem;
+  width: 6rem;
+  height: 6rem;
+  border-radius: 3rem;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container h1
+{
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+}
+
+/** --Contains a link to resend otp code in case it was not sent-- **/
+.container .failed
+{
+  color: white;
+}
+
+.container .failed a
+{
+  color: var(--green-color);
+  transition: all .8s ease;
+  white-space: nowrap;
+}
+
+.container .failed a:hover
+{
+  text-decoration: underline;
+  color: #00eeff;
+}
+
+/** --Design and animation on submit button-- **/
+.container form input[type="submit"]
+{ 
+  width: 70%;
+  font-size: 1.5rem;
+  color: var(--neon-color);
+  text-shadow: 0 0 0.2em hsl(0 0% 100% / 0.2), 0 0 0.3em var(--neon-color);
+  box-shadow: inset 0 0 0.3em 0 var(--neon-color), 0 0 0.3em 0 var(--neon-color);
+  border: 0.15em solid var(--neon-color);
+  border-radius: .2em;
+  padding: .2em;
+  margin-top: 2em;
+  background-color: var(--darker-color);
+  cursor: pointer;
+  transition: all .5s ease;
+}
+
+/** --Button Animation effect on hover and focus-- **/
+.container form input[type="submit"]:hover,
+.container form input[type="submit"]:focus
+{
+  background-color: var(--neon-color);
+  color: var(--darker-color);
+  text-shadow: none;
+}

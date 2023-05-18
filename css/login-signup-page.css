@@ -1,0 +1,271 @@
+
+/**  --Variables-- **/
+:root
+{
+  --darker-color: rgb(37,27,55);
+  --dark-color: rgb(55,41,72);
+  --light-color: rgb(255,202,202);
+  --lighter-color: rgb(255,236,239);
+  --yellow-color: rgb(255, 217, 61);
+  --green-color: rgb(224, 255, 19);
+  --bg-gradient: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+  /*linear-gradient(to right, #434343 0%, black 100%);
+  linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+  linear-gradient(19deg, #21D4FD 0%, #B721FF 100%)*/
+  --neon-color: #00eeff;
+  --departments-cards: #ECF2FF;
+  --font-family: 'Poppins',sans-serif;
+  --font-size: 1.3rem;
+}
+
+/** --Setup body-- **/
+body
+{
+  min-height: 100vh;
+  background: var(--bg-gradient);
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  display: flex;
+  flex-direction: column;
+}
+
+/** --Main-- **/
+main
+{
+  flex-grow: 1;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 4.5em;
+  overflow: hidden;
+}
+
+/** --This Container is used for the effect of colors animation around the form container-- **/
+.outer-container
+{
+  padding: 0.3em;
+  border-radius: 15px;
+  min-height: 60vh;
+  background-color: var(--bg-gradient);
+  z-index: 2;
+  overflow: hidden;
+}
+
+/** --Login Container-- **/
+.login-container
+{
+  background-color: var(--darker-color);
+  border-radius: 15px;
+  padding: 1.5em 1em;
+  position: relative;
+  width: 22em;
+  min-height: 62vh;
+}
+
+/** --Animated green color around container-- **/
+.login-container::before
+{
+  content: '';
+  position: absolute;
+  width: 520px;
+  height: 620px;
+  top:-50%;
+  left:-50%;
+  background: linear-gradient(0deg,transparent,transparent,var(--green-color),var(--green-color),var(--green-color));
+  z-index: -1;
+  transform-origin: bottom right;
+  animation: circulate 6s linear infinite;
+}
+
+/** --Animated red color around container-- **/
+.login-container::after
+{
+  content: '';
+  position: absolute;
+  width: 520px;
+  height: 620px;
+  top:-50%;
+  left:-50%;
+  background: linear-gradient(0deg,transparent,transparent,#ff0000,#ff0000,#ff0000);
+  z-index: -1;
+  transform-origin: bottom right;
+  animation: circulate 6s linear infinite;
+  animation-delay: -3s;
+}
+
+.login-container form
+{
+  inset: 4px;
+  position: absolute;
+  padding: 2em 1.5em;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+}
+
+.login-container form h1
+{
+  font-size: 2rem;
+  font-weight: 600;
+  color: white;
+  text-align: center;
+  margin-bottom: 2em;
+}
+
+/** --Box containing form input-- **/
+.input-box
+{
+  position: relative;
+  width: 100%;
+}
+
+.input-box input
+{
+  position: relative;
+  width: 100%;
+  padding: .5em;
+  background-color: transparent;
+  outline: none;
+  color: white;
+  border:none;
+  transition: all 0.5s ease-in;
+  border-bottom: 1px solid white;
+  margin-bottom: 2.5em;
+  font-size: 1.2rem;
+}
+
+.input-box span:not(.eye-icons)
+{
+  position: absolute;
+  left: -1em;
+  top: 0;
+  padding: 1em;
+  color: var(--green-color);
+  font-size: 1.2rem;
+  transition: all 0.5s ease;
+}
+
+/** --Translate effect on placeholders when inputs focus-valid-- **/
+.input-box input:valid ~ span:not(.eye-icons),
+.input-box input:focus ~ span:not(.eye-icons)
+{
+  color: white;
+  font-size: 1rem;
+  transform: translateY(-1.8em);
+}
+
+.input-box i
+{
+  position: absolute;
+  right: .1em;
+  top: 1.2em;
+}
+
+.eye-icons
+{
+  position: absolute;
+  top: 0;
+  right: -.2em;
+}
+
+/** --This icon is for password, it is initially invisible, when the user wants the password input visible this icon will be displayed-- **/
+.input-box .fa-eye
+{
+  display: none;
+}
+
+.link
+{
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+}
+
+.link a
+{
+  color: var(--light-color);
+  transition: all .5s ease-in;
+}
+
+.link a:hover, .link a:active
+{
+  color:#ECF2FF;
+  text-decoration: underline;
+}
+
+/** --Design and animation on submit button-- **/
+.login-container form input[type="submit"]
+{
+  color: var(--neon-color);
+  text-shadow: 0 0 0.2em hsl(0 0% 100% / 0.2), 0 0 0.3em var(--neon-color);
+  box-shadow: inset 0 0 0.3em 0 var(--neon-color), 0 0 0.3em 0 var(--neon-color);
+  border: 0.15em solid var(--neon-color);
+  width: 50%;
+  position:relative;
+  transform: translateX(50%);
+  border-radius: .2em;
+  font-size: 1.5rem;
+  padding: .2em;
+  margin-top: 2em;
+  background-color: var(--darker-color);
+  cursor: pointer;
+  transition: all .5s ease;
+  z-index: 2;
+}
+
+/** --Button Animation effect on hover and focus-- **/
+.button-shadow .submit-button:hover,
+.button-shadow .submit-button:focus
+{
+  background-color: var(--neon-color);
+  color: var(--darker-color);
+  text-shadow: none;
+}
+
+/** --A div that will make the button glow on hover-- **/
+.button-shadow
+{
+  position: relative;
+}
+
+.button-shadow .after
+{
+  position:absolute;
+  background-color: var(--neon-color);
+  box-shadow: 0 0 2em 0.5em var(--neon-color);
+  top:55%;
+  left:25%;
+  width:50%;
+  height: 40%;
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.4s linear;
+}
+
+.submit-button:hover ~ .after
+{
+  opacity: 1;
+  z-index: 1;
+}
+
+/** --SignUp Container-- **/
+.signup-container
+{
+  min-height: 85vh;
+}
+
+/** --KeyFrames-- **/
+@keyframes circulate
+{
+  0%
+  {
+    transform: rotate(0deg);
+  }
+
+  100%
+  {
+    transform: rotate(360deg);
+  }
+}

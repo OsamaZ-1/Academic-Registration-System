@@ -1,0 +1,80 @@
+/** --This is for the navigation bar included in multiple pages-- **/
+
+:where(.navbar, .logo-title, .links)
+{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/** --Title of the website-- **/
+.logo-title h1
+{
+  margin-left: 1rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.navbar
+{
+  position: fixed;
+  width: 100%;
+  color: white;
+  padding: 0.5em 1em;
+  background-color: var(--darker-color);
+  z-index: 3;
+}
+
+/** --Logo of the website-- **/
+.logo img
+{
+  width: 3em;
+  height: auto;
+}
+
+/** --Links design for navigation across pages-- **/
+.links ul
+{
+  list-style-type: none;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  padding: 1em;
+}
+
+.links ul li a
+{
+  margin-left: 1em;
+  transition: all 0.5s ease-in;
+}
+
+.links li:hover a
+{
+  border-bottom: 2px solid greenyellow;
+  color:#f23a2a;
+}
+
+/** --Buttons design to navigate across SignIn and SignUp pages-- **/
+#login, #signup
+{
+  padding: 0.5rem;
+  border: none;
+  border-radius: .3em;
+  background-color:var(--green-color);
+  transition: all 0.5s ease-in;
+}
+
+#login
+{
+  margin-right: 0.3em;
+}
+
+#login:hover , #signup:hover
+{
+  background-color: rgba(224, 255, 19,0.8);
+}
+
+#login a, #signup a
+{
+  color: black;
+}
