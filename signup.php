@@ -20,6 +20,11 @@
           <h1>SignUp</h1>
           <?php if(isset($_POST["signup"])) echo "<p style='text-align:center; color:#f00; margin-top:-1.7em;'>Account Already exists</p>"; ?>
           <div class="input-box">
+            <input type="text" name="student-id" required/>
+            <span>Student Id</span>
+            <i class="fa-solid fa-id-card fa-lg" style="color: #fff;"></i>
+          </div>
+          <div class="input-box">
             <input type="text" name="fname" required/>
             <span>First Name</span>
             <i class="fa-solid fa-user fa-lg" style="color: #fff;"></i>
@@ -56,7 +61,8 @@
             $conn = db_connect();
 
             if(isset($_POST["signup"]) && $conn)
-            {
+            { 
+              $user_id = $_POST["student-id"];
               $user_fname = ucfirst($_POST["fname"]);
               $user_lname = ucfirst($_POST["lname"]);
               $user_email = $_POST["email"];
@@ -67,7 +73,7 @@
 
               if(!($result -> num_rows>0))
               { 
-                  $sql = "INSERT INTO Users (Fname, Lname, Email, Password, Admin) VALUES('$user_fname', '$user_lname', '$user_email', '$user_password', 0)";
+                  $sql = "INSERT INTO Users (UserId, Fname, Lname, Email, Password, Admin) VALUES('$user_id','$user_fname', '$user_lname', '$user_email', '$user_password', 0)";
                   if($result = $conn -> query($sql))
                   { 
                     $conn -> close();

@@ -46,7 +46,7 @@ main
 {
   padding: 0.3em;
   border-radius: 15px;
-  min-height: 60vh;
+  min-height: 75vh;
   background-color: var(--bg-gradient);
   z-index: 2;
   overflow: hidden;
@@ -60,7 +60,6 @@ main
   padding: 1.5em 1em;
   position: relative;
   width: 22em;
-  min-height: 62vh;
 }
 
 /** --Animated green color around container-- **/
@@ -98,7 +97,7 @@ main
 {
   inset: 4px;
   position: absolute;
-  padding: 2em 1.5em;
+  padding: 1.5em;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
@@ -111,7 +110,7 @@ main
   font-weight: 600;
   color: white;
   text-align: center;
-  margin-bottom: 2em;
+  margin: .5em 0em 1em;
 }
 
 /** --Box containing form input-- **/
@@ -208,7 +207,8 @@ main
   border-radius: .2em;
   font-size: 1.5rem;
   padding: .2em;
-  margin-top: 2em;
+  margin-top: 1em;
+
   background-color: var(--darker-color);
   cursor: pointer;
   transition: all .5s ease;

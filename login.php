@@ -20,7 +20,7 @@
         <form action="" method="POST">
           <h1>Login</h1>
           <?php if(isset($_POST["login"])) echo "<p id='message' style='text-align:center; color:#f00; margin-top:-1.5em;'>Wrong Email or Password!</p>";
-                else if($_GET["Registered"]==1) echo "<p id='message' style='text-align:center; color:#0ef; margin-top:-1.5em;'>Successfully Registered</p>"; 
+                else if($_GET["Registered"]==1) echo "<p id='message' style='text-align:center; color:#0ef; margin-top:-1.5em;'>Registered, Wait for Acceptance</p>"; 
                 else if($_GET["PasswordChanged"]==1) echo "<p id='message' style='text-align:center; color:#0ef; margin-top:-1.5em;'>Password Changed Successfully</p>";
           ?>
           <div class="input-box">
@@ -55,23 +55,29 @@
           
               $user_email = $_POST["email"];
               $user_password = $_POST["password"];
-      
-              $sql = "SELECT Admin FROM Users WHERE Email = '{$user_email}' AND Password = '{$user_password}'";
-              $result = $conn -> query($sql);
+              
+              //Check if the user requesting to Login is an Admin
+              $sql1 = "SELECT Admin FROM Users WHERE Email = '{$user_email}' AND Password = '{$user_password}'";
+              $result1 = $conn -> query($sql1);
 
-                if($result -> num_rows>0)
+              //Check if the user requesting to Login is a Student
+              $sql2 = "SELECT Id FROM Students WHERE Email = '{$user_email}' AND Password = '{$user_password}'";
+              $result2 = $conn -> query($sql2);
+
+                if($result1 -> num_rows>0)
                 { 
-                  $row = $result -> fetch_assoc();
+                  $row = $result1 -> fetch_assoc();
                   if($row["Admin"] == 1)
                   { 
                     $conn -> close();
                     header("Location: admin-page.html");
                   }
-                  else
-                  { 
-                    $conn -> close();
-                    header("Location: user-page.html");
-                  }   
+           
+                }
+                else if($result2 -> num_rows >0)
+                {
+                  $conn -> close();
+                  header("Location: user-page.html");
                 }
             }
             else if(!$conn)
