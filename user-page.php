@@ -14,8 +14,8 @@
 </head>
 <body>
   <div>
-    <span><h3>Second Year Courses</h2> <input type='button' value='^'/></span>
-    <div style="display: flex; justify-content: space-around;">
+    <span><h3>Second Year Courses</h2> <input type='button' value='^' onclick="toggleDiv(2)"/></span>
+    <div id="table-div-2" style="display: flex; justify-content: space-around;">
       <div>
         <p>1st Semester: </p>
         <table id="secondYear1" border="1" cellspacing="10">
@@ -39,8 +39,8 @@
     </div>
   </div>
   <div>
-  <span><h3>Third Year Courses</h2> <input type='button' value='^'/></span>
-    <div style="display: flex; justify-content: space-around;">
+  <span><h3>Third Year Courses</h2> <input type='button' value='^' onclick="toggleDiv(3)" /></span>
+    <div id="table-div-3" style="display: flex; justify-content: space-around;">
       <div>
         <p>1st Semester: </p>
         <table id="thirdYear1" border="1" cellspacing="10">
@@ -64,8 +64,8 @@
     </div>
   </div>
   <div>
-  <span><h3>Fourth Year Courses</h2> <input type='button' value='^'/></span>
-    <div style="display: flex; justify-content: space-around;">
+  <span><h3>Fourth Year Courses</h2> <input type='button' value='^' onclick="toggleDiv(4)" /></span>
+    <div id="table-div-4" style="display: flex; justify-content: space-around;">
       <div>
         <p>1st Semester: </p>
         <table id="fourthYear1" border="1" cellspacing="10">
@@ -89,4 +89,5 @@
     </div>
   </div>
 </body>
+<script src="js/userPageScript.js"></script>
 </html>
