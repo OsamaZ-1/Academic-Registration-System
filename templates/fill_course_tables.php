@@ -18,7 +18,10 @@
     <td><?php echo $c["CourseCode"]; ?></td>
     <td><?php echo $c["CourseName"]; ?></td>
     <td><?php echo $c["Credits"]; ?></td>
-    <td><input type='checkbox' value="<?php echo $c['CourseId']; ?>" /></td>
+    <td>
+        <input type='checkbox' name="select-box" value="<?php echo $c['CourseId']; ?>" onchange="countCredits()" />
+        <input type='hidden' name="select-credit" value="<?php echo $c['Credits']; ?>" />
+    </td>
 </tr>
 <?php
         }else{
@@ -38,7 +41,10 @@
     <td><?php echo $c["CourseCode"]; ?></td>
     <td><?php echo $c["CourseName"]; ?></td>
     <td><?php echo $c["Credits"]; ?></td>
-    <td><input type='checkbox' name="select-box" value="<?php echo $c['CourseId']; ?>" /></td>
+    <td>
+        <input type='checkbox' name="select-box" value="<?php echo $c['CourseId']; ?>" onchange="countCredits()" />
+        <input type='hidden' name="select-credit" value="<?php echo $c['Credits']; ?>" />
+    </td>
 </tr>
 <?php
         }

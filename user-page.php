@@ -14,6 +14,9 @@
 </head>
 <body>
   <div>
+    <input type='text' id='credit-counter' value='0' disabled/>
+  </div>
+  <div>
     <span><h3>Second Year Courses</h2> <input type='button' value='^' onclick="toggleDiv(2)"/></span>
     <div id="table-div-2" style="display: flex; justify-content: space-around;">
       <div>
