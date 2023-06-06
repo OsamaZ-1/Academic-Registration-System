@@ -1,4 +1,10 @@
-<?php session_start(); ?>
+<?php session_start(); 
+
+      require("classes/dal.php");
+      require("classes/login-signup_dal.php");
+
+      $login = new LoginSignup_DAL();   
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,38 +61,19 @@
           
               $user_email = $_POST["email"];
               $user_password = $_POST["password"];
+
+              $result = $login -> login($user_email,$user_password);
               
-              //Check if the user requesting to Login is an Admin
-              $sql1 = "SELECT Admin FROM Users WHERE Email = '{$user_email}' AND Password = '{$user_password}'";
-              $result1 = $conn -> query($sql1);
-
-              //Check if the user requesting to Login is a Student
-              $sql2 = "SELECT Id FROM Students WHERE Email = '{$user_email}' AND Password = '{$user_password}'";
-              $result2 = $conn -> query($sql2);
-
-                if($result1 -> num_rows>0)
-                { 
-                  $row = $result1 -> fetch_assoc();
-                  if($row["Admin"] == 1)
-                  { 
-                    $conn -> close();
-                    header("Location: admin-page.html");
-                  }
-           
-                }
-                else if($result2 -> num_rows >0)
-                {
-                  $conn -> close();
-                  $_SESSION["email"] = $user_email;
-                  $_SESSION["pass"] = $user_password;
-                  header("Location: user-page.php");
-                }
-            }
-            else if(!$conn)
-            { 
-              $conn -> close();
-              die("Connection failed " . mysqli_connect_error());
-            } 
+              //if the user requesting to Login is an Admin
+              if($result == "Admin")
+                header("Location: admin-page.html");
+              else if($result == "Student")
+              {
+                 $_SESSION["email"] = $user_email;
+                 $_SESSION["pass"] = $user_password;
+                 header("Location: user-page.php");
+              }
+            }      
           ?>
       </div>
     </div>
