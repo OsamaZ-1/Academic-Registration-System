@@ -1,4 +1,4 @@
-<?php session_destroy(); ?>
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,8 +20,8 @@
         <form action="" method="POST">
           <h1>Login</h1>
           <?php if(isset($_POST["login"])) echo "<p id='message' style='text-align:center; color:#f00; margin-top:-1.5em;'>Wrong Email or Password!</p>";
-                else if($_GET["Registered"]==1) echo "<p id='message' style='text-align:center; color:#0ef; margin-top:-1.5em;'>Registered, Wait for Acceptance</p>"; 
-                else if($_GET["PasswordChanged"]==1) echo "<p id='message' style='text-align:center; color:#0ef; margin-top:-1.5em;'>Password Changed Successfully</p>";
+                else if(isset($_GET["Registered"]) && $_GET["Registered"]==1) echo "<p id='message' style='text-align:center; color:#0ef; margin-top:-1.5em;'>Registered, Wait for Acceptance</p>"; 
+                else if(isset($_GET["PasswordChanged"]) && $_GET["PasswordChanged"]==1) echo "<p id='message' style='text-align:center; color:#0ef; margin-top:-1.5em;'>Password Changed Successfully</p>";
           ?>
           <div class="input-box">
             <input type="text" name="email" required/>
@@ -77,7 +77,9 @@
                 else if($result2 -> num_rows >0)
                 {
                   $conn -> close();
-                  header("Location: user-page.html");
+                  $_SESSION["email"] = $user_email;
+                  $_SESSION["pass"] = $user_password;
+                  header("Location: user-page.php");
                 }
             }
             else if(!$conn)

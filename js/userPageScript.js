@@ -21,8 +21,8 @@ let countCredits = () => {
 let toggleDiv = (year) => {
     let id = "table-div-" + year;
     let divStyle = document.getElementById(id).style;
-
-    if (divStyle.display == "none")
+    
+    if (divStyle.display !== "flex")
         divStyle.display = "flex";
     else
         divStyle.display = "none";

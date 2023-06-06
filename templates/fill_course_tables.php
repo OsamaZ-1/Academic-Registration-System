@@ -9,7 +9,7 @@
 </tr>
 <tbody>
 <?php
-    $courses = $courses_dal->getCourses($temp_course_year, $temp_course_sem);
+    $courses = $courses_dal->getCourses($temp_course_year, $temp_course_sem, $student_major);
     $optional_courses = array();
     foreach ($courses as $c){
         if ($c["Optional"] != 1){
