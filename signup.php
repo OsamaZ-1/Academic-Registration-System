@@ -14,7 +14,7 @@
 <body>
   <?php require("header.php"); ?>
   <main>
-    <div class="outer-container">
+    <div class="outer-container signup-outer-container" >
       <div class="login-container signup-container">
         <form action="" method="POST">
           <h1>SignUp</h1>

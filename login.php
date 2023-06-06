@@ -41,7 +41,7 @@
             <a href="signup.php">SignUp</a>
           </div>
           <div class="button-shadow">
-            <input type="submit" class="submit-button" name="login" value="Login" />
+            <input id="login-button" type="submit" class="submit-button" name="login" value="Login" />
             <div class="after"></div>
           </div>
         </form>

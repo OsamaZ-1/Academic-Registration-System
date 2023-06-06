@@ -46,7 +46,7 @@ main
 {
   padding: 0.3em;
   border-radius: 15px;
-  min-height: 75vh;
+  min-height: 65vh;
   background-color: var(--bg-gradient);
   z-index: 2;
   overflow: hidden;
@@ -60,6 +60,7 @@ main
   padding: 1.5em 1em;
   position: relative;
   width: 22em;
+  min-height: 65vh;
 }
 
 /** --Animated green color around container-- **/
@@ -207,12 +208,16 @@ main
   border-radius: .2em;
   font-size: 1.5rem;
   padding: .2em;
-  margin-top: 1em;
-
+  margin-top: 1.5em;
   background-color: var(--darker-color);
   cursor: pointer;
   transition: all .5s ease;
   z-index: 2;
+}
+
+/** --Exceptional css for login button --**/
+#login-button{
+  margin-top: 3em;
 }
 
 /** --Button Animation effect on hover and focus-- **/
@@ -251,9 +256,10 @@ main
 }
 
 /** --SignUp Container-- **/
-.signup-container
+.signup-container,
+.signup-outer-container
 {
-  min-height: 85vh;
+  min-height: 95vh;
 }
 
 /** --KeyFrames-- **/
