@@ -9,9 +9,12 @@
   $student_dal = new Student_DAL();
 
   $student_email = $_SESSION["email"];
-  $student_pass = $_SESSION["pass"];
+  $student_password = $_SESSION["pass"];
 
-  $student_major = $student_dal->getStudentMajor($student_email, $student_pass);
+  $student_major = $student_dal -> getStudentMajor($student_email, $student_password);
+  
+  $student_info = $student_dal -> getStudentInfo($student_email, $student_password);
+  $student_name = $student_info[0]["Fname"];
 ?>
 
 <!DOCTYPE html>
@@ -21,6 +24,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>User Page</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="css/user-page.css">
+  <link rel="stylesheet" href="FontAwesome/css/all.css">
   <style>
     .table-toggle {
       display: none;
@@ -29,11 +36,29 @@
   </style>
 </head>
 <body>
+ <header>
+  <nav class="navbar">
+    <div class="logo-title">
+      <figure class="logo">
+        <img src="images/LU-logo.png" width="500" height="500" alt="LU-logo">
+      </figure>
+      <h1><a href="user-page.php">LU-STDRG<a></h1>
+      </div>
+      <div class="links">
+        <ul>
+          <li><a href="user-page.php">Home</a></li>
+          <li><a href="user-page.php">Grades</a></li>
+        </ul>
+        <span id="student-profile"><?php echo $student_name; ?></span>
+      </div>
+   </nav>
+ </header>
+ <main>
   <div>
     <input type='text' id='credit-counter' value='0' disabled/>
   </div>
   <div>
-    <span><h3>First Year Courses</h2> <input type='button' value='^' onclick="toggleDiv(1)"/></span>
+    <div class="year-title"><h3>First Year Courses</h2><button class="arrow-buttons" onclick="toggleDiv(1)"><i class="fa-solid fa-angle-up fa-xl"></i></button></div>
     <div id="table-div-1" class="table-toggle">
       <div>
         <p>1st Semester: </p>
@@ -59,7 +84,7 @@
   </div>
   
   <div>
-    <span><h3>Second Year Courses</h2> <input type='button' value='^' onclick="toggleDiv(2)"/></span>
+    <div class="year-title"><h3>Second Year Courses</h2> <button class="arrow-buttons" onclick="toggleDiv(2)"><i class="fa-solid fa-angle-up fa-xl"></i></button></div>
     <div id="table-div-2" class="table-toggle">
       <div>
         <p>1st Semester: </p>
@@ -84,7 +109,7 @@
     </div>
   </div>
   <div>
-  <span><h3>Third Year Courses</h2> <input type='button' value='^' onclick="toggleDiv(3)" /></span>
+  <div class="year-title"><h3>Third Year Courses</h2> <button class="arrow-buttons" onclick="toggleDiv(3)"><i class="fa-solid fa-angle-up fa-xl"></i></button></div>
     <div id="table-div-3" class="table-toggle">
       <div>
         <p>1st Semester: </p>
@@ -109,7 +134,7 @@
     </div>
   </div>
   <div>
-  <span><h3>Fourth Year Courses</h2> <input type='button' value='^' onclick="toggleDiv(4)" /></span>
+  <div class="year-title"><h3>Fourth Year Courses</h2> <button class="arrow-buttons" onclick="toggleDiv(4)"><i class="fa-solid fa-angle-up fa-xl"></i></button></div>
     <div id="table-div-4" class="table-toggle">
       <div>
         <p>1st Semester: </p>
@@ -133,6 +158,7 @@
       </div>
     </div>
   </div>
+ </main>
 </body>
 <script src="js/userPageScript.js"></script>
 </html>

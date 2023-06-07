@@ -1,0 +1,63 @@
+
+/**  --Variables-- **/
+:root
+{
+  --darker-color: rgb(37,27,55);
+  --dark-color: rgb(55,41,72);
+  --light-color: rgb(255,202,202);
+  --lighter-color: rgb(255,236,239);
+  --yellow-color: rgb(255, 217, 61);
+  --green-color: rgb(224, 255, 19);
+  --bg-gradient: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+  /*linear-gradient(to right, #434343 0%, black 100%);
+  linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+  linear-gradient(19deg, #21D4FD 0%, #B721FF 100%)*/
+  --neon-color: #00eeff;
+  --departments-cards: #ECF2FF;
+  --font-family: 'Poppins',sans-serif;
+  --font-size: 1.3rem;
+}
+
+/** --Setup body-- **/
+body
+{
+  min-height: 100vh;
+  background: var(--bg-gradient);
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  display: flex;
+  flex-direction: column;
+}
+
+/** --Main-- **/
+main
+{
+  flex-grow: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items:flex-stretch;
+  padding: 10rem 2rem 0;
+  gap: 3em;
+  overflow: hidden;
+}
+
+#student-profile{
+  color: var(--green-color);
+  margin-left: 2em;
+}
+
+.arrow-buttons{
+  background: none;
+  outline: none;
+  border: none;
+  margin-left: 2em;
+  transition: all .2s ease-in;
+}
+
+.year-title{
+  padding: .5em;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
