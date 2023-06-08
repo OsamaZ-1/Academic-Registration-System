@@ -1,11 +1,11 @@
 <tr>
-    <td colspan="4" align="center"><b>Primary Courses</b></td>
+    <th colspan="4" align="center" class="table-title">Primary Courses</th>
 </tr>
 <tr>
-    <th>Course Code</th>
-    <th>Course Name</th>
-    <th>Credits</th>
-    <th>Choose</th>
+    <th class="attributes">Course Code</th>
+    <th class="attributes">Course Name</th>
+    <th class="attributes">Credits</th>
+    <th class="attributes">Choose</th>
 </tr>
 <tbody>
 <?php
@@ -19,7 +19,12 @@
     <td><?php echo $c["CourseName"]; ?></td>
     <td><?php echo $c["Credits"]; ?></td>
     <td>
-        <input type='checkbox' name="select-box" value="<?php echo $c['CourseId']; ?>" onchange="countCredits()" />
+       <div class="checkbox-wrapper-64">
+         <label class="switch">
+           <input type='checkbox' class="course-checkbox" name="select-box" value="<?php echo $c['CourseId']; ?>" onchange="countCredits()" />
+           <span class="slider"></span>
+          </label>
+        </div>
         <input type='hidden' name="select-credit" value="<?php echo $c['Credits']; ?>" />
     </td>
 </tr>
@@ -32,7 +37,7 @@
     if (count($optional_courses) > 0){
 ?>
 <tr>
-    <td colspan="4" align="center"><b>Optional Courses</b></td>
+    <th colspan="4" align="center" class="table-title">Optional Courses</th>
 </tr>
 <?php
         foreach ($optional_courses as $c){
@@ -42,8 +47,13 @@
     <td><?php echo $c["CourseName"]; ?></td>
     <td><?php echo $c["Credits"]; ?></td>
     <td>
-        <input type='checkbox' name="select-box" value="<?php echo $c['CourseId']; ?>" onchange="countCredits()" />
-        <input type='hidden' name="select-credit" value="<?php echo $c['Credits']; ?>" />
+       <div class="checkbox-wrapper-64">
+         <label class="switch">
+          <input type='checkbox' name="select-box" value="<?php echo $c['CourseId']; ?>" onchange="countCredits()" />
+          <span class="slider"></span>
+         </label>
+       </div>
+       <input type='hidden' name="select-credit" value="<?php echo $c['Credits']; ?>" />
     </td>
 </tr>
 <?php

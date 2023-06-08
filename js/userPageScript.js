@@ -3,6 +3,8 @@ let credits = document.getElementsByName("select-credit");
 let chosenCredits = 0;
 let checkedBoxes = new Array(boxes.length).fill(false);
 
+const arrowButtons = document.querySelectorAll(".arrow-buttons");
+
 let countCredits = () => {
     for (let i = 0; i < boxes.length; ++i){
         if (boxes[i].checked && !checkedBoxes[i]){
@@ -26,4 +28,16 @@ let toggleDiv = (year) => {
         divStyle.display = "flex";
     else
         divStyle.display = "none";
+
 }
+
+
+//function to rotate arrow buttons
+arrowButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+        if(button.classList.contains("rotate-button"))
+            button.classList.remove("rotate-button");
+        else
+            button.classList.add("rotate-button"); 
+    })
+})
