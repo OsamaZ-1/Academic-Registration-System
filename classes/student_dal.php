@@ -29,5 +29,42 @@
             $grades = $this -> getData($sql);
             return $grades;
         }
+
+        public function getGradesAssocArray($student_id){
+            $sql = "SELECT CourseId, Grade FROM Grades WHERE StudentId = $student_id";
+            $res = $this->getData($sql);
+            $arr = array();
+            foreach ($res as $r){
+                $arr += array($r["CourseId"] => $r["Grade"]);
+            }
+            return $arr;
+        }
+
+        public function passedWithAverage($student_id){
+            $sql = "SELECT C.CourseId, G.Grade
+                    FROM Courses As C, Grades AS G
+                    WHERE G.CourseId = C.CourseId 
+                    AND G.StudentId = $student_id 
+                    AND C.Year = 1";
+
+            $grades = $this->getData($sql);
+
+            $course_dal = new Course_DAL();
+            $credits = $course_dal->getCourseCreditsAssoc(1);
+
+            $creditSum = 0;
+            $gradeSum = 0;
+            foreach ($grades as $g){
+                $grade = $g["Grade"];
+                $credit = $credits[$g["CourseId"]];
+                $gradeSum += $grade*$credit;
+                $creditSum += $credit;
+            }
+
+            $avg = $gradeSum / $creditSum;
+            if ($avg > 49.99)
+                return true;
+            return false;
+        }
     }
 ?>

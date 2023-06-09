@@ -16,6 +16,10 @@
   
   $student_info = $student_dal -> getStudentInfo($student_email, $student_password);
   $student_name = $student_info[0]["Fname"];
+  $student_year = $student_info[0]["Year"];
+  $student_grades = $student_dal->getGradesAssocArray($student_id);
+
+  $passedWithAvg = $student_dal->passedWithAverage($student_id);
 ?>
 
 <!DOCTYPE html>
