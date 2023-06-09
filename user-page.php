@@ -10,6 +10,7 @@
 
   $student_email = $_SESSION["email"];
   $student_password = $_SESSION["pass"];
+  $student_id = $_SESSION["Id"];
 
   $student_major = $student_dal -> getStudentMajor($student_email, $student_password);
   
@@ -36,26 +37,7 @@
   </style>
 </head>
 <body>
- <header>
-  <nav class="navbar">
-    <div class="logo-title">
-      <figure class="logo">
-        <img src="images/LU-logo.png" width="500" height="500" alt="LU-logo">
-      </figure>
-      <h1><a href="user-page.php">LU-STDRG<a></h1>
-      </div>
-      <div class="links">
-        <ul>
-          <li><a href="user-page.php">Home</a></li>
-          <li><a href="user-page.php">Grades</a></li>
-        </ul>
-        <div class="profile">
-          <span id="student-name"><?php echo $student_name; ?></span>
-          <button id="profile-picture"><img src="images/profile-pic.jpeg" width="50" height="50" alt="Profile Pic" /></button>
-        </div>
-      </div>
-   </nav>
- </header>
+ <?php include('student-navbar.php');?>
  <main>
   <h1 class="page-title">Courses Registration</h1>
   <div class="container">
@@ -76,7 +58,7 @@
         </table>
       </div>
       <div>
-        <p>2nd Semester</p>
+        <p>2nd Semester: </p>
         <table id="firstYear2" class="courses-table">
           <?php
             $temp_course_year = 1;

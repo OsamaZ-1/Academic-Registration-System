@@ -1,9 +1,13 @@
-<?php session_start(); 
-
+<?php 
+      session_destroy();
+      session_start(); 
+     
       require("classes/dal.php");
       require("classes/login-signup_dal.php");
+      require("classes/student_dal.php");
 
       $login = new LoginSignup_DAL();   
+      $student_info = new Student_DAL();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -64,13 +68,17 @@
 
               $result = $login -> login($user_email,$user_password);
               
+              
               //if the user requesting to Login is an Admin
               if($result == "Admin")
                 header("Location: admin-page.html");
               else if($result == "Student")
-              {
+              {  
+                 $info = $student_info -> getStudentInfo($user_email,$user_password);
+
                  $_SESSION["email"] = $user_email;
                  $_SESSION["pass"] = $user_password;
+                 $_SESSION["Id"] = $info[0]["StudentId"];
                  header("Location: user-page.php");
               }
             }      

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jun 08, 2023 at 02:20 AM
+-- Generation Time: Jun 09, 2023 at 02:16 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -122,6 +122,24 @@ CREATE TABLE `Grades` (
   `EnrollmentDate` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `Grades`
+--
+
+INSERT INTO `Grades` (`StudentId`, `CourseId`, `Major`, `Grade`, `EnrollmentDate`) VALUES
+('677833', 1, 1, '80.50', '2022-2023'),
+('677833', 2, 1, '55.00', '2022-2023'),
+('677833', 3, 1, '45.80', '2022-2023'),
+('677833', 4, 1, '39.00', '2022-2023'),
+('677833', 5, 1, '90.00', '2022-2023'),
+('677833', 6, 1, '40.00', '2022-2023'),
+('677833', 7, 1, '79.00', '2022-2023'),
+('677833', 8, 1, '0.00', '2022-2023'),
+('677833', 9, 1, '82.50', '2022-2023'),
+('677833', 10, 1, '68.00', '2022-2023'),
+('677833', 11, 1, '77.00', '2022-2023'),
+('677833', 12, 1, '50.00', '2022-2023');
+
 -- --------------------------------------------------------
 
 --
@@ -211,7 +229,7 @@ ALTER TABLE `Courses`
 -- Indexes for table `Grades`
 --
 ALTER TABLE `Grades`
-  ADD PRIMARY KEY (`StudentId`),
+  ADD PRIMARY KEY (`StudentId`,`CourseId`),
   ADD KEY `CourseId` (`CourseId`,`Major`),
   ADD KEY `Major` (`Major`);
 

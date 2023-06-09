@@ -1,10 +1,11 @@
 <tr>
-    <th colspan="4" align="center" class="table-title">Primary Courses</th>
+    <th colspan="5" align="center" class="table-title">Primary Courses</th>
 </tr>
 <tr>
     <th class="attributes">Course Code</th>
     <th class="attributes">Course Name</th>
     <th class="attributes">Credits</th>
+    <th class="attributes">Prerequisite</th>
     <th class="attributes">Choose</th>
 </tr>
 <tbody>
@@ -18,6 +19,7 @@
     <td><?php echo $c["CourseCode"]; ?></td>
     <td><?php echo $c["CourseName"]; ?></td>
     <td><?php echo $c["Credits"]; ?></td>
+    <td><?php echo $c["Prerequisite"]; ?></td>
     <td>
        <div class="checkbox-wrapper-64">
          <label class="switch">
@@ -37,7 +39,7 @@
     if (count($optional_courses) > 0){
 ?>
 <tr>
-    <th colspan="4" align="center" class="table-title">Optional Courses</th>
+    <th colspan="5" align="center" class="table-title">Optional Courses</th>
 </tr>
 <?php
         foreach ($optional_courses as $c){
@@ -46,6 +48,7 @@
     <td><?php echo $c["CourseCode"]; ?></td>
     <td><?php echo $c["CourseName"]; ?></td>
     <td><?php echo $c["Credits"]; ?></td>
+    <td><?php echo $c["Prerequisite"]; ?></td>
     <td>
        <div class="checkbox-wrapper-64">
          <label class="switch">

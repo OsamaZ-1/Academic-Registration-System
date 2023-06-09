@@ -136,13 +136,19 @@ main
 .courses-table th,
 .courses-table td
 {
-  padding: .5em;
+  padding: .4em;
   border: 2px solid black;
 }
 
 .courses-table th
 {
   font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.courses-table td
+{
+  font-size: 1.1rem;
 }
 
 /**--Table Sections Title (Primary-Optional)--**/
@@ -224,4 +230,91 @@ main
 .checkbox-wrapper-64 input:checked + .slider:before {
   transform: translateX(1.4em);
   background-color: #fff;
+}
+/**------------------------------------------------------**/
+
+/**--This parts is for Grades Page in User-Page--**/
+
+.container form
+{
+  align-self: center; 
+}
+
+/**--dropdown list--**/
+.academic-year
+{
+  width: 13em;
+  border: .2em solid var(--dark-color);
+  background-color: var(--lighter-color);
+  outline: none;
+  padding: .2em;
+}
+
+/**--container for grades--**/
+.grades-section
+{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1em;
+}
+
+/**--container containing grades tables--**/
+.grades-tables
+{
+  display: flex;
+  justify-content: space-around;
+}
+
+.grades-section table th
+{
+  font-size: 1.5rem;
+}
+
+.grades-section table td
+{
+  font-size: 1.3rem;
+}
+
+/**--Representation of compensation grade color--**/
+.compensation
+{
+  background-color: rgb(0, 110, 255);
+}
+
+/**--Representation of failed grade color--**/
+.failed 
+{
+  background-color: red;
+}
+
+/**--Representation of passed grade color--**/
+.passed
+{
+  background-color: greenyellow;
+}
+
+/**--grade status color representation (Passed, compensation, failed)--**/
+.colors
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  background-color: var(--light-color);
+  border-radius: 1em;
+  width: 13em;
+  padding: 1em;
+  gap: 1.5em;
+}
+
+.status
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  height: 2em;
+  border-radius: .5em;
 }
