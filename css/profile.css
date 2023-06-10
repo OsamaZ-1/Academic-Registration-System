@@ -1,0 +1,205 @@
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Titan+One&display=swap');
+
+/**  --Variables-- **/
+:root
+{
+  --darker-color: rgb(37,27,55);
+  --dark-color: rgb(55,41,72);
+  --light-color: rgb(255,202,202);
+  --lighter-color: rgb(255,236,239);
+  --yellow-color: rgb(255, 217, 61);
+  --green-color: rgb(224, 255, 19);
+  --bg-gradient: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+  /*linear-gradient(to right, #434343 0%, black 100%);
+  linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+  linear-gradient(19deg, #21D4FD 0%, #B721FF 100%)*/
+  --neon-color: #00eeff;
+  --departments-cards: #ECF2FF;
+  --font-family: 'Poppins',sans-serif;
+  --font-size: 1.3rem;
+}
+
+/** --Setup body-- **/
+body
+{
+  min-height: 100vh;
+  background: var(--bg-gradient);
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(236, 44, 44);
+}
+
+/** --Main-- **/
+main
+{
+  flex-grow: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items:flex-stretch;
+  padding: 10rem 1rem 0;
+  gap: 3em;
+  overflow: hidden;
+}
+
+#student-name
+{
+  color: var(--green-color);
+  margin-left: 2em;
+}
+
+/**--Used for student name and profile picture--**/
+.profile
+{
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+#profile-picture
+{ 
+  border: none;
+  outline: none;
+  background-color: white;
+  border-radius: 50%;
+}
+
+#profile-picture img
+{
+  border-radius: 50%;
+}
+/**--End Student Profile Section--**/
+
+:where(.container, .container form)
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: stretch;
+  gap: 2.5em;
+}
+
+.container
+{
+  border: 2px solid var(--neon-color);
+  border-radius: 2em;
+  background-color: var(--dark-color);
+  padding: 2em 1.5em;
+  width: 50%;
+  margin: auto;
+  min-height: 80vh;
+}
+
+.container h1
+{ 
+  font-family: 'Courgette';
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: white;
+}
+
+.container form, .form-inputs
+{
+  width: 100%;
+}
+
+.form-inputs
+{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.form-inputs img
+{
+  border-radius: 75px;
+  border: 2px solid var(--neon-color);
+}
+
+#img-row
+{
+  position: relative;
+}
+
+.form-inputs .round
+{
+  position: absolute;
+  background-color: #00eeff;
+  bottom: 5%;
+  left: 54%;
+  width: 50px;
+  height: 50px;
+  line-height: 35px;
+  text-align: center;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.img-upload
+{
+  position: absolute;
+  transform: scale(2);
+  opacity: 0;
+}
+
+.form-inputs > input
+{ 
+  border: 1px solid var(--neon-color);
+  border-radius: .5em;
+  outline: none;
+  background-color: var(--lighter-color);
+  width: 45%;
+  padding: .3em;
+}
+
+.inputs-labels
+{
+  position: relative;
+  padding: 1em .5em;
+}
+
+.inputs-labels label
+{
+  position:absolute;
+  color: white;
+  font-size: 1.2rem;
+  top: -.5em;
+  left: 5%;
+}
+
+.inputs-labels label:nth-child(4)
+{
+  
+  top: -.5em;
+  left: 52%;
+}
+
+/**--Submit Button design--**/
+.form-inputs input[type="submit"]
+{
+  width: 35%;
+  color: var(--neon-color);
+  text-shadow: 0 0 0.2em hsl(0 0% 100% / 0.2), 0 0 0.3em var(--neon-color);
+  box-shadow: inset 0 0 0.3em 0 var(--neon-color), 0 0 0.3em 0 var(--neon-color);
+  border: 0.15em solid var(--neon-color);
+  border-radius: .2em;
+  font-size: 1.5vw;
+  padding: .5em .2em;
+  background-color: var(--darker-color);
+  cursor: pointer;
+  transition: all .5s ease;
+}
+
+/** --Button Animation effect on hover and focus-- **/
+.form-inputs input[type="submit"]:hover,
+.form-inputs input[type="submit"]:focus
+{
+  background-color: var(--neon-color);
+  color: var(--darker-color);
+  text-shadow: none;
+}

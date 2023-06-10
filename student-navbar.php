@@ -16,7 +16,7 @@
               </ul>
               <div class="profile">
                 <span id="student-name">'; echo $student_name; echo '</span>
-                <button id="profile-picture"><img src="images/profile-pic.jpeg" width="50" height="50" alt="Profile Pic" /></button>
+                <button id="profile-picture"><a href="profile.php"><img src="images/profile-pic.jpeg" width="50" height="50" alt="Profile Pic" /></a></button>
               </div>
             </div>
           </nav>
