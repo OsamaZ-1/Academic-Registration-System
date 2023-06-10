@@ -13,6 +13,7 @@
   $student_info = $student_dal -> getStudentInfo($student_email, $student_password);
   $student_name = $student_info[0]["Fname"];
   $student_lname = $student_info[0]["Lname"];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,12 +25,15 @@
   <link rel="stylesheet" href="css/navbar.css">
   <link rel="stylesheet" href="css/profile.css">
   <link rel="stylesheet" href="FontAwesome/css/all.css">
+  <script src="js/otp.js" defer></script>
+  <script src="js/profile.js" defer></script>
 </head>
 <body>
   <?php include('student-navbar.php'); ?>
   <main>
     <div class="container">
       <h1>Student Profile</h1>
+      <p id="old-email" style="display: none;"><?php echo $student_email; ?></p>
       <form name="profile-info" action="" method="POST">
         <div class="form-inputs" id="img-row">
           <img id="profile-pic" src="images/profile-pic.jpeg" width="150" height="150"/>
@@ -49,12 +53,22 @@
           <label for="email">Email</label>
           <input type="text" name="password" id="password" value="<?php echo $student_password; ?>" />
           <label for="password">Password</label>
+          <button type="button" class="verify-email">Verify Email</button>
         </div>
-        <div class="form-inputs">
-          <input type="submit" name="submit" value="Update Changes" />
+        <div class="otp-field">
+            <input type="number" name="otp[]" class="otp-input" />
+            <input type="number" name="otp[]" class="otp-input" disabled />
+            <input type="number" name="otp[]" class="otp-input" disabled />
+            <input type="number" name="otp[]" class="otp-input" disabled />
+        </div>
+        <button type="button" id="verify-button">Verify OTP</button>
+        <div class="form-inputs inputs-labels">
+          <input type="submit" name="submit" id="submit-button" value="Update Changes" />
+          <button class="cancel"><a href="user-page.php">Cancel</a></button>
         </div>
       </form>
     </div>
   </main>
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
 </body>
 </html>
