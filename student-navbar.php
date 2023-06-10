@@ -1,5 +1,4 @@
 <?php
-
   echo '<header>
           <nav class="navbar">
             <div class="logo-title">
@@ -16,9 +15,12 @@
               </ul>
               <div class="profile">
                 <span id="student-name">'; echo $student_name; echo '</span>
-                <button id="profile-picture"><a href="profile.php"><img src="images/profile-pic.jpeg" width="50" height="50" alt="Profile Pic" /></a></button>
+                <button id="profile-picture"><a href="profile.php">';
+                echo '<img src="data:image/jpeg;base64,'.base64_encode($student_image["Image"]).'" width="50" height="50"/>'; echo '</a></button>
               </div>
             </div>
           </nav>
        </header>';
+
+       
 ?>

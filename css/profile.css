@@ -249,3 +249,9 @@ main
   color: var(--darker-color);
   text-shadow: none;
 }
+
+#verified-icon,
+#not-verified-icon
+{
+  display: none;
+}

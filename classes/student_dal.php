@@ -66,5 +66,27 @@
                 return true;
             return false;
         }
+
+        public function updateStudentProfile($studentId, $email, $password, $image)
+        {   
+            
+            $sql = "UPDATE Students SET
+                    Email = '{$email}',
+                    Password = '{$password}',
+                    Image = '{$image}'
+                    WHERE StudentId = $studentId";
+            
+            $result = $this -> update($sql);
+            
+            return $result;
+        }
+
+        public function getStudentImage($student_id)
+        {
+            $sql = "SELECT Image FROM Students WHERE StudentId = $student_id";
+
+            $result = $this -> getDataAssoc($sql);
+            return $result;
+        }
     }
 ?>

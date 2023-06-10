@@ -24,5 +24,33 @@
                 echo mysqli_error( $conn );
             }
         }
+
+        public function getDataAssoc($sql)
+        {
+            $conn = $this -> getConnection();
+            if ( $conn->connect_error ) {
+                die( 'Connection failed: ' . $conn->connect_error );
+            }
+            $result = $conn -> query($sql);
+
+            if($result -> num_rows >0)
+                return $result -> fetch_assoc();
+
+            return 0;
+        }
+
+        public function update($sql) {
+            
+            $conn = $this->getConnection();
+
+            if ($conn->connect_error) {
+                die( 'Connection failed: ' . $conn->connect_error );
+            }
+           
+            $result = $conn -> query($sql);
+            return $result;
+            
+           
+        }
     }
 ?>

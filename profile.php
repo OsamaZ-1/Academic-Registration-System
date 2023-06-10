@@ -11,6 +11,7 @@
   $student_id = $_SESSION["Id"];
   
   $student_info = $student_dal -> getStudentInfo($student_email, $student_password);
+  $student_image = $student_dal -> getStudentImage($student_id);
   $student_name = $student_info[0]["Fname"];
   $student_lname = $student_info[0]["Lname"];
 
@@ -34,11 +35,11 @@
     <div class="container">
       <h1>Student Profile</h1>
       <p id="old-email" style="display: none;"><?php echo $student_email; ?></p>
-      <form name="profile-info" action="" method="POST">
+      <form name="profile-info" action="" method="POST" enctype="multipart/form-data">
         <div class="form-inputs" id="img-row">
-          <img id="profile-pic" src="images/profile-pic.jpeg" width="150" height="150"/>
+          <span class="image-container"><img id="profile-pic" <?php echo 'src="data:image/jpeg;base64,'.base64_encode($student_image["Image"]).'" width="150" height="150"/>';?></span>
           <div class="round">
-            <input type="file" name="student-image" class="img-upload"/>
+            <input type="file" name="student-image" class="img-upload" accept="image/jpeg, image/png, image/jpg"/>
             <i class="fa-solid fa-camera fa-xl" style="color:rgb(236, 44, 44);"></i>
           </div>
         </div>
@@ -61,12 +62,45 @@
             <input type="number" name="otp[]" class="otp-input" disabled />
             <input type="number" name="otp[]" class="otp-input" disabled />
         </div>
+        <div id="verified-icon"><i class="fa-solid fa-circle-check fa-2xl" style="color: #0ef;"></i></div>
+        <div id="not-verified-icon"><i class="fa-solid fa-circle-xmark fa-2xl" style="color: #f00;"></i></div>
         <button type="button" id="verify-button">Verify OTP</button>
         <div class="form-inputs inputs-labels">
           <input type="submit" name="submit" id="submit-button" value="Update Changes" />
           <button class="cancel"><a href="user-page.php">Cancel</a></button>
         </div>
       </form>
+      <?php
+            
+            if(isset($_POST["submit"]))
+            {
+              $fNameInput = $_POST["fname"];
+              $lNameInput = $_POST["lname"];
+              $emailInput = $_POST["email"];
+              $passwordInput = $_POST["password"];
+              if(!empty($_FILES["student-image"]["name"])) 
+              {        // Get file info 
+                  $fileName = basename($_FILES["student-image"]["name"]); 
+                  $fileType = pathinfo($fileName, PATHINFO_EXTENSION);
+
+                  $allowTypes = array('jpg','png','jpeg'); 
+                  if(in_array($fileType, $allowTypes)) 
+                  {  
+                     $image = $_FILES['student-image']['tmp_name']; 
+                     $imgContent = addslashes(file_get_contents($image)); 
+                     $result = $student_dal -> updateStudentProfile($student_id, $emailInput, $passwordInput, $imgContent);
+                      echo $result;
+                     if($result)
+                    {
+                    
+                      echo "<script>window.location.href='user-page.php';</script>";
+                      exit;
+
+                    }
+                  }
+               }
+            }
+        ?>
     </div>
   </main>
   <script src="https://smtpjs.com/v3/smtp.js"></script>
