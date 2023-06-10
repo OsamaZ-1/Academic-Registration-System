@@ -1,4 +1,5 @@
 <?php
+
   echo '<header>
           <nav class="navbar">
             <div class="logo-title">
@@ -22,5 +23,6 @@
           </nav>
        </header>';
 
-       
+       //the base64 above is used to encode profile image comming from database
+
 ?>
