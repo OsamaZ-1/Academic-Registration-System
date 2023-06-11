@@ -78,6 +78,11 @@
               $lNameInput = $_POST["lname"];
               $emailInput = $_POST["email"];
               $passwordInput = $_POST["password"];
+
+              $_SESSION["email"] = $emailInput;
+              $_SESSION["pass"] = $passwordInput;
+              $result = null;
+
               if(!empty($_FILES["student-image"]["name"])) 
               {        // Get file info 
                   $fileName = basename($_FILES["student-image"]["name"]); 
@@ -89,16 +94,21 @@
                      $image = $_FILES['student-image']['tmp_name']; 
                      $imgContent = addslashes(file_get_contents($image)); 
                      $result = $student_dal -> updateStudentProfile($student_id, $emailInput, $passwordInput, $imgContent);
-                      echo $result;
-                     if($result)
-                    {
+                      
+                  }
+               }
+               else
+               {
+                 $result = $student_dal -> updateStudentEmailPassword($student_id, $emailInput, $passwordInput);
+               }
+
+               if($result)
+              {
                     
                       echo "<script>window.location.href='user-page.php';</script>";
                       exit;
 
-                    }
-                  }
-               }
+              }
             }
         ?>
     </div>

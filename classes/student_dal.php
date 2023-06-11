@@ -81,6 +81,19 @@
             return $result;
         }
 
+        public function updateStudentEmailPassword($studentId, $email, $password)
+        {   
+            
+            $sql = "UPDATE Students SET
+                    Email = '{$email}',
+                    Password = '{$password}'
+                    WHERE StudentId = $studentId";
+            
+            $result = $this -> update($sql);
+            
+            return $result;
+        }
+
         public function getStudentImage($student_id)
         {
             $sql = "SELECT Image FROM Students WHERE StudentId = $student_id";

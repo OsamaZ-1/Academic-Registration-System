@@ -20,9 +20,7 @@
   $student_image = $student_dal -> getStudentImage($student_id);
   $student_grades = $student_dal->getGradesAssocArray($student_id);
 
-  $passedWithAvg = $student_dal->passedWithAverage($student_id);
-
-  
+  $passedWithAvg = $student_dal->passedWithAverage($student_id);  
 
 ?>
 
