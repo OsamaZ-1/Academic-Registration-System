@@ -101,5 +101,39 @@
             $result = $this -> getDataAssoc($sql);
             return $result;
         }
+        public function addStudent($student_id,$fname,$lname,$email,$password,$major,$year,$enrolment_date){
+            $conn = $this->getConnection();
+            $student_id= mysqli_real_escape_string( $conn, $student_id );
+            $fname= mysqli_real_escape_string( $conn, $fname);
+            $lname= mysqli_real_escape_string( $conn, $lname );
+            $email= mysqli_real_escape_string( $conn, $email );
+            $password= mysqli_real_escape_string( $conn, $password );
+            $major= 1;
+            $year= 1;
+            $enrolment_date='2022-2023';
+            $sql="INSERT
+            INTO
+                students(
+                    students.StudentId,
+                    students.Fname,
+                    students.Lname,
+                    students.Email,
+                    students.Password,
+                    students.Major,
+                    students.Year,
+                    students.EnrollmentDate
+                )
+            VALUES(
+                $student_id,
+                '$lname',
+                '$fname',
+                '$email',
+                '$password',
+                $major,
+                $year,
+                '$enrolment_date'
+            )";
+            return $this->update($sql);
+        }
     }
 ?>
