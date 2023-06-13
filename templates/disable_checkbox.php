@@ -22,7 +22,7 @@
                 $pre_requisite_arr = explode("-", $pre_requisite);
                 foreach ($pre_requisite_arr as $pre){
                     $pre_id = $courses_dal->getIdFromCode($pre);
-                    $pre_grade = $student_grades[$pre_id];  //compensation for this one too!!
+                    $pre_grade = $student_grades[$pre_id];
                     
                     //disable courses where the student failed the pre-requisites
                     if ($pre_grade < 40.00 || (!$compensation && $pre_grade < 50.00)){

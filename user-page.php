@@ -90,7 +90,7 @@
         </table>
       </div>
       <div>
-        <p>2nd Semester</p>
+        <p>2nd Semester:</p>
         <table id="secondYear2" class="courses-table">
           <?php
             $temp_course_year = 2;
@@ -115,7 +115,7 @@
         </table>
       </div>
       <div>
-        <p>2nd Semester</p>
+        <p>2nd Semester:</p>
         <table id="thirdYear2" class="courses-table">
           <?php
             $temp_course_year = 3;
@@ -140,7 +140,7 @@
         </table>
       </div>
       <div>
-        <p>2nd Semester</p>
+        <p>2nd Semester:</p>
         <table id="fourthYear2" class="courses-table">
           <?php
             $temp_course_year = 4;
@@ -153,6 +153,6 @@
   </div>
   </div>
  </main>
- <script src="js/userPageScript.js"></script>
+ <script src="./js/userPageScript.js"></script>
 </body>
 </html>

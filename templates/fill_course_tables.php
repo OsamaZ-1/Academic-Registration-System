@@ -11,7 +11,8 @@
 <tbody>
 <?php
     //check if student can pass some courses with compensation, this will be used to disable passed courses later
-    $compensation = $student_dal->getAverage($student_id, $temp_course_year, $temp_course_sem) > 54.99;
+    if ($temp_course_year < $student_year)
+        $compensation = $student_dal->getAverage($student_id, $temp_course_year, $temp_course_sem) > 54.99;
 
     //get courses to fill in the array
     $courses = $courses_dal->getCourses($temp_course_year, $temp_course_sem, $student_major);
