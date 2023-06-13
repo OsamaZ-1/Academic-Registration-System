@@ -1,0 +1,104 @@
+:root
+{
+  --darker-color: rgb(37,27,55);
+  --dark-color: rgb(55,41,72);
+  --light-color: rgb(255,202,202);
+  --lighter-color: rgb(255,236,239);
+  --yellow-color: rgb(255, 217, 61);
+  --green-color: rgb(224, 255, 19);
+  --departments-cards: #ECF2FF;
+  --font-family: 'Poppins',sans-serif;
+  --font-size: 1.3rem;
+  --bg-gradient: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+  --font-family: 'Poppins',sans-serif;
+  --font-size: 1.3rem;
+}
+body
+{
+  min-height: 100vh;
+  background: var(--bg-gradient);
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+}
+.navbar {
+    background-color: var(--darker-color) !important;
+    z-index: 3 !important;
+    padding: 0.5em 1em !important;
+    color: white !important; 
+}
+.navbar-brand .navbar-img {
+    width: 3em;
+    height: auto;
+    border-radius: 50%;
+}
+.navbar-brand .navbar-title{
+    text-decoration: none;
+    margin-left: 1rem;
+    font-weight: 600;
+    white-space: nowrap;
+    color: white;
+}
+#navbarNavCollapse {
+    transition: all 0.5s !important;
+}
+.navbarItems .nav-item .nav-link {
+    color:white !important;
+    margin-left: 1em !important;
+    transition: all 0.5s ease-in !important;
+}
+.navbarItems .nav-item .nav-link:hover {
+    border-bottom: 2px solid greenyellow !important;
+  color:#f23a2a !important;
+}
+#breadcrumb_navbar {
+    background-color: var(--darker-color) !important;
+    color: white !important;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-left: 0px;
+    transition: all 0.7s;
+}
+.breadcrumb-item a {
+    text-decoration: none !important;
+    color: var(--light-color) !important;
+    transition: all 0.5s;
+}
+.breadcrumb-item a:hover {
+    color:#f23a2a !important;
+}
+.breadcrumb-item::before {
+    color: white !important;
+}
+.page-title {
+    font-family: 'Courgette' !important;
+  font-weight: 600;
+  color: var(--dark-color);
+  text-align: center;
+}
+table {
+    border: 1px solid black !important;
+}
+table tbody tr td button {
+    padding: 10px !important;
+    width: 120px !important;
+    margin-bottom: auto !important;
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+    white-space: nowrap !important;
+    transition: all 0.7s !important;
+}
+.manage-student-registration-btn {
+    width: 250px !important;
+}
+/*.container
+{
+  background-color: hsla(245, 41%, 55%, 0.412) !important;
+  border-radius: 1em !important;
+  padding: 2em .7em !important;
+}*/
+/*
+.navbarItems .nav-item .active {
+    color:white !important;
+    margin-left: 1em !important;
+    transition: all 0.5s ease-in !important;
+}*/
