@@ -20,5 +20,17 @@
             $res = $this->getData($sql);
             return $res[0]["CourseId"];
         }
+
+        public function getOptionalCourseGroup($course_id){
+            $sql = "SELECT `Group` FROM `optional_groups` WHERE CourseId = $course_id";
+            $res = $this->getData($sql);
+            return $res[0]["Group"];
+        }
+
+        public function getMaxCreditsOfGroup($group){
+            $sql = "SELECT Credits FROM `optional_groups` WHERE `Group` = $group LIMIT 1";
+            $res = $this->getData($sql);
+            return $res[0]["Credits"];
+        }
     }
 ?>

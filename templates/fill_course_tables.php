@@ -37,18 +37,28 @@
 </tr>
 <?php
         }else{
-            array_push($optional_courses, $c);
+            $cc = $c['CourseId'];
+            echo "<script>console.log('Debugging: getting group of $cc')</script>";
+            $group = $courses_dal->getOptionalCourseGroup($c["CourseId"]);
+            echo "<script>console.log('Debugging: got it, group was $group')</script>";
+            if (!array_key_exists($group, $optional_courses))
+                $optional_courses += array($group => array());
+            array_push($optional_courses[$group], $c);
         }
     }
 
     if (count($optional_courses) > 0){
+        foreach ($optional_courses as $g => $group_courses){
+            echo "<script>console.log('Debugging: group $g getting querried...')</script>";
+            $maxCredits = $courses_dal->getMaxCreditsOfGroup($g);
+            echo "<script>console.log('Debugging: group $g finished!')</script>";
+
 ?>
 <tr>
-    <th colspan="5" align="center" class="table-title">Optional Courses</th>
+    <th colspan="5" align="center" class="table-title">Optional Courses (Choose <?php echo $maxCredits;?> credits)</th>
 </tr>
 <?php
-        //break into different groups from DB
-        foreach ($optional_courses as $c){
+            foreach ($group_courses as $c){
 ?>
 <tr>
     <td><?php echo $c["CourseCode"]; ?></td>
@@ -66,6 +76,7 @@
     </td>
 </tr>
 <?php
+            }
         }
     }
 ?>
