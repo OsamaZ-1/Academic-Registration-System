@@ -33,7 +33,7 @@
             }
             $result = $conn -> query($sql);
 
-            if($result -> num_rows >0)
+            if($result && $result -> num_rows >0)
                 return $result -> fetch_assoc();
 
             return 0;

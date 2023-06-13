@@ -42,6 +42,7 @@
     <th colspan="5" align="center" class="table-title">Optional Courses</th>
 </tr>
 <?php
+        //break into different groups from DB
         foreach ($optional_courses as $c){
 ?>
 <tr>

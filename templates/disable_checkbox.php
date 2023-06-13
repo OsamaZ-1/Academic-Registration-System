@@ -6,7 +6,7 @@
         if ($passedWithAvg)
             echo "disabled";
         //disable only passed courses if student passed with credits
-        else if ($student_grades[$course_id] > 49.99)
+        else if ($student_grades[$course_id] > 49.99 /*|| (compensation) average(courseid, year, semester) > 39.00*/)
             echo "disabled";
     }
 
@@ -22,7 +22,7 @@
                 $pre_requisite_arr = explode("-", $pre_requisite);
                 foreach ($pre_requisite_arr as $pre){
                     $pre_id = $courses_dal->getIdFromCode($pre);
-                    $pre_grade = $student_grades[$pre_id];
+                    $pre_grade = $student_grades[$pre_id];  //compensation for this one too!!
                     
                     //disable courses where the student failed the pre-requisites
                     if ($pre_grade < 50.00)
@@ -38,6 +38,8 @@
             if ($course_grade > 49.99)
                 echo "disabled";
         }
+
+        //js for optional allowed credits
     }
     else{
         //disable courses from future years
