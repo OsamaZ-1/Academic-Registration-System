@@ -40,12 +40,13 @@
             return $arr;
         }
 
-        public function passedWithAverage($student_id){
+        public function getAverage($student_id, $year, $semester){
             $sql = "SELECT C.CourseId, G.Grade
                     FROM Courses As C, Grades AS G
                     WHERE G.CourseId = C.CourseId 
                     AND G.StudentId = $student_id 
-                    AND C.Year = 1";
+                    AND C.Year = $year
+                    AND C.Semester = $semester";
 
             $grades = $this->getData($sql);
 
@@ -61,7 +62,14 @@
                 $creditSum += $credit;
             }
 
-            $avg = $gradeSum / $creditSum;
+            return $gradeSum / $creditSum;
+        }
+
+        public function passedWithAverage($student_id){
+            $avg1 = $this->getAverage($student_id, 1, 1);
+            $avg2 = $this->getAverage($student_id, 1, 2);
+            $avg = ($avg1 + $avg2) / 2;
+
             if ($avg > 49.99)
                 return true;
             return false;
@@ -101,6 +109,7 @@
             $result = $this -> getDataAssoc($sql);
             return $result;
         }
+        
         public function addStudent($student_id,$fname,$lname,$email,$password,$major,$year,$enrolment_date){
             $conn = $this->getConnection();
             $student_id= mysqli_real_escape_string( $conn, $student_id );

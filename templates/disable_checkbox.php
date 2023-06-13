@@ -6,7 +6,7 @@
         if ($passedWithAvg)
             echo "disabled";
         //disable only passed courses if student passed with credits
-        else if ($student_grades[$course_id] > 49.99 /*|| (compensation) average(courseid, year, semester) > 39.00*/)
+        else if ($student_grades[$course_id] > 49.99 || ($compensation && $student_grades[$course_id] > 39.99))
             echo "disabled";
     }
 
@@ -25,8 +25,10 @@
                     $pre_grade = $student_grades[$pre_id];  //compensation for this one too!!
                     
                     //disable courses where the student failed the pre-requisites
-                    if ($pre_grade < 50.00)
+                    if ($pre_grade < 40.00 || (!$compensation && $pre_grade < 50.00)){
                         echo "disabled";
+                        break;
+                    }
                 }
             }
         }
@@ -35,7 +37,7 @@
 
             //disable courses with passed marks
             $course_grade = $student_grades[$course_id];
-            if ($course_grade > 49.99)
+            if ($course_grade > 49.99  || ($compensation && $course_grade > 39.99))
                 echo "disabled";
         }
 
