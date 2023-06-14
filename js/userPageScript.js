@@ -2,14 +2,21 @@ let boxes = document.getElementsByName("select-box");
 let credits = document.getElementsByName("select-credit");
 let chosenCredits = 0;
 let checkedBoxes = new Array(boxes.length).fill(false);
+let maxAllowedCredits = document.getElementById("max-allowed-credits").value;
 
 const arrowButtons = document.querySelectorAll(".arrow-buttons");
 
 let countCredits = () => {
     for (let i = 0; i < boxes.length; ++i){
+        let thisCredits = parseInt(credits[i].value);
         if (boxes[i].checked && !checkedBoxes[i]){
-            chosenCredits += parseInt(credits[i].value);
-            checkedBoxes[i] = true;
+            if (thisCredits + chosenCredits <= maxAllowedCredits){
+                chosenCredits += thisCredits;
+                checkedBoxes[i] = true;
+            }
+            else{
+                boxes[i].checked = false;
+            }
         }
         else if (!boxes[i].checked && checkedBoxes[i]){
             chosenCredits -= parseInt(credits[i].value);
@@ -20,6 +27,7 @@ let countCredits = () => {
     document.getElementById("credit-counter").value = chosenCredits;
 }
 
+//keep track of which optional courses were chosen in each group
 let checkedOptional = {
     "1": new Array(document.getElementsByName("optional-box-1").length).fill(false),
     "2": new Array(document.getElementsByName("optional-box-2").length).fill(false),
@@ -29,6 +37,7 @@ let checkedOptional = {
     "6": new Array(document.getElementsByName("optional-box-6").length).fill(false)
 };
 
+//keep track of the amount of credits that has been chosen in each group
 let groupChosenCredits = {
     "1": 0,
     "2": 0,
@@ -46,7 +55,7 @@ let optionalCourseCreditCounter = (group) => {
     for (let i = 0; i < optionalCourses.length; ++i){
         let thisCredit = parseInt(optionalCredits[i].value);
         if (optionalCourses[i].checked && !checkedOptional[group][i]){
-            if (groupChosenCredits[group] + thisCredit <= maxCredits){
+            if (groupChosenCredits[group] + thisCredit <= maxCredits && groupChosenCredits[group] + thisCredit <= maxAllowedCredits){
                 groupChosenCredits[group] += thisCredit;
                 chosenCredits += thisCredit;
                 checkedOptional[group][i] = true;

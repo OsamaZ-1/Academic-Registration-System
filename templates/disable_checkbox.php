@@ -22,12 +22,18 @@
                 $pre_requisite_arr = explode("-", $pre_requisite);
                 foreach ($pre_requisite_arr as $pre){
                     $pre_id = $courses_dal->getIdFromCode($pre);
-                    $pre_grade = $student_grades[$pre_id];
-                    
-                    //disable courses where the student failed the pre-requisites
-                    if ($pre_grade < 40.00 || (!$compensation && $pre_grade < 50.00)){
+
+                    //if pre-requisite does not have a mark: check it, else assume pre-requisite is failed and disable
+                    if (array_key_exists($pre_id, $student_grades)){
+                        $pre_grade = $student_grades[$pre_id];
+                        //disable courses where the student failed the pre-requisites
+                        if ($pre_grade < 40.00 || (!$compensation && $pre_grade < 50.00)){
+                            echo "disabled";
+                            break;
+                        }
+                    }
+                    else{
                         echo "disabled";
-                        break;
                     }
                 }
             }
@@ -40,8 +46,6 @@
             if ($course_grade > 49.99  || ($compensation && $course_grade > 39.99))
                 echo "disabled";
         }
-
-        //js for optional allowed credits
     }
     else{
         //disable courses from future years

@@ -61,7 +61,8 @@
                 $gradeSum += $grade*$credit;
                 $creditSum += $credit;
             }
-
+            if ($creditSum == 0)
+                return 0;
             return $gradeSum / $creditSum;
         }
 
