@@ -37,10 +37,8 @@
 </tr>
 <?php
         }else{
-            $cc = $c['CourseId'];
-            echo "<script>console.log('Debugging: getting group of $cc')</script>";
+            //echo "<script>console.log('Debugging: getting group of $cc')</script>";
             $group = $courses_dal->getOptionalCourseGroup($c["CourseId"]);
-            echo "<script>console.log('Debugging: got it, group was $group')</script>";
             if (!array_key_exists($group, $optional_courses))
                 $optional_courses += array($group => array());
             array_push($optional_courses[$group], $c);
@@ -49,13 +47,12 @@
 
     if (count($optional_courses) > 0){
         foreach ($optional_courses as $g => $group_courses){
-            echo "<script>console.log('Debugging: group $g getting querried...')</script>";
             $maxCredits = $courses_dal->getMaxCreditsOfGroup($g);
-            echo "<script>console.log('Debugging: group $g finished!')</script>";
 
 ?>
 <tr>
     <th colspan="5" align="center" class="table-title">Optional Courses (Choose <?php echo $maxCredits;?> credits)</th>
+    <input type="hidden" id="max-credits-<?php echo $g; ?>" value="<?php echo $maxCredits; ?>" />
 </tr>
 <?php
             foreach ($group_courses as $c){
@@ -68,11 +65,11 @@
     <td>
        <div class="checkbox-wrapper-64">
          <label class="switch">
-          <input type='checkbox' name="select-box" value="<?php echo $c['CourseId']; ?>" onchange="countCredits()" <?php require("disable_checkbox.php");?>/>
+          <input type='checkbox' name="optional-box-<?php echo $g; ?>" value="<?php echo $c['CourseId']; ?>" onchange="optionalCourseCreditCounter(<?php echo $g; ?>)" <?php require("disable_checkbox.php");?>/>
           <span class="slider"></span>
          </label>
        </div>
-       <input type='hidden' name="select-credit" value="<?php echo $c['Credits']; ?>" />
+       <input type='hidden' name="optional-credit-<?php echo $g; ?>" value="<?php echo $c['Credits']; ?>" />
     </td>
 </tr>
 <?php
