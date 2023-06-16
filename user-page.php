@@ -20,7 +20,10 @@
   $student_image = $student_dal -> getStudentImage($student_id);
   $student_grades = $student_dal->getGradesAssocArray($student_id);
 
-  $passedWithAvg = $student_dal->passedWithAverage($student_id);  
+  $passedWithAvg = $student_dal->passedWithAverage($student_id); 
+  
+  $studentRegisteredInCourses = $student_dal -> studentRegisteredInCourses($student_id);
+  
 
 ?>
 
@@ -157,9 +160,43 @@
     </div>
     <div class="register-courses">
       <textarea name="msg" class="message" cols="30" rows="10" placeholder="Enter Message Here!"></textarea>
-      <input type="submit" name="submit" value="Register Courses" />
+      <input type="submit" name="submit" value="Register Courses" <?php if(($studentRegisteredInCourses) && ($studentRegisteredInCourses[0]["Status"] == 0 || $studentRegisteredInCourses[0]["Status"] == 1)) echo 'disabled' ; ?>/>
     </div>
    </form> 
+   <?php
+         if(isset($_POST["submit"]))
+         {  
+            //get all the ids of primary courses selected by student
+            $temp1 = $_POST['select-box'];
+            $primaryCourses = '';
+            foreach($temp1 as $key => $value)
+              $primaryCourses = $primaryCourses.'-'.$value;
+
+            //get all the ids of optional courses selected by student
+            $temp2 = array();
+            for($i=1; $i<=6; $i++)
+              array_push($temp2, $_POST['optional-box-'.$i]);
+
+            $optionalCourses = '';
+            foreach($temp2 as $optional)
+              foreach($optional as $key => $value)
+                $optionalCourses = $optionalCourses.'-'.$value;
+            
+            //format the string to cut the - from beginning
+            $choosenCourses = substr($primaryCourses.$optionalCourses, 1, strlen($primaryCourses.$optionalCourses));
+            
+            $studentMessage = $_POST['msg'];
+            
+            $result = null;
+            //check if student has chosen some courses otherwise registration can't be completed
+            if($choosenCourses)
+             $result = $student_dal -> registerCourses($student_id, $choosenCourses, $studentMessage);            
+            
+            if($result) echo '<span style="text-align: center; color: #16FF00;">Successfully Registered Courses</span>';
+            else echo '<span style="text-align: center; color: #D21312;">Failed Registering Courses</span>';
+              
+         }
+   ?>
   </div>
   <input type="hidden" id="max-allowed-credits" value="<?php if ($student_year <= 2) echo 60; else echo 72;?>" />
  </main>

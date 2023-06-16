@@ -206,14 +206,17 @@ main
 
 input[type="submit"]
 {
-  padding: 1em;
+  padding: .8em;
   font-size: 1.3rem;
   font-weight: 400;
   border-radius: .5em;
   outline: none;
-  border: none;
   background-color: var(--neon-color);
+  text-shadow: 0 0 0.2em hsl(0 0% 100% / 0.2), 0 0 0.3em var(--neon-color);
+  box-shadow: inset 0 0 0.3em 0 var(--neon-color), 0 0 0.3em 0 var(--neon-color);
+  border: 0.15em solid var(--neon-color);
 }
+
 /**--Checkboxes Design--**/
 .checkbox-wrapper-64 input[type="checkbox"] {
   visibility: hidden;

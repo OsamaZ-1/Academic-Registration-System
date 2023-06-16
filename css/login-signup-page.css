@@ -221,13 +221,7 @@ main
 }
 
 /** --Button Animation effect on hover and focus-- **/
-.button-shadow .submit-button:hover,
-.button-shadow .submit-button:focus
-{
-  background-color: var(--neon-color);
-  color: var(--darker-color);
-  text-shadow: none;
-}
+
 
 /** --A div that will make the button glow on hover-- **/
 .button-shadow

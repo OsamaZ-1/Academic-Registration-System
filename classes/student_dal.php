@@ -46,6 +46,32 @@
 
         }
 
+        public function registerCourses($student_id, $choosenCourses, $studentMessage)
+        {
+            $sql = "INSERT INTO CoursesRegistration
+                        (StudentId, 
+                         Courses, 
+                         StudentMessage, 
+                         Status) 
+                     VALUES
+                        ($student_id, 
+                         '$choosenCourses', 
+                         '$studentMessage', 
+                         0)";
+
+            return $this -> update($sql); 
+
+        }
+
+        //this function checks if student has registered in courses
+        //used to prevent student to submit another registration request if he/she already did
+        public function studentRegisteredInCourses($student_id)
+        {
+            $sql = "SELECT * FROM CoursesRegistration WHERE StudentId = $student_id";
+            $result = $this -> getData($sql);
+            return $result;
+        }
+
         public function getGradesAssocArray($student_id){
             $sql = "SELECT CourseId, Grade FROM Grades WHERE StudentId = $student_id";
             $res = $this->getData($sql);

@@ -28,7 +28,7 @@
     <td>
        <div class="checkbox-wrapper-64">
          <label class="switch">
-           <input type='checkbox' class="course-checkbox" name="select-box" value="<?php echo $c['CourseId']; ?>" onchange="countCredits()" <?php require("disable_checkbox.php");?>/>
+           <input type='checkbox' class="course-checkbox" name="select-box[]" value="<?php echo $c['CourseId']; ?>" onchange="countCredits()" <?php require("disable_checkbox.php");?>/>
            <span class="slider"></span>
           </label>
         </div>
@@ -65,7 +65,7 @@
     <td>
        <div class="checkbox-wrapper-64">
          <label class="switch">
-          <input type='checkbox' name="optional-box-<?php echo $g; ?>" value="<?php echo $c['CourseId']; ?>" onchange="optionalCourseCreditCounter(<?php echo $g; ?>)" <?php require("disable_checkbox.php");?>/>
+          <input type='checkbox' name="optional-box-<?php echo $g.'[]'; ?>" value="<?php echo $c['CourseId']; ?>" onchange="optionalCourseCreditCounter(<?php echo $g; ?>)" <?php require("disable_checkbox.php");?>/>
           <span class="slider"></span>
          </label>
        </div>
