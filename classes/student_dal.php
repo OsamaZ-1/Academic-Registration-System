@@ -1,4 +1,5 @@
 <?php
+    
     class Student_DAL extends DAL {
 
         public function getStudentMajor($email, $password){
@@ -30,6 +31,21 @@
             return $grades;
         }
 
+        //This function is used to get the student max year which he is enrolled in and has grades
+        //It is used to display the grades based on the year incase he registered in this year courses and have grades
+        public function getStudentYear($student_id)
+        {
+            $sql = "SELECT MAX(C.Year)
+                    FROM Courses AS C, Grades AS G
+                    WHERE C.CourseId = G.CourseId
+                    AND G.StudentId = '{$student_id}'
+                    AND G.Grade IS NOT NULL";
+            
+            $year = $this -> getData($sql);
+            return $year[0]["MAX(C.Year)"];
+
+        }
+
         public function getGradesAssocArray($student_id){
             $sql = "SELECT CourseId, Grade FROM Grades WHERE StudentId = $student_id";
             $res = $this->getData($sql);
@@ -47,12 +63,10 @@
                     AND G.StudentId = $student_id 
                     AND C.Year = $year
                     AND C.Semester = $semester";
-
+            
             $grades = $this->getData($sql);
-
             $course_dal = new Course_DAL();
-            $credits = $course_dal->getCourseCreditsAssoc(1);
-
+            $credits = $course_dal->getCourseCreditsAssoc($year);
             $creditSum = 0;
             $gradeSum = 0;
             foreach ($grades as $g){

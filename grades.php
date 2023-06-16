@@ -2,8 +2,8 @@
   session_start();
 
   require("classes/dal.php");
+  require("classes/courses_dal.php");
   require("classes/student_dal.php");
-
   $student_dal = new Student_DAL();
 
   $student_email = $_SESSION["email"];
@@ -12,6 +12,9 @@
   
   $student_info = $student_dal -> getStudentInfo($student_email, $student_password);
   $student_name = $student_info[0]["Fname"];
+  $student_image = $student_dal -> getStudentImage($student_id);
+  $year = $student_dal -> getStudentYear($student_id);
+ 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,7 +37,7 @@
         <select class="academic-year" name="year-grades" onchange="form1.submit()">
           <option>Select Academic Year</option>
           <?php 
-              $year = $student_info[0]["Year"];
+              
           
               for($i=1; $i<=$year; $i++)
               { 
@@ -67,6 +70,12 @@
                         require("templates/fill_grades_tables.php");
                       ?>
                     </table>
+                    <div class="average">
+                    <?php $average = $student_dal -> getAverage($student_id, $year_grades, 1); 
+                          echo "Average: $average"; 
+                          if($average>=55) echo "<br/><span style='color: green;'>Courses with Grades marked as Compensation are Passed</span>";
+                          else echo "<br/><span style='color:red;'>Courses with Grades marked as Compensation are Failed</span>"; ?>
+                    </div>
                 </div>
                 <div>
                     <table id="firstYear2" class="courses-table table-toggle">
@@ -75,6 +84,12 @@
                         require("templates/fill_grades_tables.php");
                       ?>
                     </table>
+                    <div class="average">
+                    <?php $average = $student_dal -> getAverage($student_id, $year_grades, 2); 
+                          echo "Average: $average";
+                          if($average>=55) echo "<br/><span style='color: green;'>Courses with Grades marked as Compensation are Passed</span>";
+                          else echo "<br/><span style='color: red;'>Courses with Grades marked as Compensation are Failed</span>"; ?>
+                    </div>
                 </div>
             </div>
             <?php } ?>

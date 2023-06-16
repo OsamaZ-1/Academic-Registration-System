@@ -12,6 +12,7 @@
             foreach ($res as $r){
                 $arr += array($r["CourseId"] => $r["Credits"]);
             }
+    
             return $arr;
         }
 

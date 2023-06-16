@@ -1,5 +1,6 @@
 <?php 
-      // session_destroy();
+      session_unset();
+      session_destroy();
       session_start(); 
      
       require("classes/dal.php");
@@ -55,12 +56,9 @@
             <div class="after"></div>
           </div>
         </form>
-        <?php 
+        <?php             
 
-            require("DB-Connection.php");
-            $conn = db_connect();
-
-            if(isset($_POST["login"]) && $conn)
+            if(isset($_POST["login"]))
             {
           
               $user_email = $_POST["email"];
@@ -71,7 +69,7 @@
               
               //if the user requesting to Login is an Admin
               if($result == "Admin")
-                header("Location: admin-page.html");
+                header("Location: admin-page.php");
               else if($result == "Student")
               {  
                  $info = $student_info -> getStudentInfo($user_email,$user_password);

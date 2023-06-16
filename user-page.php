@@ -4,7 +4,7 @@
   require("classes/dal.php");
   require("classes/courses_dal.php");
   require("classes/student_dal.php");
-
+  
   $courses_dal = new Course_DAL();
   $student_dal = new Student_DAL();
 
@@ -43,7 +43,7 @@
   </style>
 </head>
 <body>
- <?php include('student-navbar.php');?>
+  <?php include('student-navbar.php');?>
  <main>
   <h1 class="page-title">Courses Registration</h1>
   <div class="container">
