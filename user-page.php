@@ -201,5 +201,5 @@
   <input type="hidden" id="max-allowed-credits" value="<?php if ($student_year <= 2) echo 60; else echo 72;?>" />
  </main>
 </body>
-<script src="./js/userPageScript.js"></script>
+<script src="js/userPageScript.js"></script>
 </html>

@@ -291,6 +291,9 @@ input[type="submit"]
 .container form
 {
   align-self: center; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /**--dropdown list--**/
@@ -301,6 +304,7 @@ input[type="submit"]
   background-color: var(--lighter-color);
   outline: none;
   padding: .2em;
+
 }
 
 /**--container for grades--**/
