@@ -1,4 +1,4 @@
-let boxes = document.getElementsByName("select-box");
+let boxes = document.getElementsByName("select-box[]");
 let credits = document.getElementsByName("select-credit");
 let chosenCredits = 0;
 let checkedBoxes = new Array(boxes.length).fill(false);
@@ -29,12 +29,12 @@ let countCredits = () => {
 
 //keep track of which optional courses were chosen in each group
 let checkedOptional = {
-    "1": new Array(document.getElementsByName("optional-box-1").length).fill(false),
-    "2": new Array(document.getElementsByName("optional-box-2").length).fill(false),
-    "3": new Array(document.getElementsByName("optional-box-3").length).fill(false),
-    "4": new Array(document.getElementsByName("optional-box-4").length).fill(false),
-    "5": new Array(document.getElementsByName("optional-box-5").length).fill(false),
-    "6": new Array(document.getElementsByName("optional-box-6").length).fill(false)
+    "1": new Array(document.getElementsByName("optional-box-1[]").length).fill(false),
+    "2": new Array(document.getElementsByName("optional-box-2[]").length).fill(false),
+    "3": new Array(document.getElementsByName("optional-box-3[]").length).fill(false),
+    "4": new Array(document.getElementsByName("optional-box-4[]").length).fill(false),
+    "5": new Array(document.getElementsByName("optional-box-5[]").length).fill(false),
+    "6": new Array(document.getElementsByName("optional-box-6[]").length).fill(false)
 };
 
 //keep track of the amount of credits that has been chosen in each group
@@ -48,7 +48,7 @@ let groupChosenCredits = {
 };
 
 let optionalCourseCreditCounter = (group) => {
-    let optionalCourses = document.getElementsByName("optional-box-" + group);
+    let optionalCourses = document.getElementsByName("optional-box-" + group + "[]");
     let optionalCredits = document.getElementsByName("optional-credit-" + group);
     let maxCredits = document.getElementById("max-credits-" + group).value;
 
