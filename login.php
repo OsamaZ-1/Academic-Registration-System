@@ -1,6 +1,8 @@
 <?php 
-      session_unset();
-      session_destroy();
+      if (isset($_POST["Id"])){
+        session_unset();
+        session_destroy();
+      }
       session_start(); 
      
       require("classes/dal.php");

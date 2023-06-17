@@ -11,12 +11,11 @@
   $student_email = $_SESSION["email"];
   $student_password = $_SESSION["pass"];
   $student_id = $_SESSION["Id"];
-
-  $student_major = $student_dal -> getStudentMajor($student_email, $student_password);
   
   $student_info = $student_dal -> getStudentInfo($student_email, $student_password);
   $student_name = $student_info[0]["Fname"];
   $student_year = $student_info[0]["Year"];
+  $student_major = $student_info[0]["Major"];
   $student_image = $student_dal -> getStudentImage($student_id);
   $student_grades = $student_dal->getGradesAssocArray($student_id);
 
