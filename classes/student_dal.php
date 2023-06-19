@@ -179,5 +179,21 @@
             )";
             return $this->update($sql);
         }
+
+        public function getStudentsRequestsRejestration(){
+            $sql="SELECT
+            students.StudentId,
+            students.Fname,
+            students.Lname,
+            students.Email,
+            coursesregistration.Courses,
+            coursesregistration.Status
+        FROM
+            students
+        INNER JOIN coursesregistration ON coursesregistration.StudentId = students.StudentId
+        WHERE
+            coursesregistration.Status = 1";
+            return $this -> getData($sql);
+        }
     }
 ?>

@@ -41,15 +41,20 @@ body
 #navbarNavCollapse {
     transition: all 0.5s !important;
 }
-.navbarItems .nav-item .nav-link {
+.navbarItems .nav-item .nav-link,.slidebar ul li a {
     color:white !important;
     margin-left: 1em !important;
     transition: all 0.5s ease-in !important;
 }
-.navbarItems .nav-item .nav-link:hover {
+.navbarItems .nav-item .nav-link:hover,.slidebar ul li .active {
     border-bottom: 2px solid greenyellow !important;
   color:#f23a2a !important;
 }
+
+.slidebar ul li a:hover {
+    color:#f23a2a !important;
+}
+
 #breadcrumb_navbar {
     background-color: var(--darker-color) !important;
     color: white !important;
@@ -102,3 +107,90 @@ table tbody tr td button {
     margin-left: 1em !important;
     transition: all 0.5s ease-in !important;
 }*/
+
+
+#slide_nav {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 250px;
+    height: 100vh;
+    overflow-y: auto;
+    background: var(--darker-color);
+    min-width: 250px;
+    max-width: 250px;
+    transition: all 0.5s;
+    z-index: 11;
+}
+
+.content {
+    min-height: 100vh;
+    width: 100%;
+    transition: all 0.7s;
+}
+
+.open-btn {
+    background: white;
+    color: var(--dark-color);
+    padding: 5px !important;
+    font-size: x-large;
+    margin-left: 3px;
+}
+
+.open-btn:hover {
+    background: var(--dark-color);
+    color: white;
+    padding: 5px !important;
+    font-size: x-large;
+    margin-left: 3px;
+}
+
+@media (max-width: 767px) {
+    #slide_nav {
+        margin-left: -250px;
+        position: fixed;
+        min-height: 100vh;
+        z-index: 11;
+    }
+
+    #slide_nav.active {
+        margin-left: 0;
+    }
+}
+
+@media (min-width: 767px) {
+    .content.openSide {
+        margin-left: 250px;
+        width: calc(100% - 250px);
+    }
+
+    .content.closeSide {
+        margin-left: 0px;
+        width: 100%;
+    }
+
+    .open-btn {
+        visibility: hidden;
+    }
+
+    .open-btn.displayIt {
+        visibility: visible;
+    }
+
+    #slide_nav.closeSide {
+        margin-left: -250px;
+        position: fixed;
+        min-height: 100vh;
+        z-index: 11;
+    }
+
+    #slide_nav.openSide {
+        margin-left: 0;
+    }
+}
+
+.footer {
+ background-color: var(--dark-color) !important;
+ color: white !important;
+}
