@@ -165,7 +165,7 @@
         Reserved.
     </div>
     <div class="col-12 col-sm-6 text-center text-sm-end">
-        Designed By <a href="#">Mohammad Abo Alfoul</a>
+        Designed By <a href="#"></a>
     </div>
 </div>
                 <!-- footer end -->
