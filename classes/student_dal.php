@@ -195,5 +195,36 @@
             coursesregistration.Status = 1";
             return $this -> getData($sql);
         }
+        public function getTotalStudents(){
+            $sql="SELECT COUNT(students.Id) AS 'total_students' FROM students";
+            $res=$this->getDataAssoc($sql);
+            return $res['total_students'];
+        }
+        public function getTotalRequestsRegisterCourses(){
+            $sql="SELECT COUNT(*) AS 'total_register_request' FROM coursesregistration WHERE coursesregistration.Status=1";
+            $res=$this->getDataAssoc($sql);
+            return $res['total_register_request'];
+        }
+        public function editStatusRegester($stdId,$status) {
+            $conn = $this->getConnection();
+            $stdId= mysqli_real_escape_string( $conn, $stdId );
+            $status= mysqli_real_escape_string( $conn, $status );
+            $sql="UPDATE coursesregistration SET coursesregistration.Status=$status WHERE coursesregistration.StudentId=$stdId AND coursesregistration.Status=1";
+            return $this->update($sql);
+        }
+        public function addRegesterStudentCourse($stdId,$courseId,$major,$enrolment_date){
+            $conn = $this->getConnection();
+            $stdId= mysqli_real_escape_string( $conn, $stdId );
+            $courseId=mysqli_real_escape_string( $conn, $courseId );
+            $major=mysqli_real_escape_string( $conn, $major );
+            $enrolment_date=mysqli_real_escape_string( $conn, $enrolment_date );
+            $enrolment_date='2022-2023';
+            $sql="INSERT INTO grades (grades.StudentId,grades.CourseId,grades.Major,grades.EnrollmentDate) VALUES ($stdId,$courseId,$major,'$enrolment_date')";
+            return $this->update($sql);
+        }
+        public function editRegesterCoursesAdminMessage($stdId,$message){
+            $sql="UPDATE coursesregistration SET coursesregistration.AdminMessage='$message' WHERE coursesregistration.StudentId=$stdId AND coursesregistration.Status=0";
+            return $this->update($sql);
+        }
     }
 ?>

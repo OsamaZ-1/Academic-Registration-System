@@ -48,4 +48,55 @@ $(document).ready(function(){
             },
           });
     });
+
+    $(".accept-student-registration-btn").on("click",function(){
+      var stdId = parseInt($(this).parent().parent().parent().find("td:eq(0)").text());
+      var courses_string=$(this).parent().parent().parent().find("td:eq(3)").text()
+      var courses=courses_string.split(',');
+        $.ajax({
+            url: "http://localhost/Academic-Registration/Actions/accept_student_registration_courses.php",
+            type: "POST",
+            data: {
+              stdId:stdId,
+              courses:courses
+            },
+            dataType: "json",
+            success: function (dataResult) {
+              if (dataResult.result) {
+                swal("Accept Student Rejester", "You Accept The Request Of Student To Rejester Courses", "success").then((value) => {
+                  window.location.reload();
+                });
+              } else {
+                swal("Reject Student Rejester", dataResult.error, "error");
+              }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+              console.log("Error: " + textStatus + " " + errorThrown);
+            },
+          });
+    });
+
+    $(".reject-student-registration-btn").on("click",function(){
+      var stdId = parseInt($(this).parent().parent().parent().find("td:eq(0)").text());
+        $.ajax({
+            url: "http://localhost/Academic-Registration/Actions/reject_student_registration_courses.php",
+            type: "POST",
+            data: {
+              stdId:stdId,
+            },
+            dataType: "json",
+            success: function (dataResult) {
+              if (dataResult.result) {
+                swal("Reject Student Rejester", "You Reject The Request Of Student To Rejester Courses", "success").then((value) => {
+                  window.location.reload();
+                });
+              } else {
+                swal("Reject Student Rejester", dataResult.error, "error");
+              }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+              console.log("Error: " + textStatus + " " + errorThrown);
+            },
+          });
+    }); 
 });

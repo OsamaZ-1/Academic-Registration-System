@@ -4,7 +4,25 @@
             $sql = "SELECT * FROM courses WHERE `Year` = $year AND Semester = $semester AND Major = $major";
             return $this->getData($sql);
         }
-
+       public function getCourseAsCode($code){
+            $conn = $this->getConnection();
+            $code= mysqli_real_escape_string( $conn, $code );
+            $sql="SELECT
+            courses.CourseId,
+            courses.CourseCode,
+            courses.CourseName,
+            courses.Credits,
+            courses.Prerequisite,
+            courses.Major,
+            courses.Year,
+            courses.Semester,
+            courses.Optional
+        FROM
+            courses
+        WHERE
+            courses.CourseCode = '$code'";
+            return $this->getDataAssoc($sql);
+        }
         public function getCourseCreditsAssoc($year){
             $sql = "SELECT CourseId, Credits FROM Courses WHERE `Year` = $year";
             $res = $this->getData($sql);
@@ -32,6 +50,11 @@
             $sql = "SELECT Credits FROM `optional_groups` WHERE `Group` = $group LIMIT 1";
             $res = $this->getData($sql);
             return $res[0]["Credits"];
+        }
+        public function getTotalCourses(){
+            $sql="SELECT COUNT(courses.CourseId) AS 'total_courses' FROM courses";
+            $res=$this->getDataAssoc($sql);
+            return $res['total_courses'];
         }
     }
 ?>

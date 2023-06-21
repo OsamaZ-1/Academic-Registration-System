@@ -36,5 +36,10 @@
         $sql="DELETE FROM users WHERE users.Id=$id";
         return $this->update($sql);
     }
+    public function getTotalRequestUsers(){
+        $sql="SELECT COUNT(users.Id) AS 'total_request_users' FROM users";
+        $res= $this->getDataAssoc($sql);
+        return $res['total_request_users'];
+    }
  }
 ?>
