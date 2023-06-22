@@ -56,5 +56,15 @@
             $res=$this->getDataAssoc($sql);
             return $res['total_courses'];
         }
+        public function getCoursesExceptRegistered($courses){
+            $connection = $this->getConnection();
+            $escapedValues = array_map(function ($value) use ($connection) {
+                return "'" . mysqli_real_escape_string($connection, $value) . "'";
+            }, $courses);
+            $courses_string=implode(',', $escapedValues);
+            $sql="SELECT courses.CourseCode,courses.CourseName FROM courses WHERE courses.CourseCode NOT IN (".$courses_string.")";
+            
+            return $this->getData($sql);
+        }
     }
 ?>

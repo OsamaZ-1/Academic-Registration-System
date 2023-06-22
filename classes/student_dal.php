@@ -8,7 +8,23 @@
             $info = $this -> getData($sql);
             return $info;
         }
-
+        public function getStudentAsID($stdId){
+            $conn = $this->getConnection();
+            $stdId= mysqli_real_escape_string( $conn, $stdId );
+            $sql="SELECT
+            students.StudentId,
+            students.Fname,
+            students.Lname,
+            students.Email,
+            students.Password,
+            students.Major,
+            students.Year
+        FROM
+            students
+        WHERE
+            students.StudentId=$stdId";
+            return $this -> getDataAssoc($sql);
+        }
         public function getStudentGrades($student_id, $year, $semester)
         {
             $sql = "SELECT C.CourseCode, 
@@ -180,7 +196,9 @@
             return $this->update($sql);
         }
 
-        public function getStudentsRequestsRejestration(){
+        public function getStudentsRequestsRejestrationAsStatus($status){
+            $conn = $this->getConnection();
+            $status= mysqli_real_escape_string( $conn, $status);
             $sql="SELECT
             students.StudentId,
             students.Fname,
@@ -192,7 +210,7 @@
             students
         INNER JOIN coursesregistration ON coursesregistration.StudentId = students.StudentId
         WHERE
-            coursesregistration.Status = 1";
+            coursesregistration.Status = $status";
             return $this -> getData($sql);
         }
         public function getTotalStudents(){
@@ -209,7 +227,14 @@
             $conn = $this->getConnection();
             $stdId= mysqli_real_escape_string( $conn, $stdId );
             $status= mysqli_real_escape_string( $conn, $status );
-            $sql="UPDATE coursesregistration SET coursesregistration.Status=$status WHERE coursesregistration.StudentId=$stdId AND coursesregistration.Status=1";
+            $sql="UPDATE coursesregistration SET coursesregistration.Status=$status WHERE coursesregistration.StudentId=$stdId";
+            return $this->update($sql);
+        }
+        public function editAdminMessage($stdId,$message){
+            $conn = $this->getConnection();
+            $stdId= mysqli_real_escape_string( $conn, $stdId );
+            $message=mysqli_real_escape_string( $conn, $message );
+            $sql="UPDATE coursesregistration SET coursesregistration.AdminMessage='$message' WHERE coursesregistration.StudentId=$stdId";
             return $this->update($sql);
         }
         public function addRegesterStudentCourse($stdId,$courseId,$major,$enrolment_date){
@@ -225,6 +250,21 @@
         public function editRegesterCoursesAdminMessage($stdId,$message){
             $sql="UPDATE coursesregistration SET coursesregistration.AdminMessage='$message' WHERE coursesregistration.StudentId=$stdId AND coursesregistration.Status=0";
             return $this->update($sql);
+        }
+        public function getStudentRequestRegiterCourses($stdId){
+            $conn = $this->getConnection();
+            $stdId= mysqli_real_escape_string( $conn, $stdId );
+            $sql="SELECT
+            coursesregistration.StudentId,
+            coursesregistration.Courses,
+            coursesregistration.StudentMessage,
+            coursesregistration.AdminMessage,
+            coursesregistration.Status
+        FROM
+            coursesregistration
+        WHERE
+            coursesregistration.StudentId =$stdId AND coursesregistration.Status = 0";
+            return $this -> getDataAssoc($sql);
         }
     }
 ?>

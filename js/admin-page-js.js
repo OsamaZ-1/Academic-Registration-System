@@ -52,7 +52,7 @@ $(document).ready(function(){
     $(".accept-student-registration-btn").on("click",function(){
       var stdId = parseInt($(this).parent().parent().parent().find("td:eq(0)").text());
       var courses_string=$(this).parent().parent().parent().find("td:eq(3)").text()
-      var courses=courses_string.split(',');
+      var courses=courses_string.split('-');
         $.ajax({
             url: "http://localhost/Academic-Registration/Actions/accept_student_registration_courses.php",
             type: "POST",
@@ -98,5 +98,10 @@ $(document).ready(function(){
               console.log("Error: " + textStatus + " " + errorThrown);
             },
           });
-    }); 
+    });
+
+    $(".manage-student-registration-btn").on('click',function(){
+      var stdId = parseInt($(this).parent().parent().parent().find("td:eq(0)").text());
+      window.location.href='admin-page-manage-student-regestration.php?stdId='+stdId;
+    });
 });
