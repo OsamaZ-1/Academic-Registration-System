@@ -173,6 +173,7 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
+                                <h5>Select One Course:</h5><hr>
                                 <select class="form-select form-select-lg" name="" id="select_courses">
                                    
                                 </select>
