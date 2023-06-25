@@ -60,11 +60,13 @@
             $res = $this->getData($sql);
             return $res[0]["Credits"];
         }
+
         public function getTotalCourses(){
             $sql="SELECT COUNT(courses.CourseId) AS 'total_courses' FROM courses";
             $res=$this->getDataAssoc($sql);
             return $res['total_courses'];
         }
+
         public function getCoursesExceptRegistered($courses){
             $connection = $this->getConnection();
             $escapedValues = array_map(function ($value) use ($connection) {
@@ -75,5 +77,6 @@
             
             return $this->getData($sql);
         }
+
     }
 ?>

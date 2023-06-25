@@ -49,6 +49,11 @@
  <main>
   <h1 class="page-title">Courses Registration</h1>
   <div class="container">
+    <?php if($studentRegisteredInCourses && $studentRegisteredInCourses[0]['Status']==2) //Student Registered Courses and was accepted by admin
+            echo '<h2 style="color: #16FF00; text-align: center;"><span style="color: black; text-decoration: underline; margin-right: .5em;" >Administration Message: </span>Congrats You Have Successfully Registered For This Year</h2>';
+          else if($studentRegisteredInCourses && $studentRegisteredInCourses[0]['Status']==1 && $studentRegisteredInCourses[0]['AdminMessage']) //Student Registered Courses but the request was rejected by admin
+            echo '<h2 style="color: #D21312; text-align: center;"><span style="color: black; text-decoration: underline; margin-right: .5em;">Administration Message:</span>'.$studentRegisteredInCourses[0]['AdminMessage'].'</h2>';
+    ?>
     <form action="" method="POST">
       <div>
         <input type='text' id='credit-counter' value='0' disabled/>
@@ -159,7 +164,7 @@
     </div>
     <div class="register-courses">
       <textarea name="msg" class="message" cols="30" rows="10" placeholder="Enter Message Here!"></textarea>
-      <input type="submit" name="submit" value="Register Courses" <?php if(($studentRegisteredInCourses) && ($studentRegisteredInCourses[0]["Status"] == 0 || $studentRegisteredInCourses[0]["Status"] == 1)) echo 'disabled' ; ?>/>
+      <input type="submit" name="submit" value="Register Courses" <?php if(($studentRegisteredInCourses) && ($studentRegisteredInCourses[0]["Status"] == 0 || $studentRegisteredInCourses[0]["Status"] == 2)) echo 'disabled' ; ?>/>
     </div>
    </form> 
    <?php

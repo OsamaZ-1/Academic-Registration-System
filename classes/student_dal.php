@@ -25,6 +25,7 @@
             students.StudentId=$stdId";
             return $this -> getDataAssoc($sql);
         }
+
         public function getStudentGrades($student_id, $year, $semester)
         {
             $sql = "SELECT C.CourseCode, 

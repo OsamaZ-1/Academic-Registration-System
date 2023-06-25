@@ -9,7 +9,7 @@
         </ul>
         <a class="navbar-brand" href="#">
             <img src="images/LU-logo.png" alt="" class="navbar-img">
-            <span class="navbar-title">LU FSADMIN</span>
+            <span class="navbar-title">LUFS ADMIN</span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavCollapse"
             aria-controls="navbarNavCollapse" aria-expanded="false" aria-label="Toggle navigation">
