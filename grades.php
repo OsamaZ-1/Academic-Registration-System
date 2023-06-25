@@ -33,7 +33,7 @@
   <main>
     <h1 class="page-title">Student Grades</h1>
     <div class="container">
-      <form name="form1" action="" method="POST">
+      <form id="grades-form" name="form1" action="" method="POST">
         <select class="academic-year" name="year-grades" onchange="form1.submit()">
           <option>Select Academic Year</option>
           <?php 

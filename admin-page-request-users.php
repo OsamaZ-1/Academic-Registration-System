@@ -43,7 +43,7 @@
             <div class="container mt-5 bg-light rounded shadow p-5 mb-5 mx-sm-3 mx-lg-auto">
                 <div class="row d-flex justify-content-center">
                     <div class="col-sm-12 col-md-10 col-lg-6">
-                        <h2 class="page-title">Users Request To Hava Accounts</h2>
+                        <h2 class="page-title">Users Request To Have Accounts</h2>
                         <hr>
                     </div>
                 </div>

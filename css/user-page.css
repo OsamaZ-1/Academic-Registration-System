@@ -288,7 +288,7 @@ input[type="submit"]
 
 /**--This parts is for Grades Page in User-Page--**/
 
-.container form
+.container #grades-form
 {
   align-self: center; 
   display: flex;

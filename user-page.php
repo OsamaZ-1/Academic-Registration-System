@@ -169,7 +169,10 @@
             $temp1 = $_POST['select-box'];
             $primaryCourses = '';
             foreach($temp1 as $key => $value)
-              $primaryCourses = $primaryCourses.'-'.$value;
+            { 
+              $courseCode = $courses_dal -> getCodeFromId($value);
+              $primaryCourses = $primaryCourses.'-'.$courseCode;
+            }
 
             //get all the ids of optional courses selected by student
             $temp2 = array();
@@ -179,7 +182,10 @@
             $optionalCourses = '';
             foreach($temp2 as $optional)
               foreach($optional as $key => $value)
-                $optionalCourses = $optionalCourses.'-'.$value;
+                { 
+                  $courseCode = $courses_dal -> getCodeFromId($value);
+                  $optionalCourses = $optionalCourses.'-'.$courseCode;
+                }
             
             //format the string to cut the - from beginning
             $choosenCourses = substr($primaryCourses.$optionalCourses, 1, strlen($primaryCourses.$optionalCourses));

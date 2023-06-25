@@ -1,10 +1,12 @@
 <?php
     class Course_DAL extends DAL{
+
         public function getCourses($year, $semester, $major){
             $sql = "SELECT * FROM courses WHERE `Year` = $year AND Semester = $semester AND Major = $major";
             return $this->getData($sql);
         }
-       public function getCourseAsCode($code){
+
+        public function getCourseAsCode($code){
             $conn = $this->getConnection();
             $code= mysqli_real_escape_string( $conn, $code );
             $sql="SELECT
@@ -23,6 +25,7 @@
             courses.CourseCode = '$code'";
             return $this->getDataAssoc($sql);
         }
+
         public function getCourseCreditsAssoc($year){
             $sql = "SELECT CourseId, Credits FROM Courses WHERE `Year` = $year";
             $res = $this->getData($sql);
@@ -38,6 +41,12 @@
             $sql = "SELECT CourseId FROM Courses WHERE CourseCode = \"$code\"";
             $res = $this->getData($sql);
             return $res[0]["CourseId"];
+        }
+
+        public function getCodeFromId($id){
+            $sql = "SELECT CourseCode FROM Courses WHERE CourseId = \"$id\"";
+            $res = $this->getData($sql);
+            return $res[0]["CourseCode"];
         }
 
         public function getOptionalCourseGroup($course_id){
