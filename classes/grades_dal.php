@@ -22,6 +22,14 @@
           return $grades;
       }
 
+      public function editStudentCourseGrade($courseId,$studentId,$courseGrade){
+        $conn = $this->getConnection();
+        $courseId= mysqli_real_escape_string( $conn, $courseId );
+        $studentId= mysqli_real_escape_string( $conn, $studentId );
+        $courseGrade= mysqli_real_escape_string( $conn, $courseGrade );
+        $sql="UPDATE Grades SET Grades.Grade=$courseGrade WHERE Grades.StudentId=$studentId AND Grades.CourseId=$courseId";
+        return $this->update($sql);
+      }
       
     }
 

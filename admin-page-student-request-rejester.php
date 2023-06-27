@@ -69,6 +69,13 @@
                         <hr>
                     </div>
                 </div>
+                <?php if($status==0){ ?>
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-center">
+                        <button class="btn btn-outline-danger btn-lg px-3 py-1" id="delete_all_student_request_btn">Delete All</button>
+                    </div>
+                </div>
+                <?php }?>
                 <div class="row">
                     <div class="col-12 overflow-auto p-3">
                         <table class="table table-striped" id="student_register_courses_request_table">

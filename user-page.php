@@ -1,6 +1,6 @@
 <?php
   session_start();
-
+  require("templates/login_validate.php");
   require("classes/dal.php");
   require("classes/courses_dal.php");
   require("classes/student_dal.php");
@@ -181,8 +181,11 @@
 
             //get all the ids of optional courses selected by student
             $temp2 = array();
-            for($i=1; $i<=6; $i++)
-              array_push($temp2, $_POST['optional-box-'.$i]);
+            for($i=1; $i<=6; $i++){
+              if(isset($_POST['optional-box-'.$i])){
+                array_push($temp2, $_POST['optional-box-'.$i]);
+              }
+            }
 
             $optionalCourses = '';
             foreach($temp2 as $optional)

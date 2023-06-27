@@ -12,6 +12,7 @@
                            C.CourseName,
                            C.Year,
                            C.Semester,
+                           C.Optional,
                            M.Major
                     FROM Courses AS C, Majors AS M
                     WHERE C.Major = M.Id";

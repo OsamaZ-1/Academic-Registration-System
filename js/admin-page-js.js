@@ -1,6 +1,28 @@
 $(document).ready(function(){
     $("#users_accounts_request_table").dataTable();
     $("#student_register_courses_request_table").dataTable();
+    $("#delete_all_student_request_btn").on("click",function(){
+      $.ajax({
+        url: "http://localhost/Academic-Registration/Actions/delete_all_students_register_courses.php",
+        type: "POST",
+        data: {
+          delete:1
+        },
+        dataType: "json",
+        success: function (dataResult) {
+          if (dataResult.result) {
+            swal("Delete All Students Register Courses Success", "", "success").then((value) => {
+              window.location.reload();
+            });
+          } else {
+            swal("Delete All Students Register Courses Failed", dataResult.error, "error");
+          }
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          console.log("Error: " + textStatus + " " + errorThrown);
+        },
+      });
+    });
     $(".accept-student-account-btn").on("click",function(){
         var id = parseInt($(this).parent().parent().parent().find("td:eq(0)").text());
         $.ajax({

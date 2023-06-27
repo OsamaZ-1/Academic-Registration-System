@@ -18,7 +18,7 @@
         <div class="collapse navbar-collapse justify-content-end ms-auto" id="navbarNavCollapse">
             <ul class="navbar-nav navbarItems">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">HOME</a>
+                    <a class="nav-link active" aria-current="page" href="index.php">HOME</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">LOGOUT</a>

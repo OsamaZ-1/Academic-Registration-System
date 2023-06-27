@@ -74,7 +74,16 @@
                                   <td class="p-2"><?php echo $c['Major']; ?></td>
                                   <td class="p-2"><?php echo $c['Year']; ?></td>
                                   <td class="p-2"><?php echo $c['Semester']; ?></td>
-                                  <td class="p-2"><?php echo $c['Optional']; ?></td>
+                                  <td class="p-2">
+                                    <?php 
+                                        if($c['Optional']==0){
+                                          echo "No";
+                                        }
+                                        else {
+                                          echo "Yes";
+                                        }
+                                      ?>
+                                  </td>
                                   <td class="p-2"><button class="btn btn-outline-primary p-2 btn-assign-grades">Assign Grades</button></td>
                                 </tr>
                               <?php

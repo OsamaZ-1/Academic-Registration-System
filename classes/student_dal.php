@@ -283,5 +283,9 @@
             coursesregistration.StudentId =$stdId AND coursesregistration.Status = 0";
             return $this -> getDataAssoc($sql);
         }
+        public function deleteAllStudentRegisterCourses() {
+            $sql="DELETE FROM coursesregistration";
+            return $this->update($sql);
+        }
     }
 ?>

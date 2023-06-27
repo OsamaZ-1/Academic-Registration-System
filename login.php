@@ -1,9 +1,9 @@
 <?php 
-      if (isset($_POST["Id"])){
+     session_start();
+      if (isset($_SESSION["Id"])){
         session_unset();
         session_destroy();
-      }
-      session_start(); 
+      } 
      
       require("classes/dal.php");
       require("classes/login-signup_dal.php");
