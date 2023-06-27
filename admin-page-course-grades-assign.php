@@ -13,14 +13,19 @@
       require("classes/dal.php");
       require("classes/user_dal.php");
       require("classes/student_dal.php");
-      require("classes/grades_dal.php");
+      require("classes/courses_dal.php");
 
-      $grades_dal = new Grades_DAL();
+      $courses_dal = new Course_DAL();
       $user_dal= new User_DAL();
       $student_dal= new Student_DAL();
 
-      //get all students grades
-      $grades = $grades_dal -> getAllStudentsGrades();
+      $course_students = NULL;
+      if(isset($_GET["courseCode"]))
+      { 
+        //get all courses
+        $course_students = $student_dal -> getStudentsInCourse($_GET["courseCode"]);  
+      }
+      else exit;
     ?>
     <div class="main-container d-flex">
         <!--sidebar start-->
@@ -46,36 +51,28 @@
                 <div class="container mt-5 bg-light rounded shadow p-5 mb-5 mx-sm-3 mx-lg-auto">
                   <div class="row d-flex justify-content-center">
                     <div class="col-sm-12 col-md-10 col-lg-6">
-                        <h2 class="page-title">Students Grades</h2>
+                        <h2 class="page-title">Students Grades Assignment</h2>
                         <hr>
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-12 overflow-auto p-3">
-                        <table class="table table-striped" id="students_grades_table">
+                        <table class="table table-striped" id="courses_grades_table">
                             <thead>
                                 <tr>
                                     <td>Student ID</td>
                                     <td>Full Name</td>
-                                    <td>Major</td>
-                                    <td>Course Code</td>
-                                    <td>Course Name</td>
-                                    <td>Credits</td>
                                     <td>Grade</td>
                                 </tr>
                             </thead>
                             <tbody>
                               <?php
-                              foreach($grades as $v){
+                              foreach($course_students as $cs){
                                 ?>
                                 <tr>
-                                  <td class="p-2"><?php echo $v['StudentId']; ?></td>
-                                  <td class="p-2"><?php echo $v['Fname'].' '.$v['Lname']; ?></td>
-                                  <td class="p-2"><?php echo $v['Major']; ?></td>
-                                  <td class="p-2"><?php echo $v['CourseCode']; ?></td>
-                                  <td class="p-2"><?php echo $v['CourseName']; ?></td>
-                                  <td class="p-2"><?php echo $v['Credits']; ?></td>
-                                  <td class="p-2"><?php echo $v['Grade']; ?></td>
+                                  <td class="p-2"><?php echo $cs['StudentId']; ?></td>
+                                  <td class="p-2"><?php echo $cs['Fname']." ".$cs["Lname"]; ?></td>
+                                  <td class="p-2"><input type="number" class="form-control student_course_grade" min="0" max="100" pattern="/^[0-9][0-9]?$|^100$/"/></td>
                                 </tr>
                               <?php
                               }

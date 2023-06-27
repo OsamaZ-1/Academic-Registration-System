@@ -57,6 +57,22 @@
 
         }
 
+        //Get all students enrolled in a certain course
+        public function getStudentsInCourse($courseCode)
+        {
+          $sql = "SELECT 
+                         S.StudentId,
+                         S.Fname,
+                         S.Lname
+                         FROM Grades AS G,Students AS S,Courses AS C
+                         WHERE S.StudentId = G.StudentId
+                         AND G.CourseId = C.CourseId
+                         AND C.CourseCode = '$courseCode'";
+                  
+          $course_students = $this -> getData($sql);
+          return $course_students;
+        }
+
         public function registerCourses($student_id, $choosenCourses, $studentMessage)
         {
             $sql = "INSERT INTO CoursesRegistration

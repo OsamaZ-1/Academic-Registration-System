@@ -21,6 +21,8 @@
           $grades = $this -> getData($sql);
           return $grades;
       }
+
+      
     }
 
 ?>

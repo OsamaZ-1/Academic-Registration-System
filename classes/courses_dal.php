@@ -6,6 +6,19 @@
             return $this->getData($sql);
         }
 
+        public function getAllCourses()
+        {
+            $sql = "SELECT C.CourseCode,
+                           C.CourseName,
+                           C.Year,
+                           C.Semester,
+                           M.Major
+                    FROM Courses AS C, Majors AS M
+                    WHERE C.Major = M.Id";
+
+            return $this -> getData($sql);
+        }
+
         public function getCourseAsCode($code){
             $conn = $this->getConnection();
             $code= mysqli_real_escape_string( $conn, $code );
