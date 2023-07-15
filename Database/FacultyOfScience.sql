@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 15, 2023 at 09:29 PM
+-- Generation Time: Jul 16, 2023 at 01:50 AM
 -- Server version: 5.7.17
 -- PHP Version: 5.6.30
 
@@ -142,7 +142,7 @@ CREATE TABLE `grades` (
 --
 
 INSERT INTO `grades` (`StudentId`, `CourseId`, `Major`, `Grade`, `EnrollmentDate`) VALUES
-('677833', 1, 1, '80.50', '2022-2023'),
+('677833', 1, 1, '98.00', '2022-2023'),
 ('677833', 2, 1, '55.00', '2022-2023'),
 ('677833', 3, 1, '45.80', '2022-2023'),
 ('677833', 4, 1, '39.00', '2022-2023'),
@@ -156,7 +156,7 @@ INSERT INTO `grades` (`StudentId`, `CourseId`, `Major`, `Grade`, `EnrollmentDate
 ('677833', 12, 1, '50.00', '2022-2023'),
 ('677833', 13, 1, '80.00', '2022-2023'),
 ('677833', 14, 1, '80.00', '2022-2023'),
-('677833', 15, 1, '80.00', '2022-2023'),
+('677833', 15, 1, '85.00', '2022-2023'),
 ('677833', 16, 1, '80.00', '2022-2023'),
 ('677833', 17, 1, '80.00', '2022-2023'),
 ('677833', 18, 1, '80.00', '2022-2023'),
@@ -256,6 +256,31 @@ INSERT INTO `optional_groups` (`CourseId`, `Group`, `Credits`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `permissions`
+--
+
+CREATE TABLE `permissions` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_type` varchar(255) NOT NULL,
+  `page` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `permissions`
+--
+
+INSERT INTO `permissions` (`id`, `user_type`, `page`) VALUES
+(1, 'admin', 'admin-page.php'),
+(2, 'admin', 'admin-page-assign-grades.php'),
+(3, 'admin', 'admin-page-course-grades-assign.php'),
+(4, 'admin', 'admin-page-display-grades.php'),
+(5, 'admin', 'admin-page-manage-student-regestration.php'),
+(6, 'admin', 'admin-page-request-users.php'),
+(7, 'admin', 'admin-page-student-request-rejester.php');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `students`
 --
 
@@ -304,7 +329,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`Id`, `UserId`, `Fname`, `Lname`, `Email`, `Password`, `Admin`) VALUES
 (1, NULL, 'Admin', 'Admin', 'admin1_ad@gmail.com', 'admin@ad1', 1),
 (2, NULL, 'Obaida', 'Ammar', 'obaidaammar99@gmail.com', 'obAmmar99', 0),
-(11, '109982', 'mohammad', 'abo alfoul', 'mohd2001af@gmail.com', '12344', 0);
+(11, '109982', 'mohammad', 'abo alfoul', 'mohd2001af@gmail.com', '12344', 0),
+(12, NULL, 'mohammad', 'af', 'moh@gmail.com', '123', 1);
 
 --
 -- Indexes for dumped tables
@@ -344,6 +370,12 @@ ALTER TABLE `optional_groups`
   ADD KEY `id` (`CourseId`);
 
 --
+-- Indexes for table `permissions`
+--
+ALTER TABLE `permissions`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `students`
 --
 ALTER TABLE `students`
@@ -372,6 +404,11 @@ ALTER TABLE `courses`
 ALTER TABLE `majors`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
+-- AUTO_INCREMENT for table `permissions`
+--
+ALTER TABLE `permissions`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
@@ -380,7 +417,7 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- Constraints for dumped tables
 --
