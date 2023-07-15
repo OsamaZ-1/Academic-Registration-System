@@ -10,7 +10,13 @@
             echo "disabled";
     }
 
-    else if ($student_year >= $temp_course_year){
+    else if ($student_year == 4 && $temp_course_year == 4){
+        //disable M1 courses when necessary
+        if ($noMasters)
+            echo "disabled";
+    }
+
+    else if ($student_year >= $temp_course_year && $student_year < 4){
         //if student passed with average then there is no need to disable any checkboxes from 2nd year table
         //so only check for pre-requisites and disable checkboxes in tables that are not 2nd year or are but without passing by average
         if ($temp_course_year != 2 || ($temp_course_year == 2 && !$passedWithAvg)){

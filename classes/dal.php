@@ -6,7 +6,7 @@
         private $dbname = "FacultyOfScience";
 
         public function getConnection(){
-            ini_set('max_execution_time', '300');
+            ini_set('max_execution_time', '900');
             return new mysqli($this->servername, $this->username, $this->password, $this->dbname);
         }
 

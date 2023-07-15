@@ -92,5 +92,11 @@
             return $this->getData($sql);
         }
 
+        public function getYearCourseCount($major, $year){
+            $sql="SELECT COUNT(courses.CourseId) AS 'total_courses' FROM courses WHERE Major = $major AND `Year` = $year";
+            $res=$this->getDataAssoc($sql);
+            return $res['total_courses'];
+        }
+
     }
 ?>

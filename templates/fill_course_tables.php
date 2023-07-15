@@ -14,6 +14,23 @@
     if ($temp_course_year < $student_year)
         $compensation = $student_dal->getAverage($student_id, $temp_course_year, $temp_course_sem) > 54.99;
 
+    //if this is the M1 table, check if the student is allowed to study M1
+    if ($temp_course_year == 4){
+        //get number of courses of first year
+        $firstYearCount = $course_dal->getYearCourseCount($student_major, 1);
+        $noMasters = false;
+        //if student passed first year and does not carry any courses, check courses of other years
+        if ($passedWithAvg){
+            for ($i = $firstYearCount + 1; $i <= count($student_grades); ++$i){
+                $grade = $student_grades["".$i];
+                if ($grade < 40 || ($grade >= 40 && $grade < 50 && !$compensation)){
+                    $noMasters = true;
+                    break;
+                }
+            }
+        }
+    }
+
     //get courses to fill in the array
     $courses = $courses_dal->getCourses($temp_course_year, $temp_course_sem, $student_major);
     $optional_courses = array();
