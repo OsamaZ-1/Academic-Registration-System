@@ -22,8 +22,8 @@
   $passedWithAvg = $student_dal->passedWithAverage($student_id); 
   
   $studentRegisteredInCourses = $student_dal -> studentRegisteredInCourses($student_id);
-  
-
+  //variable to check if the student is able to register in Master 1
+  $enrollInMaster = true;
 ?>
 
 <!DOCTYPE html>

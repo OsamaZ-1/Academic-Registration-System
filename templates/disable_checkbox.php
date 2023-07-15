@@ -12,7 +12,8 @@
 
     else if ($student_year == 4 && $temp_course_year == 4){
         //disable M1 courses when necessary
-        if ($noMasters)
+        echo 'hello';
+        if (!$enrollInMaster)
             echo "disabled";
     }
 
@@ -56,5 +57,6 @@
     else{
         //disable courses from future years
         echo "disabled";
+    
     }
 ?>
