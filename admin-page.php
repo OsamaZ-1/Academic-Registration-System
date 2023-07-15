@@ -14,6 +14,9 @@
    require("classes/user_dal.php");
    require("classes/student_dal.php");
    require("classes/courses_dal.php");
+   require("templates/login_validate.php");
+   require("templates/permissions.php");
+   
    $user_dal=new User_DAL();
    $student_dal=new Student_DAL();
    $course_dal=new Course_DAL();

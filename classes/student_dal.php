@@ -63,7 +63,8 @@
           $sql = "SELECT 
                          S.StudentId,
                          S.Fname,
-                         S.Lname
+                         S.Lname,
+                         G.Grade
                          FROM Grades AS G,Students AS S,Courses AS C
                          WHERE S.StudentId = G.StudentId
                          AND G.CourseId = C.CourseId

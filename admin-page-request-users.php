@@ -13,6 +13,9 @@
    require("classes/dal.php");
    require("classes/user_dal.php");
    require("classes/student_dal.php");
+   require("templates/login_validate.php");
+   require("templates/permissions.php");
+   
    $user_dal=new User_DAL();
    $student_dal=new Student_DAL();
    //get all users have request to be student
