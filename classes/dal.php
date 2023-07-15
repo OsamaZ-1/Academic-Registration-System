@@ -51,5 +51,12 @@
             $result = $conn -> query($sql);
             return $result;
         }
+
+        public function getEnterPagePermission($user_type,$page) {
+            $conn = $this->getConnection();
+            $user_type= mysqli_real_escape_string( $conn, $user_type );
+            $sql="SELECT * FROM permissions WHERE permissions.user_type='$user_type' AND permissions.page='$page'";
+            return $this->getData($sql);
+        }
     }
 ?>

@@ -16,6 +16,8 @@
       require("classes/user_dal.php");
       require("classes/student_dal.php");
       require("classes/courses_dal.php");
+      require("templates/login_validate.php");
+      require("templates/permissions.php");
 
       $courses_dal = new Course_DAL();
       $user_dal= new User_DAL();
@@ -77,7 +79,7 @@
                                             <td class="p-2"><?php echo $cs['Fname']." ".$cs["Lname"]; ?></td>
                                             <td class="p-2"><input type="number"
                                                     class="form-control student_course_grade" min="0" max="100"
-                                                    pattern="/^[0-9][0-9]?$|^100$/" /></td>
+                                                    pattern="/^[0-9][0-9]?$|^100$/" value="<?php echo $cs['Grade']; ?>" /></td>
                                         </tr>
                                         <?php
                               }

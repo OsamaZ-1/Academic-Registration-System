@@ -68,10 +68,16 @@
 
               $result = $login -> login($user_email,$user_password);
               
-              
               //if the user requesting to Login is an Admin
-              if($result == "Admin")
+              if($result == "Admin"){
+                $user_info = $login -> getUserInfo($user_email,$user_password);
+
+                 $_SESSION["email"] = $user_email;
+                 $_SESSION["pass"] = $user_password;
+                 $_SESSION["Id"] = $user_info['Id'];
+                 $_SESSION['user_type']='admin';
                 header("Location: admin-page.php");
+              }
               else if($result == "Student")
               {  
                  $info = $student_info -> getStudentInfo($user_email,$user_password);
@@ -79,6 +85,7 @@
                  $_SESSION["email"] = $user_email;
                  $_SESSION["pass"] = $user_password;
                  $_SESSION["Id"] = $info[0]["StudentId"];
+                 $_SESSION['user_type']='student';
                  header("Location: user-page.php");
               }
             }      

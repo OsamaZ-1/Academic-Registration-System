@@ -12,7 +12,7 @@
               <ul>
                 <li><a href="user-page.php">Home</a></li>
                 <li><a href="grades.php">Grades</a></li>
-                <li><a href="login.php">LogOut</a></li>
+                <li><a href="logout.php">LogOut</a></li>
               </ul>
               <div class="profile">
                 <span id="student-name">'; echo $student_name; echo '</span>

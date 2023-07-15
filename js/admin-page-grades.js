@@ -23,7 +23,7 @@ $(document).ready(function(){
     });
 
     $.ajax({
-      url: "http://localhost/Academic-Registration/Actions/add_course_grades.php",
+      url: "Actions/add_course_grades.php",
       type: "POST",
       data: {
         courseCode:courseCode,
