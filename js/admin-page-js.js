@@ -76,7 +76,7 @@ $(document).ready(function(){
       var courses_string=$(this).parent().parent().parent().find("td:eq(3)").text()
       var courses=courses_string.split('-');
         $.ajax({
-            url: "http://localhost/Academic-Registration/Actions/accept_student_registration_courses.php",
+            url: "Actions/accept_student_registration_courses.php",
             type: "POST",
             data: {
               stdId:stdId,
