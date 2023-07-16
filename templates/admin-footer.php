@@ -4,6 +4,6 @@
         Reserved.
     </div>
     <div class="col-12 col-sm-6 text-center text-sm-end">
-        Designed By <a href="#"></a>
+        Designed By <span style="color: yellow;">LUFCFS Master 1 Students</span><a href="#"></a>
     </div>
 </div>
