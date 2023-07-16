@@ -41,5 +41,40 @@
         $res= $this->getDataAssoc($sql);
         return $res['total_request_users'];
     }
+
+    public function getAdmins(){
+        $sql="SELECT users.Id,users.Fname,users.Lname,users.Email,users.Password FROM users WHERE users.Admin=1";
+        return $this->getData($sql);
+    }
+    public function addAdmin($fname,$lname,$email,$password){
+        $conn = $this->getConnection();
+        $fname= mysqli_real_escape_string( $conn, $fname );
+        $lname= mysqli_real_escape_string( $conn, $lname );
+        $email= mysqli_real_escape_string( $conn, $email );
+        $password= mysqli_real_escape_string( $conn, $password );
+        $sql="INSERT
+        INTO
+            users(
+                users.Fname,
+                users.Lname,
+                users.Email,
+                users.Password,
+                users.Admin
+            )
+        VALUES(
+            '$fname',
+            '$lname',
+            '$email',
+            '$password',
+            1
+        )";
+        return $this->update($sql);
+    }
+    public function deleteAdmin($id){
+        $conn = $this->getConnection();
+        $id = mysqli_real_escape_string( $conn, $id );
+        $sql="DELETE FROM users WHERE users.Id=$id";
+        return $this->update($sql);
+    }
  }
 ?>

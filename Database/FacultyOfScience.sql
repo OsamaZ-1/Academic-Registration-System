@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 16, 2023 at 01:50 AM
+-- Generation Time: Jul 16, 2023 at 04:01 AM
 -- Server version: 5.7.17
 -- PHP Version: 5.6.30
 
@@ -123,6 +123,13 @@ CREATE TABLE `coursesregistration` (
   `Status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `coursesregistration`
+--
+
+INSERT INTO `coursesregistration` (`StudentId`, `Courses`, `StudentMessage`, `AdminMessage`, `Status`) VALUES
+('3212', 'I1100-I1101-I1102', 'gfds gfdbgf', 'gsbdbgb', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -142,6 +149,8 @@ CREATE TABLE `grades` (
 --
 
 INSERT INTO `grades` (`StudentId`, `CourseId`, `Major`, `Grade`, `EnrollmentDate`) VALUES
+('3212', 1, 1, NULL, '2022-2023'),
+('3212', 7, 1, NULL, '2022-2023'),
 ('677833', 1, 1, '98.00', '2022-2023'),
 ('677833', 2, 1, '55.00', '2022-2023'),
 ('677833', 3, 1, '45.80', '2022-2023'),
@@ -276,7 +285,10 @@ INSERT INTO `permissions` (`id`, `user_type`, `page`) VALUES
 (4, 'admin', 'admin-page-display-grades.php'),
 (5, 'admin', 'admin-page-manage-student-regestration.php'),
 (6, 'admin', 'admin-page-request-users.php'),
-(7, 'admin', 'admin-page-student-request-rejester.php');
+(7, 'admin', 'admin-page-student-request-rejester.php'),
+(8, 'admin', 'admin-page-show-admins.php'),
+(9, 'admin', 'admin-page-add-admin.php'),
+(10, 'admin', 'admin-page-edit-admin.php');
 
 -- --------------------------------------------------------
 
@@ -407,7 +419,7 @@ ALTER TABLE `majors`
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `students`
 --
@@ -417,7 +429,7 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- Constraints for dumped tables
 --

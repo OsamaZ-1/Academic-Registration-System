@@ -38,17 +38,12 @@
                 <a href="admin-page-student-request-rejester.php?status=2" class="dropdown-item accepted_register">Accepted</a>
             </div>
         </li>
+        <li class="mb-4"><a href="admin-page-show-admins.php" class="text-decoration-none
+                            px-3 py-2 d-block admins"> <i class="fa-solid fa-user fa-lg"></i></i>
+                <span class="mx-2">Admins</span></a></li>
         <!--End Students DropDown-->
         <!--Start Users DropDown-->
-        <li class="nav-item dropdown mb-4 w-100 users"><a href="show_users.php" class="nav-link dropdown-toggle text-decoration-none
-                                    px-3 py-2 d-block" data-bs-toggle="collapse" data-bs-target="#user-collapse"
-                aria-expanded="false"> <i class="fa-solid fa-user fa-lg"></i>
-                <span class="mx-2">Users</span></a>
-            <div class="collapse bg-transparent border-0" id="user-collapse">
-                <a href="show_users.php" class="dropdown-item all_users">All Users</a>
-                <a href="#" class="dropdown-item all_user_types">Users Types</a>
-            </div>
-        </li>
+       
         <!--End Users DropDown-->
     </ul>
 </div>
