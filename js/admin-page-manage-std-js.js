@@ -81,6 +81,9 @@ $(document).ready(function () {
         success: function (course) {
             var row='<tr><td>'+course.CourseId+'</td><td>'+course.CourseCode+'</td><td>'+course.CourseName+'</td><td>'+course.Credits+'</td><td>'+course.Semester+'</td><td><button class="btn btn-outline-danger delete-course-from-student-btn"><i class="fa-sharp fa-solid fa-trash"></i></button></td></tr>';
             $('#student_courses_table').append(row);
+            $(".delete-course-from-student-btn").on("click", function () {
+              $(this).closest("tr").remove();
+            });
             $('#coursesModal').modal('hide');
         },
         error: function (jqXHR, textStatus, errorThrown) {
