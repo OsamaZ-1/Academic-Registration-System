@@ -106,35 +106,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- labels end -->
-
-                    <!-- charts start -->
-                    <div class="container-fluid pt-4 px-4">
-                        <div class="row g-4">
-                            <div class="col-sm-12 col-xl-6">
-                                <div class="shadow-sm body-content
-                                        text-center rounded p-4 bg-light">
-                                    <div class="d-flex align-items-center
-                                            justify-content-between mb-4">
-                                        <h6 class="mb-0">Month Req Users</h6>
-                                        <a href="">Show All</a>
-                                    </div>
-                                    <canvas id="line_chart"></canvas>
-                                </div>
-                            </div>
-                            <div class="col-sm-12 col-xl-6">
-                                <div class="shadow-sm body-content
-                                        text-center rounded p-4 bg-light">
-                                    <div class="d-flex align-items-center
-                                            justify-content-between mb-4">
-                                        <h6 class="mb-0">Top 10 Students</h6>
-                                        <a href="">Show All</a>
-                                    </div>
-                                    <canvas id="bar_chart"></canvas>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- labels end -->  
                 </div>
             </section>
                 <!--footer start -->
