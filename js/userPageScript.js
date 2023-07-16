@@ -24,7 +24,7 @@ let countCredits = () => {
         }
     }
 
-    document.getElementById("credit-counter").value = chosenCredits;
+    document.getElementById("credit-counter").value = "Credits: " + chosenCredits;
 }
 
 //keep track of which optional courses were chosen in each group
@@ -71,7 +71,7 @@ let optionalCourseCreditCounter = (group) => {
         }
     }
 
-    document.getElementById("credit-counter").value = chosenCredits;
+    document.getElementById("credit-counter").value = "Credits: " + chosenCredits;
 }
 
 let toggleDiv = (year) => {

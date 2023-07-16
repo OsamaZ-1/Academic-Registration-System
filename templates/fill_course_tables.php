@@ -17,69 +17,73 @@
     //get the number of courses in this semester
     $semCount = $courses_dal->getYearCourseCount($student_major, $temp_course_year, $temp_course_sem);
 
-    //if student didn't pass first year deny enrolling in Masters
-    if ($temp_course_year == 1 && !$passedWithAvg)
-        $enrollInMaster = false;
-        
-    
-    if($enrollInMaster)
-    {   //if student passed first year check the second year to determine if he can enroll in masters or not
-        if($temp_course_year==2)
-        {   //get the number of courses of first year
-            $previousYearSem1 = $courses_dal -> getYearCourseCount($student_major, $temp_course_year - 1, 1);
-            $previousYearSem2 = $courses_dal -> getYearCourseCount($student_major, $temp_course_year - 1, 2);
-            $sum = $previousYearSem1 + $previousYearSem2;
+    //if student should be able to access M1 courses
+    if ($student_year > 3){
+        //if student didn't pass first year deny enrolling in Masters
+        if ($temp_course_year == 1 && !$passedWithAvg)
+            $enrollInMaster = false;
             
-            //if year2 sem2 get the number of courses of year2 sem1 courses
-            if($temp_course_sem == 2)
-            {
-                $prevSem = $courses_dal -> getYearCourseCount($student_major, $temp_course_year, 1);
-                $sum = $sum + $prevSem;
-                
-            }
-
-            //loop the grades of this semester to check if there's unpassed course
-            for ($i = $sum + 1; $i <= $sum+$semCount; ++$i){
-            $grade = $student_grades["".$i];
-            if ($grade < 40 || ($grade >= 40 && $grade < 50 && !$compensation)){
-                $enrollInMaster = false;
-                break;
-            }
-          }
-        }
         
-        //test grades of year 3
-        if($temp_course_year==3)
-        {   
-            //get the number of courses of year2
-            $previousYearSem1 = $courses_dal -> getYearCourseCount($student_major, $temp_course_year - 1, 1);
-            $previousYearSem2 = $courses_dal -> getYearCourseCount($student_major, $temp_course_year - 1, 2);
-            $sum1 = $previousYearSem1 + $previousYearSem2;
+        if($enrollInMaster)
+        {   //if student passed first year check the second year to determine if he can enroll in masters or not
+            if($temp_course_year==2)
+            {   //get the number of courses of first year
+                $previousYearSem1 = $courses_dal -> getYearCourseCount($student_major, $temp_course_year - 1, 1);
+                $previousYearSem2 = $courses_dal -> getYearCourseCount($student_major, $temp_course_year - 1, 2);
+                $sum = $previousYearSem1 + $previousYearSem2;
+                
+                //if year2 sem2 get the number of courses of year2 sem1 courses
+                if($temp_course_sem == 2)
+                {
+                    $prevSem = $courses_dal -> getYearCourseCount($student_major, $temp_course_year, 1);
+                    $sum = $sum + $prevSem;
+                    
+                }
 
-            //get the number of courses of year 1
-            $previousYearSem1 = $courses_dal -> getYearCourseCount($student_major, $temp_course_year - 2, 1);
-            $previousYearSem2 = $courses_dal -> getYearCourseCount($student_major, $temp_course_year - 2, 2);
-            $sum2 = $previousYearSem1 + $previousYearSem2;
-
-            $sum = $sum1 + $sum2;
-
-            //if year3 sem2 get the number of courses of year3 sem1 courses
-            if($temp_course_sem == 2)
-            {
-                $prevSem = $courses_dal -> getYearCourseCount($student_major, $temp_course_year, 1);
-                $sum = $sum + $prevSem;
+                //loop the grades of this semester to check if there's unpassed course
+                for ($i = $sum + 1; $i <= $sum+$semCount; ++$i){
+                    $grade = $student_grades["".$i];
+                    if ($grade < 40 || ($grade >= 40 && $grade < 50 && !$compensation)){
+                        $enrollInMaster = false;
+                        break;
+                    }
+                }
             }
+            
+            //test grades of year 3
+            if($temp_course_year==3)
+            {   
+                //get the number of courses of year2
+                $previousYearSem1 = $courses_dal -> getYearCourseCount($student_major, $temp_course_year - 1, 1);
+                $previousYearSem2 = $courses_dal -> getYearCourseCount($student_major, $temp_course_year - 1, 2);
+                $sum1 = $previousYearSem1 + $previousYearSem2;
 
-            //loop the grades of this semester to check if there's unpassed course
-            for ($i = $sum + 1; $i <= $sum+$semCount; ++$i){
-            $grade = $student_grades["".$i];
-            if ($grade < 40 || ($grade >= 40 && $grade < 50 && !$compensation)){
-                $enrollInMaster = false;
-                break;
+                //get the number of courses of year 1
+                $previousYearSem1 = $courses_dal -> getYearCourseCount($student_major, $temp_course_year - 2, 1);
+                $previousYearSem2 = $courses_dal -> getYearCourseCount($student_major, $temp_course_year - 2, 2);
+                $sum2 = $previousYearSem1 + $previousYearSem2;
+
+                $sum = $sum1 + $sum2;
+
+                //if year3 sem2 get the number of courses of year3 sem1 courses
+                if($temp_course_sem == 2)
+                {
+                    $prevSem = $courses_dal -> getYearCourseCount($student_major, $temp_course_year, 1);
+                    $sum = $sum + $prevSem;
+                }
+
+                //loop the grades of this semester to check if there's unpassed course
+                for ($i = $sum + 1; $i <= $sum+$semCount; ++$i){
+                    $grade = $student_grades["".$i];
+                    if ($grade < 40 || ($grade >= 40 && $grade < 50 && !$compensation)){
+                        $enrollInMaster = false;
+                        break;
+                    }
+                }
             }
-          }
         }
-       }
+    }
+    
      
 
     //get courses to fill in the array

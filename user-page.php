@@ -56,7 +56,7 @@
     ?>
     <form action="" method="POST">
       <div>
-        <input type='text' id='credit-counter' value='0' disabled/>
+        <input type='text' id='credit-counter' value='Credits: 0' disabled/>
       </div>
       <!--First Year Section -->
       <div>
