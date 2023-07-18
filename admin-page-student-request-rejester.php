@@ -89,6 +89,7 @@
                                     <td>Email</td>
                                     <td>Courses</td>
                                     <?php if($status==0){ ?>
+                                    <td>Student Message</td>
                                     <td>Actions</td>
                                     <?php
                                      } else { ?>
@@ -107,6 +108,7 @@
                                     <td><?php echo $v['Email'] ?></td>
                                     <td><?php echo $v['Courses'] ?></td>
                                     <?php if($status==0){ ?>
+                                    <td><?php echo $v['StudentMessage']; ?></td>
                                     <td class="">
                                         <div class="btn-group">
                                             <button class="btn btn-outline-success accept-student-registration-btn"><i

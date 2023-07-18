@@ -203,8 +203,8 @@
                 )
             VALUES(
                 $student_id,
-                '$lname',
                 '$fname',
+                '$lname',
                 '$email',
                 '$password',
                 $major,
@@ -223,6 +223,7 @@
             students.Lname,
             students.Email,
             coursesregistration.Courses,
+            coursesregistration.StudentMessage,
             coursesregistration.Status
         FROM
             students

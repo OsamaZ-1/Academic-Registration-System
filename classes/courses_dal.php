@@ -62,7 +62,7 @@
             $res = $this->getData($sql);
             return $res[0]["CourseCode"];
         }
-
+        
         public function getOptionalCourseGroup($course_id){
             $sql = "SELECT `Group` FROM `optional_groups` WHERE CourseId = $course_id";
             $res = $this->getData($sql);
