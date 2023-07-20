@@ -8,6 +8,28 @@
             $info = $this -> getData($sql);
             return $info;
         }
+
+        public function getAllStudents()
+        {
+            $sql = "SELECT * FROM Students";
+            $info = $this -> getData($sql);
+            return $info;
+        }
+
+        public function getMajorName($majorId)
+        {
+            $sql = "SELECT Major FROM Majors WHERE Id = $majorId";
+            $info = $this -> getData($sql);
+            return $info;
+        }
+
+        public function isEmailExist($student_id,$email)
+        {
+            $sql = "SELECT StudentId FROM Students WHERE Email = '$email' AND StudentId<>$student_id";
+            $info = $this -> getData($sql);
+            return $info;
+        }
+
         public function getStudentAsID($stdId){
             $conn = $this->getConnection();
             $stdId= mysqli_real_escape_string( $conn, $stdId );
@@ -158,6 +180,24 @@
             return $result;
         }
 
+        public function updateStudentAccount($student_id,$fname,$lname,$email,$password,$major,$year,$enrolment_date)
+        {   
+            
+            $sql = "UPDATE Students SET
+                    Fname = '{$fname}',
+                    Lname = '{$lname}',
+                    Email = '{$email}',
+                    `Password` = '{$password}',
+                    Major = $major,
+                    `Year` = $year,
+                    EnrollmentDate = '{$enrolment_date}'
+                    WHERE StudentId = $student_id";
+            
+            $result = $this -> update($sql);
+            
+            return $result;
+        }
+
         public function updateStudentEmailPassword($studentId, $email, $password)
         {   
             
@@ -182,13 +222,13 @@
         public function addStudent($student_id,$fname,$lname,$email,$password,$major,$year,$enrolment_date){
             $conn = $this->getConnection();
             $student_id= mysqli_real_escape_string( $conn, $student_id );
-            $fname= mysqli_real_escape_string( $conn, $fname);
-            $lname= mysqli_real_escape_string( $conn, $lname );
-            $email= mysqli_real_escape_string( $conn, $email );
-            $password= mysqli_real_escape_string( $conn, $password );
-            $major= 1;
-            $year= 1;
-            $enrolment_date='2022-2023';
+            $fname= mysqli_real_escape_string($conn, $fname);
+            $lname= mysqli_real_escape_string($conn, $lname);
+            $email= mysqli_real_escape_string($conn, $email);
+            $password= mysqli_real_escape_string($conn, $password);
+            $major= mysqli_real_escape_string($conn, $major);
+            $year= mysqli_real_escape_string($conn, $year);
+            $enrolment_date= mysqli_real_escape_string($conn, $enrolment_date);
             $sql="INSERT
             INTO
                 students(

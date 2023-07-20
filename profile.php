@@ -78,6 +78,8 @@
               $lNameInput = $_POST["lname"];
               $emailInput = $_POST["email"];
               $passwordInput = $_POST["password"];
+              
+             
 
               $_SESSION["email"] = $emailInput;
               $_SESSION["pass"] = $passwordInput;

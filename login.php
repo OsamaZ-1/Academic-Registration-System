@@ -66,10 +66,13 @@
               $user_email = $_POST["email"];
               $user_password = $_POST["password"];
 
+              
+
               $result = $login -> login($user_email,$user_password);
               
               //if the user requesting to Login is an Admin
               if($result == "Admin"){
+            
                 $user_info = $login -> getUserInfo($user_email,$user_password);
 
                  $_SESSION["email"] = $user_email;
