@@ -38,7 +38,7 @@
         $sql = "SELECT *
                 FROM Grades AS G
                 WHERE G.StudentId = $student_id
-                AND G.CourseId = $course_id,
+                AND G.CourseId = $course_id
                 AND G.EnrollmentDate = '$e_date'";
                 
           $row_exist = $this -> getData($sql);
