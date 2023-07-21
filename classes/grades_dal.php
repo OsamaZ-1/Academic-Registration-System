@@ -22,13 +22,27 @@
           return $grades;
       }
 
-      public function editStudentCourseGrade($courseId,$studentId,$courseGrade){
+      public function editStudentCourseGrade($courseId,$studentId,$courseGrade, $session1, $session2, $e_date){
         $conn = $this->getConnection();
         $courseId= mysqli_real_escape_string( $conn, $courseId );
         $studentId= mysqli_real_escape_string( $conn, $studentId );
         $courseGrade= mysqli_real_escape_string( $conn, $courseGrade );
-        $sql="UPDATE Grades SET Grades.Grade=$courseGrade WHERE Grades.StudentId=$studentId AND Grades.CourseId=$courseId";
+        $session1= mysqli_real_escape_string( $conn, $session1 );
+        $session2= mysqli_real_escape_string( $conn, $session2 );
+        $e_date= mysqli_real_escape_string( $conn, $e_date );
+        $sql="UPDATE Grades SET Grades.Grade=$courseGrade, Grades.SessionOne = $session1, Grades.SessionTwo = $session2 WHERE Grades.StudentId=$studentId AND Grades.CourseId=$courseId AND EnrollmentDate = '$e_date'";
         return $this->update($sql);
+      }
+
+      public function GradeRowExists($student_id, $course_id, $e_date){
+        $sql = "SELECT *
+                FROM Grades AS G
+                WHERE G.StudentId = $student_id
+                AND G.CourseId = $course_id,
+                AND G.EnrollmentDate = '$e_date'";
+                
+          $row_exist = $this -> getData($sql);
+          return count($row_exist) > 0;
       }
       
     }

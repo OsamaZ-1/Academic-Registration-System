@@ -90,7 +90,10 @@
                          S.StudentId,
                          S.Fname,
                          S.Lname,
-                         G.Grade
+                         G.SessionOne,
+                         G.SessionTwo,
+                         G.Grade,
+                         G.EnrollmentDate
                          FROM Grades AS G,Students AS S,Courses AS C
                          WHERE S.StudentId = G.StudentId
                          AND G.CourseId = C.CourseId

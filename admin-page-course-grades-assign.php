@@ -9,6 +9,17 @@
     <!--header end-->
 </head>
 
+<script>
+function formToggle(ID){
+    var element = document.getElementById(ID);
+    if(element.style.display === "none"){
+        element.style.display = "block";
+    }else{
+        element.style.display = "none";
+    }
+}
+</script>
+
 <body>
     <?php
       session_start();
@@ -54,6 +65,27 @@
                 <section id="students-grades-section">
                     <div class="container mt-5 bg-light rounded shadow p-5 mb-5 mx-sm-3 mx-lg-auto">
                         <div class="row d-flex justify-content-center">
+                            <div class="row p-3">
+                              <!-- Import link -->
+                              <div class="col-md-12 head">
+                                <div class="float-start mb-4">
+                                  <a href="javascript:void(0);" class="btn btn-success" onclick="formToggle('importFrm');"><i class="plus"></i>Import Grades</a>
+                                </div>
+                              </div>
+                              <!-- Excel file upload form -->
+                              <div class="col-md-12" id="importFrm" style="display: none;">
+                                <form class="row g-3" action="" enctype="multipart/form-data" id="import_course_grades_form">
+                                  <input type="hidden" name="course_code_value" value="<?php echo $_GET["courseCode"]; ?>" />
+                                  <div class="col-auto">
+                                    <label for="fileInput" class="visually-hidden">File</label>
+                                    <input type="file" class="form-control" name="file" id="fileInput" />
+                                  </div>
+                                  <div class="col-auto">
+                                    <input type="submit" class="btn btn-primary mb-3" name="importSubmit" value="Import" id="import_accounts">
+                                  </div>
+                                </form>
+                              </div>
+                            </div>
                             <div class="col-sm-12 col-md-10 col-lg-6">
                                 <h2 class="page-title">Students Grades Assignment</h2>
                                 <h2 class="text-center course_code"><?php echo $_GET['courseCode']; ?></h2>
@@ -67,7 +99,10 @@
                                         <tr>
                                             <td>Student ID</td>
                                             <td>Full Name</td>
+                                            <td>1st Session Grade</td>
+                                            <td>2nd Session Grade</td>
                                             <td>Grade</td>
+                                            <td>Enrollment Date</td>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -77,10 +112,13 @@
                                         <tr>
                                             <td class="p-2 studentId"><?php echo $cs['StudentId']; ?></td>
                                             <td class="p-2"><?php echo $cs['Fname']." ".$cs["Lname"]; ?></td>
+                                            <td class="p-2"><?php echo $cs['SessionOne']; ?></td>
+                                            <td class="p-2"><?php echo $cs['SessionTwo']; ?></td>
                                             <td class="p-2"><input type="number"
                                                     class="form-control student_course_grade" min="0" max="100"
                                                     pattern="/^[0-9][0-9]?$|^100$/" value="<?php echo $cs['Grade']; ?>" /></td>
-                                        </tr>
+                                            <td class="p-2"><?php echo $cs['EnrollmentDate']; ?></td>
+                                          </tr>
                                         <?php
                               }
                               ?>
@@ -109,7 +147,7 @@
       require("templates/admin-scripts.php");
     ?>
     <!--scripts end -->
-    <script src="js/admin-page-grades.js"></script>
+    <script src="js/admin-page-import-grades.js"></script>
 </body>
 
 </html>
