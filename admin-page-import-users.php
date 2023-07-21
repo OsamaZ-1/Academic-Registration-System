@@ -24,64 +24,10 @@ function formToggle(ID){
    require("classes/user_dal.php");
    require("classes/student_dal.php");
    require("templates/login_validate.php");
-   require("templates/permissions.php");
-
-   // Include PhpSpreadsheet library autoloader 
-   require_once 'vendor/autoload.php'; 
-   use PhpOffice\PhpSpreadsheet\Reader\Xlsx; 
+   require("templates/permissions.php");  
    
    $user_dal=new User_DAL();
    $student_dal=new Student_DAL();
-
-   if(isset($_POST['importSubmit'])){ 
-     
-    // Allowed mime types 
-    $excelMimes = array('text/xls', 'text/xlsx', 'application/excel', 'application/vnd.msexcel', 'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'); 
-     
-    // Validate whether selected file is a Excel file 
-    if(!empty($_FILES['file']['name']) && in_array($_FILES['file']['type'], $excelMimes)){ 
-         
-        // If the file is uploaded 
-        if(is_uploaded_file($_FILES['file']['tmp_name'])){ 
-            $reader = new Xlsx(); 
-            $spreadsheet = $reader->load($_FILES['file']['tmp_name']); 
-            $worksheet = $spreadsheet->getActiveSheet();  
-            $worksheet_arr = $worksheet->toArray(); 
- 
-            // Remove header row 
-            unset($worksheet_arr[0]); 
- 
-            foreach($worksheet_arr as $row){ 
-                $student_id = $row[0];
-                $first_name = $row[1]; 
-                $last_name = $row[2]; 
-                $student_email = $row[3]; 
-                $student_password = $row[4]; 
-                $student_major = $row[5]; 
-                $student_year = $row[6]; 
-                $student_enrollment_date = $row[7]; 
- 
-                // Check whether member already exists in the database with the same id 
-                $id_exist = $student_dal -> getStudentAsID($student_id);
-                // Check whether member already exists in the database with the same email 
-                $email_exist = $student_dal -> isEmailExist($student_id,$student_email);
-                if($id_exist && !$email_exist){ 
-                    // Update member data in the database 
-                    $student_dal -> updateStudentAccount($student_id, $first_name, $last_name, $student_email, $student_password, $student_major, $student_year, $student_enrollment_date);
-                   
-                }else if(!$id_exist && !$email_exist){ 
-                    // Insert member data in the database 
-                    $student_dal -> addStudent($student_id, $first_name, $last_name, $student_email, $student_password, $student_major, $student_year, $student_enrollment_date);
-                    
-                } 
-            } 
-          }else{ 
-            echo "Error Importing File"; 
-          } 
-        }else{ 
-        echo "File Not Supported"; 
-       } 
-     } 
 
      //get all enrolled students
      $students_info=$student_dal -> getAllStudents();
@@ -113,18 +59,18 @@ function formToggle(ID){
                   <!-- Import link -->
                    <div class="col-md-12 head">
                     <div class="float-start mb-4">
-                      <a href="javascript:void(0);" class="btn btn-success" onclick="formToggle('importFrm');"><i class="plus"></i> Import Excel</a>
+                      <a href="javascript:void(0);" class="btn btn-success" onclick="formToggle('importFrm');"><i class="plus"></i>Import Accounts</a>
                     </div>
                    </div>
                   <!-- Excel file upload form -->
                   <div class="col-md-12" id="importFrm" style="display: none;">
-                    <form class="row g-3" action="" method="post" enctype="multipart/form-data">
+                    <form class="row g-3" action="" enctype="multipart/form-data" id="import_accounts_form">
                       <div class="col-auto">
                         <label for="fileInput" class="visually-hidden">File</label>
                         <input type="file" class="form-control" name="file" id="fileInput" />
                       </div>
                       <div class="col-auto">
-                        <input type="submit" class="btn btn-primary mb-3" name="importSubmit" value="Import">
+                        <input type="submit" class="btn btn-primary mb-3" name="importSubmit" value="Import" id="import_accounts">
                       </div>
                     </form>
                   </div>
@@ -181,7 +127,7 @@ function formToggle(ID){
                 <!--footer start -->
                 <?php
                   require("templates/admin-footer.php");
-                   ?>
+                ?>
                 <!-- footer end -->
                 <!-- Blank End -->
             </div>
@@ -191,7 +137,7 @@ function formToggle(ID){
 <?php
   require("templates/admin-scripts.php");
 ?>
+<script src="js/admin-page-import-accounts.js"></script>
 <!--scripts end-->
-<script src="js/admin-page-js.js"></script>
 </body>
 </html>
