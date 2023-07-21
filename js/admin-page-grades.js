@@ -4,7 +4,7 @@ $(document).ready(function(){
   $("#courses_table").dataTable();
   $("#courses_grades_table").dataTable();
 
-  $('.btn-assign-grades').on('click',function(){
+  $('#courses_table').on('click', '.btn-assign-grades', function () {
      var courseCode=$(this).parent().parent().find("td:eq(0)").text();
      window.location.href='admin-page-course-grades-assign.php?courseCode='+courseCode;
   });

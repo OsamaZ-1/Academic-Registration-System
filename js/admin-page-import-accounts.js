@@ -26,4 +26,10 @@ $(document).ready(function(){
         
       return false;
   });
+
+  
+  $('#users_accounts_request_table').on('click', '.manage-student-account-btn', function () {
+    var id = parseInt($(this).parent().parent().parent().find("td:eq(0)").text());
+    window.location.href="admin-page-manage-student-account.php?stdId="+id;
+ });
 });

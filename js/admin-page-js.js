@@ -1,9 +1,10 @@
 $(document).ready(function(){
     $("#users_accounts_request_table").dataTable();
     $("#student_register_courses_request_table").dataTable();
+    
     $("#delete_all_student_request_btn").on("click",function(){
       $.ajax({
-        url: "http://localhost/Academic-Registration/Actions/delete_all_students_register_courses.php",
+        url: "Actions/delete_all_students_register_courses.php",
         type: "POST",
         data: {
           delete:1
@@ -23,10 +24,10 @@ $(document).ready(function(){
         },
       });
     });
-    $(".accept-student-account-btn").on("click",function(){
+    $('#users_accounts_request_table').on('click', '.accept-student-account-btn', function () {
         var id = parseInt($(this).parent().parent().parent().find("td:eq(0)").text());
         $.ajax({
-            url: "http://localhost/Academic-Registration/Actions/accept_user.php",
+            url: "Actions/accept_user.php",
             type: "POST",
             data: {
               id: id,
@@ -46,11 +47,10 @@ $(document).ready(function(){
             },
           });
     });
-
-    $(".reject-student-account-btn").on("click",function(){
+    $('#users_accounts_request_table').on('click', '.reject-student-account-btn', function () {
         var id = parseInt($(this).parent().parent().parent().find("td:eq(0)").text());
         $.ajax({
-            url: "http://localhost/Academic-Registration/Actions/reject_user.php",
+            url: "Actions/reject_user.php",
             type: "POST",
             data: {
               id: id,
@@ -71,7 +71,7 @@ $(document).ready(function(){
           });
     });
 
-    $(".accept-student-registration-btn").on("click",function(){
+    $('#student_register_courses_request_table').on('click', '.accept-student-registration-btn', function () {
       var stdId = parseInt($(this).parent().parent().parent().find("td:eq(0)").text());
       var courses_string=$(this).parent().parent().parent().find("td:eq(3)").text()
       var courses=courses_string.split('-');
@@ -98,10 +98,10 @@ $(document).ready(function(){
           });
     });
 
-    $(".reject-student-registration-btn").on("click",function(){
+    $('#student_register_courses_request_table').on('click', '.reject-student-registration-btn', function () {
       var stdId = parseInt($(this).parent().parent().parent().find("td:eq(0)").text());
         $.ajax({
-            url: "http://localhost/Academic-Registration/Actions/reject_student_registration_courses.php",
+            url: "Actions/reject_student_registration_courses.php",
             type: "POST",
             data: {
               stdId:stdId,
@@ -122,7 +122,7 @@ $(document).ready(function(){
           });
     });
 
-    $(".manage-student-registration-btn").on('click',function(){
+    $('#student_register_courses_request_table').on('click', '.manage-student-registration-btn', function () {
       var stdId = parseInt($(this).parent().parent().parent().find("td:eq(0)").text());
       window.location.href='admin-page-manage-student-regestration.php?stdId='+stdId;
     });

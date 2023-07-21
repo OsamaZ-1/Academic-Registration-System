@@ -6,11 +6,14 @@ if($_POST){
         require("../classes/student_dal.php");
         require("../classes/courses_dal.php");
         $id=(int)$_POST['id'];
+        $currentYear = date('Y');
+        $enrollment_date=(string)((int)$currentYear-1).'-'.$currentYear;
+
         $user_dal=new User_DAL();
         $student_dal=new Student_DAL();
         $course_dal=new Course_DAL();
         $user=$user_dal->getRequestUser($id);
-        $add_student=$student_dal->addStudent($user['UserId'],$user['Fname'],$user['Lname'],$user['Email'],$user['Password'],1,1,'2022-2023');
+        $add_student=$student_dal->addStudent($user['UserId'],$user['Fname'],$user['Lname'],$user['Email'],$user['Password'],1,1,$enrollment_date);
         $first_semester_courses=$course_dal->getCourses(1,1, 1);
         $second_semester_courses=$course_dal->getCourses(1,2,1);
         for($i=0;$i<count($first_semester_courses);$i++){

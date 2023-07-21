@@ -8,12 +8,13 @@ if($_POST){
         $courses=$_POST['courses'];
         $student_dal=new Student_DAL();
         $courses_dal=new Course_DAL();
-        
+        $currentYear = date('Y');
+        $enrollment_date=$currentYear.'-'.(string)((int)$currentYear+1);
         $editStatusRegester=$student_dal->editStatusRegester($stdId,2);
         if($editStatusRegester==1){
             for($i=0;$i<count($courses);$i++){
                 $course=$courses_dal->getCourseAsCode($courses[$i]);
-                $result=$student_dal->addRegesterStudentCourse($stdId,$course['CourseId'],$course['Major'],'2022-2023');
+                $result=$student_dal->addRegesterStudentCourse($stdId,$course['CourseId'],$course['Major'],$enrollment_date);
             }
             $v=array(
                 'result'=>true,

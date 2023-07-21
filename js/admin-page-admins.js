@@ -29,7 +29,7 @@ $(document).ready(function(){
           
         return false;
     });
-    $(".edit_user_btn").on("click",function(){
+    $('#admins_table').on('click', '.edit_user_btn', function () {
         var id=parseInt($(this).parent().parent().find("td:eq(0)").text());
         window.location.href='edit_user.php?id='+id;
     });
@@ -61,7 +61,7 @@ $(document).ready(function(){
           
         return false;
     });
-    $(".delete_admin_btn").on("click",function(){
+    $('#admins_table').on('click', '.delete_admin_btn', function () {
         var id=parseInt($(this).parent().parent().find("td:eq(0)").text());
         var title=$(this).parent().parent().find("td:eq(1)").text();
         swal({

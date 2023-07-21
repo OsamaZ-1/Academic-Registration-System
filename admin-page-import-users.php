@@ -110,7 +110,7 @@ function formToggle(ID){
                                   <td class="p-2">
                                         <div class="btn-group">
                                             <button
-                                                class="btn btn-outline-success accept-student-account-btn p-2 mx-2"><i
+                                                class="btn btn-outline-success manage-student-account-btn p-2 mx-2"><i
                                                     class="fa-solid fa-check fa-lg mx-2 rounded"></i>Manage</button>
                                         </div>
                                     </td>

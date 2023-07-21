@@ -9,7 +9,7 @@ $(document).ready(function () {
         .text()
     );
     $.ajax({
-      url: "http://localhost/Academic-Registration/Actions/reject_student_registration_courses.php",
+      url: "Actions/reject_student_registration_courses.php",
       type: "POST",
       data: {
         stdId: stdId,
@@ -33,7 +33,7 @@ $(document).ready(function () {
       },
     });
   });
-  $(".delete-course-from-student-btn").on("click", function () {
+  $('#student_courses_table').on('click', '.delete-course-from-student-btn', function () {
     $(this).closest("tr").remove();
   });
   $("#add_course_to_student_btn").on("click", function () {
@@ -47,7 +47,7 @@ $(document).ready(function () {
     });
     $('#select_courses').empty();
     $.ajax({
-        url: "http://localhost/Academic-Registration/Actions/get_courses_not_registed.php",
+        url: "Actions/get_courses_not_registed.php",
         type: "POST",
         data: {
             coursesCodeArray: coursesCodeArray,
@@ -72,7 +72,7 @@ $(document).ready(function () {
   $("#add_course_to_student_modal_btn").on("click", function () {
     var courseCode=$('#select_courses').val();
     $.ajax({
-        url: "http://localhost/Academic-Registration/Actions/get_course_as_code.php",
+        url: "Actions/get_course_as_code.php",
         type: "POST",
         data: {
             courseCode: courseCode,
@@ -81,7 +81,7 @@ $(document).ready(function () {
         success: function (course) {
             var row='<tr><td>'+course.CourseId+'</td><td>'+course.CourseCode+'</td><td>'+course.CourseName+'</td><td>'+course.Credits+'</td><td>'+course.Semester+'</td><td><button class="btn btn-outline-danger delete-course-from-student-btn"><i class="fa-sharp fa-solid fa-trash"></i></button></td></tr>';
             $('#student_courses_table').append(row);
-            $(".delete-course-from-student-btn").on("click", function () {
+            $('#student_courses_table').on('click', '.delete-course-from-student-btn', function () {
               $(this).closest("tr").remove();
             });
             $('#coursesModal').modal('hide');
@@ -109,7 +109,7 @@ $(document).ready(function () {
       coursesCodeArray.push(value);
     });
     $.ajax({
-        url: "http://localhost/Academic-Registration/Actions/accept_student_registration_submited.php",
+        url: "Actions/accept_student_registration_submited.php",
         type: "POST",
         data: {
             stdId:stdId,

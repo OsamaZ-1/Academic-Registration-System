@@ -15,7 +15,10 @@
             $info = $this -> getData($sql);
             return $info;
         }
-
+        public function getAllMajors(){
+            $sql="SELECT * FROM Majors";
+            return $this->getData($sql); 
+        }
         public function getMajorName($majorId)
         {
             $sql = "SELECT Major FROM Majors WHERE Id = $majorId";
@@ -40,7 +43,8 @@
             students.Email,
             students.Password,
             students.Major,
-            students.Year
+            students.Year,
+            students.EnrollmentDate
         FROM
             students
         WHERE
@@ -302,7 +306,6 @@
             $courseId=mysqli_real_escape_string( $conn, $courseId );
             $major=mysqli_real_escape_string( $conn, $major );
             $enrolment_date=mysqli_real_escape_string( $conn, $enrolment_date );
-            $enrolment_date='2022-2023';
             $sql="INSERT INTO grades (grades.StudentId,grades.CourseId,grades.Major,grades.EnrollmentDate) VALUES ($stdId,$courseId,$major,'$enrolment_date')";
             return $this->update($sql);
         }
