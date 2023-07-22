@@ -58,7 +58,7 @@
                                         justify-content-between p-4 bg-light">
                                     <i class="fa-solid fa-users fa-3x dashbord-icons"></i>
                                     <div class="ms-3">
-                                        <p class="mb-2">Total Req Users</p>
+                                        <p class="mb-2">Total Users Accounts Requests</p>
                                         <h6 class="mb-0">
                                           <?php echo $total_users_request; ?>
                                         </h6>
@@ -71,7 +71,7 @@
                                         justify-content-between p-4 bg-light">
                                     <i class="fa fa-solid fa-user-graduate fa-3x dashbord-icons"></i>
                                     <div class="ms-3">
-                                        <p class="mb-2">Total Students</p>
+                                        <p class="mb-2">Total Students Enrolled</p>
                                         <h6 class="mb-0">
                                           <?php echo $total_students; ?>
                                         </h6>
@@ -84,7 +84,7 @@
                                         justify-content-between p-4 bg-light">
                                     <i class="fa-solid fa-book fa-3x dashbord-icons"></i>
                                     <div class="ms-3">
-                                        <p class="mb-2">Total Courses</p>
+                                        <p class="mb-2">Total Attended Courses </p>
                                         <h6 class="mb-0">
                                          <?php echo $total_courses; ?>
                                         </h6>
@@ -97,7 +97,7 @@
                                         justify-content-between p-4 bg-light">
                                     <i class="fa fa-solid fa-user-graduate fa-2x dashbord-icons"></i>
                                     <div class="ms-3">
-                                        <p class="mb-2">Total Reg Crs Reqs</p>
+                                        <p class="mb-2">Total Courses Registration Requests</p>
                                         <h6 class="mb-0">
                                             <?php echo $total_students_request_register_courses; ?>
                                         </h6>

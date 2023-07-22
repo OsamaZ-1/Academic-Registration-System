@@ -37,7 +37,7 @@
         return $this->update($sql);
     }
     public function getTotalRequestUsers(){
-        $sql="SELECT COUNT(users.Id) AS 'total_request_users' FROM users";
+        $sql="SELECT COUNT(users.Id) AS 'total_request_users' FROM users WHERE Admin <> 1";
         $res= $this->getDataAssoc($sql);
         return $res['total_request_users'];
     }
