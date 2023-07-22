@@ -35,6 +35,7 @@
       }
 
       public function GradeRowExists($student_id, $course_id, $e_date){
+        
         $sql = "SELECT *
                 FROM Grades AS G
                 WHERE G.StudentId = $student_id
@@ -42,7 +43,7 @@
                 AND G.EnrollmentDate = '$e_date'";
                 
           $row_exist = $this -> getData($sql);
-          return count($row_exist) > 0;
+          return count($row_exist)>0;
       }
       
     }

@@ -33,6 +33,20 @@
             return $info;
         }
 
+        public function idExist($student_id)
+        {
+            $sql = "SELECT StudentId FROM Students WHERE StudentId = $student_id";
+            $info = $this -> getData($sql);
+            return $info;
+        }
+
+        public function emailExist($email)
+        {
+            $sql = "SELECT StudentId FROM Students WHERE Email = '$email'";
+            $info = $this -> getData($sql);
+            return $info;
+        }
+
         public function getStudentAsID($stdId){
             $conn = $this->getConnection();
             $stdId= mysqli_real_escape_string( $conn, $stdId );
@@ -212,6 +226,18 @@
                     Email = '{$email}',
                     Password = '{$password}'
                     WHERE StudentId = $studentId";
+            
+            $result = $this -> update($sql);
+            
+            return $result;
+        }
+
+        public function updateAccountPassword($email, $password)
+        {   
+            
+            $sql = "UPDATE Students SET
+                    Password = '{$password}'
+                    WHERE Email = '{$email}'";
             
             $result = $this -> update($sql);
             

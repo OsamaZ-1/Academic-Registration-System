@@ -76,5 +76,33 @@
         $sql="DELETE FROM users WHERE users.Id=$id";
         return $this->update($sql);
     }
+    public function addUser($id,$fname,$lname,$email,$password){
+        $conn = $this->getConnection();
+        $id= mysqli_real_escape_string( $conn, $id );
+        $fname= mysqli_real_escape_string( $conn, $fname );
+        $lname= mysqli_real_escape_string( $conn, $lname );
+        $email= mysqli_real_escape_string( $conn, $email );
+        $password= mysqli_real_escape_string( $conn, $password );
+        
+        $sql="INSERT
+        INTO
+            users(
+                users.UserId,
+                users.Fname,
+                users.Lname,
+                users.Email,
+                users.Password,
+                users.Admin
+            )
+        VALUES(
+            '$id',
+            '$fname',
+            '$lname',
+            '$email',
+            '$password',
+            0
+        )";
+        return $this->update($sql);
+    }
  }
 ?>

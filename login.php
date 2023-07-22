@@ -15,25 +15,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login Page</title>
-  <link rel="stylesheet" href="css/reset.css">
-  <link rel="stylesheet" href="css/navbar.css">
-  <link rel="stylesheet" href="css/footer.css"> 
+  <?php require("header.php"); ?>
   <link rel="stylesheet" href="css/login-signup-page.css">
-  <link rel="stylesheet" href="FontAwesome/css/all.css">
+  <title>Login Page</title>
 </head>
 <body>
-  <?php require("header.php"); ?>
+  <?php require("navbar.php"); ?>
   <main>
     <div class="outer-container">
       <div class="login-container">
         <form action="" method="POST">
           <h1>Login</h1>
           <?php if(isset($_POST["login"])) echo "<p id='message' style='text-align:center; color:#f00; margin-top:-1.5em;'>Wrong Email or Password!</p>";
-                else if(isset($_GET["Registered"]) && $_GET["Registered"]==1) echo "<p id='message' style='text-align:center; color:#0ef; margin-top:-1.5em;'>Registered, Wait for Acceptance</p>"; 
                 else if(isset($_GET["PasswordChanged"]) && $_GET["PasswordChanged"]==1) echo "<p id='message' style='text-align:center; color:#0ef; margin-top:-1.5em;'>Password Changed Successfully</p>";
           ?>
           <div class="input-box">

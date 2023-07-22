@@ -1,18 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Forgot Password</title>
-  <link rel="stylesheet" href="css/reset.css">
-  <link rel="stylesheet" href="css/navbar.css">
-  <link rel="stylesheet" href="css/footer.css">
+  <?php require("header.php"); ?>
   <link rel="stylesheet" href="css/forgot-password.css">
-  <link rel="stylesheet" href="FontAwesome/css/all.css">
+  <title>Forgot Password</title>
 </head>
 <body>
-  <?php require("header.php"); ?>
+  <?php require("navbar.php"); ?>
   <main>
     <div class="container">
       <div class="check-icon"><i class="fa fa-circle-check fa-2xl" style="color: #53d5fd;"></i></div>
@@ -26,27 +20,26 @@
         <input type="submit" name="verify-email" value="Verify Email">
       </form>
       <?php 
-            require("DB-Connection.php");
-            $conn = db_connect();
+      
+            if(isset($_POST["verify-email"]))
+            {   
+              require("classes/dal.php");
+              require("classes/student_dal.php");
+              $student_dal = new Student_DAL();
 
-            if(isset($_POST["verify-email"]) && $conn)
-            { 
               $user_email = $_POST["email"];
-              $conn = db_connect();
               
-              $sql = "SELECT Id FROM Users WHERE Email = '{$user_email}'";
-              $result = $conn -> query($sql);
+              $result = $student_dal -> emailExist($user_email);
 
-              if($result -> num_rows > 0)
+              if($result)
               { 
                   session_start();
                   $_SESSION["user_email"] = $user_email;
-                  $conn -> close();
                   header("Location: otp-verification.php");
               }
             }
             
-            $conn -> close();     
+              
        ?>
     </div>
   </main>
