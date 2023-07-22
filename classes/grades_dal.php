@@ -22,6 +22,12 @@
           return $grades;
       }
 
+      public function getGradesForStudent($student_id, $e_date){
+        $sql = "SELECT Grade FROM Grades WHERE StudentId = $student_id AND EnrollmentDate = '$e_date'";
+        $grades = $this -> getData($sql);
+        return $grades;
+      }
+
       public function editStudentCourseGrade($courseId,$studentId,$courseGrade, $session1, $session2, $e_date){
         $conn = $this->getConnection();
         $courseId= mysqli_real_escape_string( $conn, $courseId );

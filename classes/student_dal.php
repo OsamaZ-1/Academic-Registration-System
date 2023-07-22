@@ -221,6 +221,14 @@
             return $result;
         }
 
+        public function incrementYear($student_id){   
+            $oldyear = $this->getStudentYear($student_id);
+            $newYear = $oldyear + 1;
+            $sql = "UPDATE Students SET `Year` = $newYear WHERE StudentId = $student_id";
+            $result = $this -> update($sql);
+            return $result;
+        }
+
         public function updateStudentEmailPassword($studentId, $email, $password)
         {   
             
