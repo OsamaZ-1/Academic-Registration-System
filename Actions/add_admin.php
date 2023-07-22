@@ -8,8 +8,9 @@
         $lname=$_POST['lname'];
         $email=$_POST['email'];
         $password=$_POST['password'];
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         $user_dal=new User_DAL();
-        $add_admin=$user_dal->addAdmin($fname,$lname,$email,$password);
+        $add_admin=$user_dal->addAdmin($fname,$lname,$email,$hashedPassword);
         if($add_admin==1){
             $v=array(
                 'result'=>true,

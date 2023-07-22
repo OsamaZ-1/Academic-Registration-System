@@ -4,7 +4,7 @@
         session_unset();
         session_destroy();
       } 
-     
+      
       require("classes/dal.php");
       require("classes/login-signup_dal.php");
       require("classes/student_dal.php");
@@ -74,10 +74,10 @@
                  $_SESSION['user_type']='admin';
                 header("Location: admin-page.php");
               }
-              else if($result == "Student")
+              else 
               {  
-                 $info = $student_info -> getStudentInfo($user_email,$user_password);
-
+                 $info = $student_info -> getStudentInfo($result);
+                 
                  $_SESSION["email"] = $user_email;
                  $_SESSION["pass"] = $user_password;
                  $_SESSION["Id"] = $info[0]["StudentId"];

@@ -12,7 +12,7 @@
   $student_password = $_SESSION["pass"];
   $student_id = $_SESSION["Id"];
   
-  $student_info = $student_dal -> getStudentInfo($student_email, $student_password);
+  $student_info = $student_dal -> getStudentInfo($student_id);
   $student_name = $student_info[0]["Fname"];
   $student_year = $student_info[0]["Year"];
   $student_major = $student_info[0]["Major"];
@@ -50,7 +50,9 @@
   <h1 class="page-title">Courses Registration</h1>
   <div class="container">
     <?php if($studentRegisteredInCourses && $studentRegisteredInCourses[0]['Status']==2) //Student Registered Courses and was accepted by admin
-            echo '<h2 style="color: #16FF00; text-align: center;"><span style="color: black; text-decoration: underline; margin-right: .5em;" >Administration Message: </span>Congrats You Have Successfully Registered For This Year</h2>';
+            {echo '<h2 style="color: black; text-align: center;"><span style="color: #16FF00; text-decoration: underline; margin-right: .5em;" >Administration Message: </span>Congrats You Have Successfully Registered In Courses:<br/> '; 
+            echo $studentRegisteredInCourses[0]["Courses"];
+            echo '</h2>';}
           else if($studentRegisteredInCourses && $studentRegisteredInCourses[0]['Status']==1 && $studentRegisteredInCourses[0]['AdminMessage']) //Student Registered Courses but the request was rejected by admin
             echo '<h2 style="color: #D21312; text-align: center;"><span style="color: black; text-decoration: underline; margin-right: .5em;">Administration Message:</span>'.$studentRegisteredInCourses[0]['AdminMessage'].'</h2>';
     ?>

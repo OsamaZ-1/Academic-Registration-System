@@ -10,7 +10,7 @@
   $student_password = $_SESSION["pass"];
   $student_id = $_SESSION["Id"];
   
-  $student_info = $student_dal -> getStudentInfo($student_email, $student_password);
+  $student_info = $student_dal -> getStudentInfo($student_id);
   $student_name = $student_info[0]["Fname"];
   $student_image = $student_dal -> getStudentImage($student_id);
   $year = $student_dal -> getStudentYear($student_id);
@@ -72,7 +72,7 @@
                     </table>
                     <div class="average">
                     <?php $average = $student_dal -> getAverage($student_id, $year_grades, 1); 
-                          echo "Average: $average"; 
+                          echo "Average: ".round($average,2); 
                           if($average>=55) echo "<br/><span style='color: green;'>Courses with Grades marked as Compensation are Passed</span>";
                           else echo "<br/><span style='color:red;'>Courses with Grades marked as Compensation are Failed</span>"; ?>
                     </div>
@@ -86,7 +86,7 @@
                     </table>
                     <div class="average">
                     <?php $average = $student_dal -> getAverage($student_id, $year_grades, 2); 
-                          echo "Average: $average";
+                          echo "Average: ".round($average,2);
                           if($average>=55) echo "<br/><span style='color: green;'>Courses with Grades marked as Compensation are Passed</span>";
                           else echo "<br/><span style='color: red;'>Courses with Grades marked as Compensation are Failed</span>"; ?>
                     </div>

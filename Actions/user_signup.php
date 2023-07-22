@@ -13,7 +13,8 @@ if(isset($_POST["student-id"]) && isset($_POST["fname"]) && isset($_POST["lname"
     $user_lname = ucfirst($_POST["lname"]);
     $user_email = $_POST["email"];
     $user_password = $_POST["password"];
-    
+    $hashedPassword = password_hash($user_password, PASSWORD_DEFAULT);
+
     $studentIdExist = $student_dal -> idExist($user_id);
     $studentEmailExist = $student_dal -> emailExist($user_email);
     
@@ -30,7 +31,7 @@ if(isset($_POST["student-id"]) && isset($_POST["fname"]) && isset($_POST["lname"
       
     if($result == "")
     {
-      $sql_result = $user_dal ->addUser($user_id, $user_fname, $user_lname, $user_email, $user_password);
+      $sql_result = $user_dal ->addUser($user_id, $user_fname, $user_lname, $user_email, $hashedPassword);
     }
 
     

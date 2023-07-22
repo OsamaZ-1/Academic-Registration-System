@@ -10,7 +10,7 @@
   $student_password = $_SESSION["pass"];
   $student_id = $_SESSION["Id"];
   
-  $student_info = $student_dal -> getStudentInfo($student_email, $student_password);
+  $student_info = $student_dal -> getStudentInfo($student_id);
   $student_image = $student_dal -> getStudentImage($student_id);
   $student_name = $student_info[0]["Fname"];
   $student_lname = $student_info[0]["Lname"];
@@ -79,11 +79,12 @@
               $lNameInput = $_POST["lname"];
               $emailInput = $_POST["email"];
               $passwordInput = $_POST["password"];
-              
+              $hashedPassword = password_hash($passwordInput, PASSWORD_DEFAULT);
              
 
               $_SESSION["email"] = $emailInput;
               $_SESSION["pass"] = $passwordInput;
+
               $result = null;
 
               if(!empty($_FILES["student-image"]["name"])) 
@@ -96,13 +97,13 @@
                   {  
                      $image = $_FILES['student-image']['tmp_name']; 
                      $imgContent = addslashes(file_get_contents($image)); 
-                     $result = $student_dal -> updateStudentProfile($student_id, $emailInput, $passwordInput, $imgContent);
+                     $result = $student_dal -> updateStudentProfile($student_id, $emailInput, $hashedPassword, $imgContent);
                       
                   }
                }
                else
                {
-                 $result = $student_dal -> updateStudentEmailPassword($student_id, $emailInput, $passwordInput);
+                 $result = $student_dal -> updateStudentEmailPassword($student_id, $emailInput, $hashedPassword);
                }
 
                if($result)

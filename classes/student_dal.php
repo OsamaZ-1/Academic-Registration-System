@@ -2,9 +2,9 @@
     
     class Student_DAL extends DAL {
 
-        public function getStudentInfo($email, $password)
+        public function getStudentInfo($student_id)
         {
-            $sql = "SELECT * FROM Students WHERE Email = '{$email}' AND Password = '{$password}'";
+            $sql = "SELECT * FROM Students WHERE StudentId = $student_id";
             $info = $this -> getData($sql);
             return $info;
         }
@@ -72,6 +72,8 @@
                            C.CourseName,
                            C.Credits,
                            C.Optional,
+                           G.SessionOne,
+                           G.SessionTwo,
                            G.Grade
                            FROM Courses As C, Grades AS G
                            WHERE G.CourseId = C.CourseId 

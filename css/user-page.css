@@ -321,6 +321,7 @@ input[type="submit"]
 {
   display: flex;
   justify-content: space-around;
+  gap: 1em;
 }
 
 .grades-section table th
