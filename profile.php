@@ -26,6 +26,7 @@
   <link rel="stylesheet" href="css/navbar.css">
   <link rel="stylesheet" href="css/profile.css">
   <link rel="stylesheet" href="FontAwesome/css/all.css">
+  <?php require("templates/user-scripts.php"); ?>
   <script src="js/otp.js" defer></script>
   <script src="js/profile.js" defer></script>
 </head>

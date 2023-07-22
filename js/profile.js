@@ -140,6 +140,7 @@ verifyOtpButton.addEventListener("click", (e) => {
       verified.style = "display: block";
       //set the old stored student email = new verified email 
       oldEmail.textContent = email;
+      swal("Email Verified","","success");
     }
     else //if the otp is incorrect
     { 
