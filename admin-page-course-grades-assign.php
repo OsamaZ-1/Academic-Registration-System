@@ -19,7 +19,6 @@ function formToggle(ID){
     }
 }
 </script>
-
 <body>
     <?php
       session_start();
@@ -114,7 +113,7 @@ function formToggle(ID){
                                             <td class="p-2"><?php echo $cs['Fname']." ".$cs["Lname"]; ?></td>
                                             <td class="p-2"><?php echo $cs['SessionOne']; ?></td>
                                             <td class="p-2"><?php echo $cs['SessionTwo']; ?></td>
-                                            <td class="p-2"><input type="number"
+                                            <td class="p-2"><input type="number" name="student_grade"
                                                     class="form-control student_course_grade" min="0" max="100"
                                                     pattern="/^[0-9][0-9]?$|^100$/" value="<?php echo $cs['Grade']; ?>" /></td>
                                             <td class="p-2"><?php echo $cs['EnrollmentDate']; ?></td>
@@ -149,5 +148,4 @@ function formToggle(ID){
     <!--scripts end -->
     <script src="js/admin-page-import-grades.js"></script>
 </body>
-
 </html>

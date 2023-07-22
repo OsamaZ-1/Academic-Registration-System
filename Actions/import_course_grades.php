@@ -1,4 +1,5 @@
 <?php 
+  session_start();
   
   // Include PhpSpreadsheet library autoloader 
   require_once '../vendor/autoload.php'; 
@@ -35,21 +36,23 @@
                 $finalResult = 0;
                 foreach($worksheet_arr as $row)
                 {  
-                    $student_id = $row[0];
+                    $student_id = (int)$row[0];
                     $session_one = $row[3]; 
                     $session_two = $row[4];
                     $enrollment_date = $row[5];
-                    $course_id = $course_dal->getIdFromCode($_POST["course_code_value"]);
-
+                    $course_id = (int)$course_dal->getIdFromCode($_POST["course_code_value"]);
+                    
                     $student_not_found = "";
-                    if (!$grade_dal->GradeRowExists($student_id, $course_code, $enrollment_date)){
+                    if (!$grade_dal->GradeRowExists($student_id, $course_id, $enrollment_date)){
                         $student_not_found .= "$student_id - ";
                         continue;
                     }
-
+                    
                     $course_grade = $session_one;
-                    if ($session_two != NULL)
+                    if($session_two != '')
                         $course_grade = $session_two;
+                    if ($session_two == '')
+                        $session_two = -1;
 
                     $grade_dal -> editStudentCourseGrade($course_id, $student_id, $course_grade, $session_one, $session_two, $enrollment_date);
                     ++$finalResult;
@@ -77,5 +80,5 @@
            }
         }
     
-
+        
 ?>
