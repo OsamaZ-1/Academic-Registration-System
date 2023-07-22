@@ -13,6 +13,30 @@ if($_POST){
         $student_dal=new Student_DAL();
         $course_dal=new Course_DAL();
         $user=$user_dal->getRequestUser($id);
+        
+        //check if student id or email already exist in student table
+        $idExist = $student_dal -> idExist($user['UserId']);
+        $emailExist = $student_dal -> emailExist($user['Email']);
+        
+        if($idExist)
+        {
+            $v=array(
+                'result'=>false,
+                'error'=>'account with same id exist'
+            );
+            echo json_encode($v);
+            exit;
+        }
+        if($emailExist)
+        {
+            $v=array(
+                'result'=>false,
+                'error'=>'account with same email exist'
+            );
+            echo json_encode($v);
+            exit;
+        }
+
         $add_student=$student_dal->addStudent($user['UserId'],$user['Fname'],$user['Lname'],$user['Email'],$user['Password'],1,1,$enrollment_date);
         $first_semester_courses=$course_dal->getCourses(1,1, 1);
         $second_semester_courses=$course_dal->getCourses(1,2,1);
