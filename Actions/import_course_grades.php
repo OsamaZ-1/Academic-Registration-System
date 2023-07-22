@@ -42,14 +42,18 @@
                     $course_id = $course_dal->getIdFromCode($_POST["course_code_value"]);
 
                     $student_not_found = "";
-                    if (!$grade_dal->GradeRowExists($student_id, $course_code, $enrollment_date)){
+                    if (!$grade_dal->GradeRowExists($student_id, $course_id, $enrollment_date)){
                         $student_not_found .= "$student_id - ";
                         continue;
                     }
 
                     $course_grade = $session_one;
-                    if ($session_two != NULL)
+                    if ($session_two != '')
                         $course_grade = $session_two;
+                    
+                    if ($session_two == "")
+                        $session_two = -1;
+                    
 
                     $grade_dal -> editStudentCourseGrade($course_id, $student_id, $course_grade, $session_one, $session_two, $enrollment_date);
                     ++$finalResult;
