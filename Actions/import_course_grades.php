@@ -55,6 +55,10 @@
                         $session_two = -1;
 
                     $grade_dal -> editStudentCourseGrade($course_id, $student_id, $course_grade, $session_one, $session_two, $enrollment_date);
+                    
+                    //make the student go up a year if all grades have been given
+                    require("increment_student_year.php");
+                    
                     ++$finalResult;
                 } 
                 if($finalResult>0)
