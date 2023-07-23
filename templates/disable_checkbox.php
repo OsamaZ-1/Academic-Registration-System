@@ -12,9 +12,18 @@
 
     else if ($student_year == 4 && $temp_course_year == 4){
         //disable M1 courses when necessary
-        echo 'hello';
         if (!$enrollInMaster)
             echo "disabled";
+        else{
+            //check if there is a mark for the student in the db
+            if (array_key_exists($course_id, $student_grades)){
+
+                //disable courses with passed marks
+                $course_grade = $student_grades[$course_id];
+                if ($course_grade > 49.99  || ($compensation && $course_grade > 39.99))
+                    echo "disabled";
+            }
+        }
     }
 
     else if ($student_year >= $temp_course_year && $student_year < 4){
