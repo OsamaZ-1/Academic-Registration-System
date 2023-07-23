@@ -1,5 +1,5 @@
 #Project Title
-##Academic Registration
+Academic Registration
 
 #Description
 This project is developed to automate the process of student registration in courses at the Lebanese University Faculty of Science. Until now, it only supports the Department of Computer Science; However, it could be improved later to support all Departments in the Faculty of Science. Students will also be able to view their grades when they are published. Admins are responsible for **importing students account** or **accept-reject students signup requests**, also admins can **accept-reject student registration requests in courses** ,**import students grades for their registered courses** or **assign grades for each student separately** as well as **add admins to sites** .
