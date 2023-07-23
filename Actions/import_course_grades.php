@@ -52,7 +52,7 @@
                     if($session_two != '')
                         $course_grade = $session_two;
                     if ($session_two == '')
-                        $session_two = -1;
+                        $session_two = NULL;
 
                     $grade_dal -> editStudentCourseGrade($course_id, $student_id, $course_grade, $session_one, $session_two, $enrollment_date);
                     
