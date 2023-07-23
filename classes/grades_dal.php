@@ -36,7 +36,13 @@
         $session1= mysqli_real_escape_string( $conn, $session1 );
         $session2= mysqli_real_escape_string( $conn, $session2 );
         $e_date= mysqli_real_escape_string( $conn, $e_date );
-        $sql="UPDATE Grades SET Grades.Grade=$courseGrade, Grades.SessionOne = $session1, Grades.SessionTwo = $session2 WHERE Grades.StudentId=$studentId AND Grades.CourseId=$courseId AND EnrollmentDate = '$e_date'";
+
+        if ($session2 == ''){
+          $sql="UPDATE Grades SET Grades.Grade=$courseGrade, Grades.SessionOne = $session1, Grades.SessionTwo = NULL WHERE Grades.StudentId=$studentId AND Grades.CourseId=$courseId AND EnrollmentDate = '$e_date'";
+        }
+        else{
+          $sql="UPDATE Grades SET Grades.Grade=$courseGrade, Grades.SessionOne = $session1, Grades.SessionTwo = $session2 WHERE Grades.StudentId=$studentId AND Grades.CourseId=$courseId AND EnrollmentDate = '$e_date'";
+        }
         return $this->update($sql);
       }
 

@@ -221,8 +221,14 @@
             return $result;
         }
 
+        public function getCurrentStudentYear($student_id){
+            $sql = "SELECT `Year` FROM Students WHERE StudentId = $student_id";
+            $result = $this -> getData($sql);
+            return $result[0]["Year"];
+        }
+
         public function incrementYear($student_id){   
-            $oldyear = $this->getStudentYear($student_id);
+            $oldyear = $this->getCurrentStudentYear($student_id);
             $newYear = $oldyear + 1;
             $sql = "UPDATE Students SET `Year` = $newYear WHERE StudentId = $student_id";
             $result = $this -> update($sql);

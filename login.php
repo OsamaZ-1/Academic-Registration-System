@@ -68,21 +68,21 @@
             
                 $user_info = $login -> getUserInfo($user_email,$user_password);
 
-                 $_SESSION["email"] = $user_email;
-                 $_SESSION["pass"] = $user_password;
-                 $_SESSION["Id"] = $user_info['Id'];
-                 $_SESSION['user_type']='admin';
+                $_SESSION["email"] = $user_email;
+                $_SESSION["pass"] = $user_password;
+                $_SESSION["Id"] = $user_info['Id'];
+                $_SESSION['user_type']='admin';
                 header("Location: admin-page.php");
               }
-              else 
+              else if ($result)
               {  
-                 $info = $student_info -> getStudentInfo($result);
-                 
-                 $_SESSION["email"] = $user_email;
-                 $_SESSION["pass"] = $user_password;
-                 $_SESSION["Id"] = $info[0]["StudentId"];
-                 $_SESSION['user_type']='student';
-                 header("Location: user-page.php");
+                $info = $student_info -> getStudentInfo($result);
+                
+                $_SESSION["email"] = $user_email;
+                $_SESSION["pass"] = $user_password;
+                $_SESSION["Id"] = $info[0]["StudentId"];
+                $_SESSION['user_type']='student';
+                header("Location: user-page.php");
               }
             }      
           ?>

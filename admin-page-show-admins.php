@@ -60,7 +60,6 @@
                                     <td>ID</td>
                                     <td>Full Name</td>
                                     <td>Email</td>
-                                    <td>Password</td>
                                     <td>Actions</td>
                                 </tr>
                             </thead>
@@ -72,10 +71,7 @@
                                   <td class="p-2"><?php echo $v['Id']; ?></td>
                                   <td class="p-2"><?php echo $v['Fname'].' '.$v['Lname']; ?></td>
                                   <td class="p-2"><?php echo $v['Email']; ?></td>
-                                  <td class="p-2"><?php echo $v['Password']; ?></td>
                                   <td class="d-flex">
-                                        <button class="btn btn-outline-warning edit_admin_btn mx-1"><i
-                                                class="fas fa-edit"></i></i></button>
                                         <button class="btn btn-outline-danger delete_admin_btn mx-1"><i
                                                 class="fas fa-trash-alt"></i></button>
                                     </td>

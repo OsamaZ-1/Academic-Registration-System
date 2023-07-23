@@ -12,10 +12,6 @@ const verifyOtpButton = document.querySelector("#verify-button");
 const submitButton = document.querySelector("#submit-button");
 //otp input fields
 const otpInputs = document.querySelectorAll(".otp-input");
-//div containing verified checkmark
-const verified = document.querySelector("#verified-icon");
-//div containing denied xmark
-const notVerified = document.querySelector("#not-verified-icon")
 //otp code to be generated
 let otpCode = null;
 //new email in case student change his email
@@ -58,10 +54,6 @@ otpInputs.forEach((input) => {
 emailInput.addEventListener("input", (e) => {
   //new enetred email
   email = emailInput.value;
-
-  //divs that include (verified icon) & (denied icon)
-  verified.style = "display: none";
-  notVerified.style = "display: none";
 
   if(email !== oldEmail.textContent)
   { 
@@ -135,17 +127,13 @@ verifyOtpButton.addEventListener("click", (e) => {
       verifyEmailButton.style = "display: none";
       otpField.style = "display: none";
       verifyOtpButton.style = "display: none";
-      notVerified.style = "dispaly: none";
-      //display the verified checkmark icon
-      verified.style = "display: block";
       //set the old stored student email = new verified email 
       oldEmail.textContent = email;
       swal("Email Verified","","success");
     }
     else //if the otp is incorrect
     { 
-      //display the denied xmark to represent failed verification
-      notVerified.style = "display: block";
+      swal("Wrong OTP","","error");
     }
 });
 

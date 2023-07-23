@@ -63,8 +63,6 @@
             <input type="number" name="otp[]" class="otp-input" disabled />
             <input type="number" name="otp[]" class="otp-input" disabled />
         </div>
-        <div id="verified-icon"><i class="fa-solid fa-circle-check fa-2xl" style="color: #0ef;"></i></div>
-        <div id="not-verified-icon"><i class="fa-solid fa-circle-xmark fa-2xl" style="color: #f00;"></i></div>
         <button type="button" id="verify-button">Verify OTP</button>
         <div class="form-inputs inputs-labels">
           <input type="submit" name="submit" id="submit-button" value="Update Changes" />

@@ -111,12 +111,14 @@ function formToggle(ID){
                                         <tr>
                                             <td class="p-2 studentId"><?php echo $cs['StudentId']; ?></td>
                                             <td class="p-2"><?php echo $cs['Fname']." ".$cs["Lname"]; ?></td>
-                                            <td class="p-2"><?php echo $cs['SessionOne']; ?></td>
-                                            <td class="p-2"><?php echo $cs['SessionTwo']; ?></td>
-                                            <td class="p-2"><input type="number" name="student_grade"
-                                                    class="form-control student_course_grade" min="0" max="100"
-                                                    pattern="/^[0-9][0-9]?$|^100$/" value="<?php echo $cs['Grade']; ?>" /></td>
-                                            <td class="p-2"><?php echo $cs['EnrollmentDate']; ?></td>
+                                            <td class="p-2"><input type="number" name="session1_grade"
+                                                    class="form-control session1_grade" min="0" max="100"
+                                                    pattern="/^[0-9][0-9]?$|^100$/" value="<?php echo $cs['SessionOne']; ?>" /></td>
+                                            <td class="p-2"><input type="number" name="session2_grade"
+                                                    class="form-control session2_grade" min="0" max="100"
+                                                    pattern="/^[0-9][0-9]?$|^100$/" value="<?php echo $cs['SessionTwo']; ?>" /></td>
+                                            <td class="p-2"><?php echo $cs['Grade']; ?></td>
+                                            <td class="p-2 enrollDate"><?php echo $cs['EnrollmentDate']; ?></td>
                                           </tr>
                                         <?php
                               }
@@ -146,6 +148,7 @@ function formToggle(ID){
       require("templates/admin-scripts.php");
     ?>
     <!--scripts end -->
+    <script src="js/admin-page-grades.js"></script>
     <script src="js/admin-page-import-grades.js"></script>
 </body>
 </html>

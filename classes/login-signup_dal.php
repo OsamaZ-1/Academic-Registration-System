@@ -11,7 +11,7 @@
           $result1 = $this -> getData($sql1);
           $result2 = $this -> getData($sql2);
           
-          if($result1[0]["Admin"] == 1 && password_verify($password, $result1[0]["Password"]))
+          if(!empty($result1) && $result1[0]["Admin"] == 1 && password_verify($password, $result1[0]["Password"]))
             return "Admin";
           else if(!empty($result2) && password_verify($password, $result2[0]["Password"]))
               return $result2[0]["StudentId"];
