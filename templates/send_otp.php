@@ -35,7 +35,7 @@
           //Content
           $mail->isHTML(true);                                  //Set email format to HTML
           $mail->Subject = 'OTP Verification Code';
-          $mail->Body    = "Use this code to verify your email <b>{$_SESSION['otp']}</b>";
+          $mail->Body    = "Use this code to verify your email <b>{$_SESSION["otp"]}</b>";
 
           $mail->send();
           echo "<p id='notification' style='text-align:center; font-size:1.5vw; color:#0ef; margin-top: 0.7em;'>We have sent you and OTP</p>";

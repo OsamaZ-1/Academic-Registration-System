@@ -39,8 +39,8 @@
 
               $email = $_SESSION["user_email"];
               $password = $_POST["password"];
-              
-              $result = $student_dal -> updateAccountPassword($email, $password);
+              $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+              $result = $student_dal -> updateAccountPassword($email, $hashedPassword);
 
               if($result)
               { 
