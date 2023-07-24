@@ -13,6 +13,7 @@ This project is developed to automate the process of student registration in cou
 - Search for phpmyadmin in your browser or simply search for http://localhost/phpmyadmin/ 
   - create a database called **FacultyOfScience**
   - and import the database which could be found in the project in **Database** folder.
+- In your project, open a terminal window in vscode and enter the command **composer require phpmailer/phpmailer, this is used to send otp verification code in order to change account password.
 - In your project, open a terminal window in vscode and enter the command **composer require phpoffice/phpspreadsheet** , this is used for importing and processing excel files. composer command should be recognized after you have installed it in step 4.
 - After you are done with previous steps, open the browser and search for **http://localhost/academic-registration/index.php** , it must launch the landing page of the project, from which we can go to Login or SignUp page.
 
